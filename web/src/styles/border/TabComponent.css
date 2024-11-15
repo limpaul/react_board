@@ -23,3 +23,61 @@
     background-color: rgb(9, 112, 230);
     color: white;
 }
+
+/* 데이터가 서서히 나타나는 애니메이션 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 애니메이션을 적용할 클래스 */
+.fade-in {
+    padding: 10px;
+    animation: fadeIn 1s ease-out; /* 1초 동안 서서히 나타나는 애니메이션 */
+}
+.bbsTable{
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    text-align: left; /* 텍스트 가로 정렬 */
+    font-weight: 700;
+    width: 100%;
+    border-collapse: collapse;
+}
+.bbsTable th{
+    text-align: center; /* 텍스트 가로 정렬 */
+    border-top: 2px solid black; /* 위쪽에만 2px 검정색 테두리 추가 */
+    border-bottom: 2px solid black;
+}
+.bbsTable > thead > tr{
+    border-top: 1px solid black;
+}
+
+.bbsTable th:nth-child(1) {
+    width: 5%;
+}
+.bbsTable th:nth-child(2) {
+    width: 45%;
+}
+.bbsTable th:nth-child(3) {
+    width: 30%;
+}
+.bbsTable th:nth-child(3) {
+    width: 20%;
+}
+.bbsTable td:nth-child(1) {
+    text-align: center;
+}
+.bbsTable td:nth-child(3) {
+    text-align: center;
+}
+.bbsTable td:nth-child(4) {
+    text-align: center;
+}
+.bbsTable tbody > tr:hover{
+    background-color: aqua;
+    transition: background-color 0.8s;
+}
