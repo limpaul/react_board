@@ -1,0 +1,25 @@
+#tabComponentRootDiv{
+    border: 1px solid black;
+}
+.title{
+
+}
+.title ul {
+    display: flex;
+    list-style: none;
+}
+.title li {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.2);;
+    width: 20%;
+    height: 50px;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    text-align: center; /* 텍스트 가로 정렬 */
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+.title li:hover{
+    background-color: rgb(9, 112, 230);
+    color: white;
+}
