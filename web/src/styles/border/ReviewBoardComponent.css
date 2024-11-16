@@ -1,0 +1,33 @@
+.reviewType ul{
+    list-style: none; /* 동그라미 제거 */
+    display: flex; /* 한 줄로 배치 */
+    gap: 10px; /* 항목 간격 */
+}
+.reviewType ul li{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer; /* 커서 변경 */
+    transition: background-color 0.3s ease; /* 부드러운 전환 */
+}
+.reviewType ul li:hover{
+    border: none;
+    background-color: #d3c93c; /* 배경색 변경 */
+}
+.reviewType button:hover{
+    border: none;
+    background-color: #d3c93c; /* 배경색 변경 */
+}
+.reviewType input {
+    width: 400px;
+    height: 30px;
+    font-size: 20px;
+    margin-left: 30px;
+    border-radius: 10px;
+}
+.reviewType button {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 5px;
+}

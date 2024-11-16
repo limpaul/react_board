@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import FreeBoardComponent from "./borderType/FreeBoardComponent";
+import ReviewBoardComponent from "./borderType/review/ReviewBoardComponent";
 
 
 export default function BodyComponent({category}){
@@ -40,7 +41,7 @@ export default function BodyComponent({category}){
                 <FreeBoardComponent boardData={boardData}/>
             )}
             {category && category.id === 'reviewBoard' && (
-                <h2>리뷰 게시판</h2>
+                <ReviewBoardComponent/>
             )}
             {category && category.id === 'naverReviewBoard' && (
                 <h2>네이버 리뷰 게시판</h2>

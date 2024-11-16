@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../../styles/border/TabComponent.css'
 import BodyComponent from './BodyComponent';
 
 export default function TabComponent(){
     const [selectItem, setSelectItem] = useState(null)
-    const whichTab = useRef(null);
     const tabClick = (event) =>{
-        whichTab.current.innerText = event.target.innerText;
         setSelectItem(event.target)
     }
     useEffect(()=>{
@@ -26,9 +24,7 @@ export default function TabComponent(){
                         <li id='dataBoard' onClick={tabClick} className='tab'>자료실 게시판</li>
                     </ul>
                 </div>
-                <div>
-                    <h2 ref={whichTab}></h2>
-                </div>
+    
                 <div>
                     <BodyComponent category={selectItem} />
                 </div>
