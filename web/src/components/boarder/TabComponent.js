@@ -22,7 +22,7 @@ export default function TabComponent(){
                         <li id='category' onClick={tabClick} className='tab'>게시판 카테고리</li>
                         <li id='freeBoard' onClick={tabClick} className='tab'>자유게시판</li>
                         <li id='reviewBoard' onClick={tabClick} className='tab'>리뷰게시판</li>
-                        <li id='naverReviewBoard' onClick={tabClick} className='tab'>네이버 리뷰 게시판</li>
+                        <li id='marketBoard' onClick={tabClick} className='tab'>장터 게시판</li>
                         <li id='dataBoard' onClick={tabClick} className='tab'>자료실 게시판</li>
                     </ul>
                 </div>

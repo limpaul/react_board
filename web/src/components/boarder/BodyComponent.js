@@ -27,7 +27,7 @@ export default function BodyComponent({category}){
         
     }, [category]);
     function dataloadTest(){
-        axios.get('/data.json')
+        axios.get('/testdata/data.json')
         .then(response =>{
             setBoardData(response.data)
         })

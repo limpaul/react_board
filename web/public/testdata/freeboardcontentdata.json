@@ -1,0 +1,23 @@
+[
+    {
+        "no": 1,
+        "title": "admin write test",
+        "author": "admin",
+        "date": "2024-11-15",
+        "content": "This is the content for the admin's test post. It is written to check the functionality of the system."
+    },
+    {
+        "no": 2,
+        "title": "second post",
+        "author": "user123",
+        "date": "2024-11-16",
+        "content": "Here is some random content for the second post. It might include updates, news, or general information."
+    },
+    {
+        "no": 3,
+        "title": "third post",
+        "author": "guest",
+        "date": "2024-11-17",
+        "content": "The content for the third post is written by a guest user. It contains a brief introduction and some random thoughts."
+    }
+]

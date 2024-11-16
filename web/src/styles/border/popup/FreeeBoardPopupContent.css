@@ -1,0 +1,36 @@
+.freeBoardPopupDiv{
+    padding: 20px;
+    height: 100%;
+}
+#title{
+    width: 90%;
+    height: 40px;
+    margin: 20px;
+    font-size: 25px;
+}
+
+textarea{
+    width: 90%;
+    height: 70%;
+    font-size: 20px;
+}
+.btn{
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 둥근 모서리 */
+    cursor: pointer; /* 마우스를 올렸을 때 포인터 표시 */
+    color: white; /* 텍스트 색상 */
+    padding: 6px 20px; /* 버튼의 내부 여백 */
+    font-weight: bold;
+}
+#compelete{
+    background-color: #007bff; /* 버튼 색상 */
+}
+#tmpSave{
+    background-color: #1eff00; /* 버튼 색상 */
+}
+#cancel{
+    background-color: #ff0037; /* 버튼 색상 */
+}

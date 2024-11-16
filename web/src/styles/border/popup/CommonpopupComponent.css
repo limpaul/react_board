@@ -1,0 +1,47 @@
+.popup {
+    display: none; /* 초기 상태: 숨김 */
+    position: fixed; /* 화면에 고정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+    display: flex; /* 플렉스 박스 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+  }
+  
+  /* 팝업 내용 */
+  .popup-content-freeBoardWrite {
+    width: 40%;
+    height: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative; /* 닫기 버튼 위치 조정 가능 */
+  }
+
+    /* 팝업 내용 */
+  .popup-content-freeBoardRead {
+    width: 80%;
+    height: 95%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative; /* 닫기 버튼 위치 조정 가능 */
+  }
+  
+  /* 닫기 버튼 스타일 */
+  .close {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 50px;
+    cursor: pointer;
+    color: gray;
+  }
