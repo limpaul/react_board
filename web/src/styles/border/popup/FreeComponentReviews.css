@@ -1,0 +1,38 @@
+.reviews{
+    border: 1px solid black;
+    width: 90%;
+    
+}
+.reviews input{
+    width: 80%;
+}
+.reviews button{
+    background-color: rgb(13, 14, 14);
+}
+.reviewers ul{
+    list-style: none; /* 동그라미 제거 */
+}
+.reviewer ul{
+    padding: 0;
+    margin: 0;
+    display: flex; /* 한 줄로 배치 */
+    gap: 10px; /* 항목 간격 */
+}
+.reviewer ul li:nth-child(1){
+    background-color: lightgreen;
+    width: 10%;
+    border-radius: 80px;
+}
+.reviewer ul li:nth-child(2){
+    background-color: rgb(144, 238, 238);
+    width: 80%;
+    border-radius: 50px;
+}
+.reviewer ul li:nth-child(3){
+    background-color: rgb(126, 143, 34);
+    width: 20%;
+    border-radius: 10px;
+}
+.reviewer li{
+    margin: 0;
+}

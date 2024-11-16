@@ -1,0 +1,27 @@
+[
+    {
+      "author": "John Doe",
+      "content": "This is a great post! Thank you for sharing.",
+      "timestamp": "2024-11-16"
+    },
+    {
+      "author": "Jane Smith",
+      "content": "I found this information really helpful.",
+      "timestamp": "2024-11-16"
+    },
+    {
+      "author": "Michael Brown",
+      "content": "Can you provide more details on this topic?",
+      "timestamp": "2024-11-16"
+    },
+    {
+      "author": "Emily Davis",
+      "content": "Interesting perspective! I hadn’t considered this.",
+      "timestamp": "2024-11-16"
+    },
+    {
+      "author": "Chris Wilson",
+      "content": "Great insights, looking forward to more posts like this.",
+      "timestamp": "2024-11-16"
+    }
+  ]
