@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import FreeBoardComponent from "./borderType/FreeBoardComponent";
+import MarketBoardComponent from "./borderType/market/MarketBoardComponent";
 import ReviewBoardComponent from "./borderType/review/ReviewBoardComponent";
 
 
@@ -19,8 +20,8 @@ export default function BodyComponent({category}){
         if(category.id === 'reviewBoard'){
             console.log('reviewBoard');
         }
-        if(category.id === 'naverReviewBoard'){
-            console.log('naverReviewBoard');
+        if(category.id === 'marketBoard'){
+            console.log('marketBoard');
         }
         if(category.id === 'dataBoard'){
             console.log('dataBoard');
@@ -43,8 +44,8 @@ export default function BodyComponent({category}){
             {category && category.id === 'reviewBoard' && (
                 <ReviewBoardComponent/>
             )}
-            {category && category.id === 'naverReviewBoard' && (
-                <h2>네이버 리뷰 게시판</h2>
+            {category && category.id === 'marketBoard' && (
+                <MarketBoardComponent/>
             )}
             {category && category.id === 'dataBoard' && (
                 <h2>자료게시판</h2>
