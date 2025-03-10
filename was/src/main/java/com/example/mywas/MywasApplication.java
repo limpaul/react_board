@@ -11,3 +11,14 @@ public class MywasApplication {
 	}
 
 }
+
+/*
+[User] ────┐
+           │
+           ▼
+     [Order] ──── [OrderItem] ◀──── [Menu] ─── [Restaurant]
+                        ▲                    ▲
+                        │                    │
+                      [CartItem] ── [Cart] ──┘
+
+ */
