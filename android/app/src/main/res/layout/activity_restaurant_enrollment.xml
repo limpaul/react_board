@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="40px"
+    tools:context=".RestaurantEnrollment">
+
+    <TextView
+        android:id="@+id/userAddText"
+        android:text="식당 등록"
+        android:textSize="40dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/restaurantName"
+            android:hint="식당 이름"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <EditText
+            android:id="@+id/restaurantAddress"
+            android:hint="식당 주소"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:textColor="@android:color/holo_red_dark"
+                android:text="느그민족에게 매달 수입료 10% 납부에 대한 이의 없음에 동의"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <CheckBox
+                android:textColor="@android:color/holo_red_dark"
+                android:text="느그민족 배달 수수료 추가 10%에 이의 없음에 동의 "
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+            <CheckBox
+                android:textColor="@android:color/holo_red_dark"
+                android:text="느그민족 운영자가 시키는 주문은 무료에 동의"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    <Button
+        android:id="@+id/enrollRestaurantBtn"
+        android:text="가계 등록"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="뒤로가기"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
