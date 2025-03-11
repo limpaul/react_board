@@ -32,9 +32,9 @@ public class UserService implements CommandLineRunner {
         // 기본 사용자 등록 (일반 사용자, 식당 관리자)
         User user1 = new User(1L, "JohnDoe", "johndoe@example.com", "1234", "ROLE_USER");
         User user2 = new User(2L, "Jeus", "johndoe@example.com", "1234", "ROLE_USER");
-        User user3 = new User(3L, "JBoss;", "bwlim@example.com", "1234", "ROLE_OWNER");
-        User user4 = new User(4L, "Raon;", "bwlim@example.com", "1234", "ROLE_OWNER");
-        User user5 = new User(5L, "Lim Paul;", "pau;@example.com", "1234", "ROLE_OWNER");
+        User user3 = new User(3L, "JBoss", "bwlim@example.com", "1234", "ROLE_OWNER");
+        User user4 = new User(4L, "Raon", "bwlim@example.com", "1234", "ROLE_OWNER");
+        User user5 = new User(5L, "limpaul", "paul@example.com", "1234", "ROLE_OWNER");
         User user6 = new User(6L, "Dragon", "Dragon@example.com", "1234", "ROLE_OWNER");
         User user7 = new User(7L, "Jane Admin", "janeadmin@example.com", "adminpass", "ROLE_ADMIN");
         enrollUser(user1);

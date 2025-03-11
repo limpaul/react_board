@@ -19,6 +19,7 @@ public class UserRestaurantService implements CommandLineRunner {
 
 
     public void enrollRestaurant(Restaurant restaurant) {
+        logger.info("식당 등록: "+restaurant.toString());
         restaurantRepository.save(restaurant);
     }
     public void findAll(){

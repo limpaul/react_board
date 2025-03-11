@@ -1,13 +1,11 @@
 package com.example.mywas.domain.order;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@Builder
 @ToString
 public class Menu {
     private Long id;
