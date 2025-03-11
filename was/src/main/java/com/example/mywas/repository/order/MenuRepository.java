@@ -28,4 +28,13 @@ public class MenuRepository {
     public List<Menu> findAll(){
         return menus;
     }
+
+    public Menu findMenuByRestaurantName(String name) {
+        return menus.stream().filter(menu -> menu.getName().trim().equalsIgnoreCase(name.trim()))
+                .findFirst()
+                .orElseGet(()->{
+                    logger.info("can`t not find restaurant {}", name);
+                   return null;
+                });
+    }
 }

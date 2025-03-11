@@ -29,7 +29,13 @@ public class RestaurantMenuRepositoryController {
             Menu menu = Menu.builder()
                     .name("피자")
                     .price(20000)
-                    .description("Good")
+                    .description("Good Pizza")
+                    .restaurant(restaurant)
+                    .build();
+            Menu menu2 = Menu.builder()
+                    .name("치킨")
+                    .price(30000)
+                    .description("Good Chicken")
                     .restaurant(restaurant)
                     .build();
 
@@ -37,7 +43,8 @@ public class RestaurantMenuRepositoryController {
 
 
             // 메뉴 등록
-            menuRepository.save(menu);
+            menuRepository.save(menu); // 피자 등록
+            menuRepository.save(menu2); // 치킨 등록
         }
 
 
