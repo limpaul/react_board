@@ -1,8 +1,10 @@
 package com.raonsecure.myapplication
 
 import android.content.Intent
+import android.net.Network
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
@@ -12,22 +14,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
+
 
 class UserEnroll : AppCompatActivity() {
     private val userAddText:TextView by lazy { findViewById(R.id.userAddText) }
+    private val userAddSendBtn:Button by lazy { findViewById(R.id.userAddSendBtn) }
     private val username:EditText by lazy { findViewById(R.id.username) }
     private val useremail:EditText by lazy { findViewById(R.id.useremail) }
     private val userpassword:EditText by lazy { findViewById(R.id.userpassword) }
@@ -39,10 +33,13 @@ class UserEnroll : AppCompatActivity() {
     private val roleRestaurantClientChkBox:CheckBox by lazy { findViewById(R.id.roleRestaurantClientChkBox) }
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private val http = NetworkSetting()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_enroll)
+
+
 
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
@@ -58,35 +55,33 @@ class UserEnroll : AppCompatActivity() {
             val intent:Intent = Intent(this, RestaurantEnrollment::class.java);
             resultLauncher.launch(intent)
         }
+        userAddSendBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                enrollUserInfoToServer()
+            }
+        }
     }
 
-    fun enrollUserInfoToServer(){
+    suspend fun enrollUserInfoToServer(){
         // 이름(별명) | 이메일 | 비밀번호 | 비밀번호 재확인 | 일반사용자 | 판매용 계정 권한 유무 확인
         val result:Boolean = verifyDataText();
         if(result){
              // 서버로 데이터 전공
             val dataMap:MutableMap<String, Any> = HashMap()
-            dataMap.put("username", username.text)
-            dataMap.put("useremail", useremail.text)
-            dataMap.put("userpassword", userpassword.text)
+            dataMap.put("username", username.text.toString())
+            dataMap.put("useremail", useremail.text.toString())
+            dataMap.put("userpassword", userpassword.text.toString())
+
             if(roleRestaurantClientChkBox.isChecked){
                 dataMap.put("restaurantName", restaurantName)
-                dataMap.put("userpassword", restaurantAddress)
+                dataMap.put("restaurantAddress", restaurantAddress)
+            }
+            Log.d("bwlim", dataMap.toString())
+            http.commonSendPostToServer(urlPath = "/api/order/user/enroll/account",dataMap = dataMap)?.let { response ->
+
+                Log.d("bwlim", response)
             }
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val gson:Gson = Gson()
-                var data:String = gson.toJson(dataMap)
-
-                val client:OkHttpClient = OkHttpClient()
-                val requestBody:RequestBody = data.toRequestBody(contentType = "application/json; charset=utf8".toMediaTypeOrNull())
-                val request:Request = Request.Builder()
-                    .url()
-                    .post(requestBody)
-                    .build()
-
-                val response:Response = client.newCall(request).execute()
-            }
         }
     }
     fun verifyDataText(): Boolean {

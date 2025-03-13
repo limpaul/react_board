@@ -27,17 +27,20 @@
         android:layout_margin="20dp"
         >
         <EditText
+            android:id="@+id/username"
             android:layout_marginTop="100dp"
             android:hint="아이디"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
         <EditText
+            android:id="@+id/userpassword"
             android:hint="비밀번호"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
         <Button
+            android:id="@+id/loginBtn"
             android:text="로그인"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
