@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -30,6 +31,12 @@ public class RestaurantUserController {
     @PostMapping("/api/order/user/enroll/account")
     public String userEnrollController(@RequestBody User user){
         userService.enrollUser(user);
+        return "{}";
+    }
+
+    @PostMapping("/api/order/user/login")
+    public String userLoginController(@RequestBody Map<String, String> datamap){
+        
         return "{}";
     }
 
