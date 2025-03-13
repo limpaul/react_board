@@ -29,15 +29,17 @@ public class RestaurantUserController {
     Logger log = LoggerFactory.getLogger(RestaurantUserController.class);
     //회원 가입
     @PostMapping("/api/order/user/enroll/account")
-    public String userEnrollController(@RequestBody User user){
-        userService.enrollUser(user);
+    public String userEnrollController(@RequestBody Map<String, Object> dataMap){
+        log.info(dataMap.toString());
+        userService.enrollUser(dataMap);
         return "{}";
     }
 
     @PostMapping("/api/order/user/login")
-    public String userLoginController(@RequestBody Map<String, String> datamap){
-        
-        return "{}";
+    public Map<String, Object> userLoginController(@RequestBody Map<String, String> datamap){
+        String username = (String)datamap.get("username");
+        String userpassword = (String)datamap.get("userpassword");
+        return userService.loginUser(username, userpassword);
     }
 
     // test 계정 사용자 등록 테스트

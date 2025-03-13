@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Builder
 @AllArgsConstructor
 public class User {
     private Long id;

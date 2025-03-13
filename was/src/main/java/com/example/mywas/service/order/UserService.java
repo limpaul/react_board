@@ -8,13 +8,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 
 @Service
 public class UserService implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
-    public void enrollUser(User user) {
+
+    public void enrollUser(Map<String, Object> dataMap) {
+        String username = (String)dataMap.get("username");
+        String useremail = (String)dataMap.get("useremail");
+        String userpassword = (String)dataMap.get("userpassword");
+
+        if(dataMap.get("restaurantName")!=null || dataMap.get("restaurantAddress")!=null){
+            userRepository.save(User.builder()
+                    .username(username)
+                    .email(useremail)
+                    .password(userpassword)
+                    .role("ROLE_OWNER")
+                    .build());
+        }else{
+            userRepository.save(User.builder()
+                    .username(username)
+                    .email(useremail)
+                    .password(userpassword)
+                    .role("ROLE_CUSTOMER")
+                    .build());
+        }
+
+    }
+
+    public Map<String, Object> loginUser(String username, String password){
+        Map<String, Object> dataMap = new HashMap<>();
+        User user = userRepository.findByUsername(username);
+        if(user!=null && user.getPassword().equals(password)){
+            dataMap.put("username", user.getUsername());
+            dataMap.put("user", user.getEmail());
+            dataMap.put("role", user.getRole());
+            dataMap.put("isSuccess", true);
+            dataMap.put("message", "로그인 성공");
+        }else{
+            dataMap.put("isSuccess", false);
+            dataMap.put("message", "로그인 실패");
+        }
+        return dataMap;
+    }
+    public void enrollInitUser(User user) {
         userRepository.save(user);
+
     }
     // 사용자 추가
 
@@ -37,14 +81,13 @@ public class UserService implements CommandLineRunner {
         User user5 = new User(5L, "limpaul", "paul@example.com", "1234", "ROLE_OWNER");
         User user6 = new User(6L, "Dragon", "Dragon@example.com", "1234", "ROLE_OWNER");
         User user7 = new User(7L, "Jane Admin", "janeadmin@example.com", "adminpass", "ROLE_ADMIN");
-        enrollUser(user1);
-        enrollUser(user2);
-        enrollUser(user3);
-        enrollUser(user4);
-        enrollUser(user5);
-        enrollUser(user6);
-        enrollUser(user7);
-        userRepository.setNextId(7L);
+        enrollInitUser(user1);
+        enrollInitUser(user2);
+        enrollInitUser(user3);
+        enrollInitUser(user4);
+        enrollInitUser(user5);
+        enrollInitUser(user6);
+        enrollInitUser(user7);
         findUserAll();
     }
 }
