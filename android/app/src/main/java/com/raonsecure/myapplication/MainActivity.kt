@@ -57,8 +57,15 @@ class MainActivity : AppCompatActivity() {
                             .setMessage(resultMap.get("message").toString())
                             .setPositiveButton("확인") { dialog, _ ->
                                 dialog.dismiss()
+                                if(resultMap.get("isSuccess") == true){
+                                    val intent:Intent = Intent(this@MainActivity, RestaurantList::class.java)
+                                    intent.putExtra("userinfo", response)
+                                    startActivity(intent)
+                                }
                             }
                             .show()
+
+
                     }
                 }
             }

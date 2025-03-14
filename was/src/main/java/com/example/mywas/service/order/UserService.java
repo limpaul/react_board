@@ -74,7 +74,7 @@ public class UserService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // 기본 사용자 등록 (일반 사용자, 식당 관리자)
-        User user1 = new User(1L, "JohnDoe", "johndoe@example.com", "1234", "ROLE_USER");
+        User user1 = new User(1L, "test", "test@example.com", "1234", "ROLE_USER");
         User user2 = new User(2L, "Jeus", "johndoe@example.com", "1234", "ROLE_USER");
         User user3 = new User(3L, "JBoss", "bwlim@example.com", "1234", "ROLE_OWNER");
         User user4 = new User(4L, "Raon", "bwlim@example.com", "1234", "ROLE_OWNER");
