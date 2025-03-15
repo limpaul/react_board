@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     private var rotationAngle = 0f // 30도씩 회전
     private val http = NetworkSetting()
 
+    //test
+    private val autoLoginBtn:Button by lazy { findViewById(R.id.autoLoginBtn) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,6 +73,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        autoLoginBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val dataMap = HashMap<String, Any>()
+                dataMap.put("username", "test")
+                dataMap.put("userpassword", "1234")
+                http.commonSendPostToServer(urlPath = "/api/order/user/login", dataMap = dataMap)?.let {
+                        response ->
+                    Log.d("bwlim", response.toString())
+                    val gson:Gson = Gson()
+                    val resultMap = gson.fromJson(response, Map::class.java)
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        if(resultMap.get("isSuccess") == true){
+                            val intent:Intent = Intent(this@MainActivity, RestaurantList::class.java)
+                            intent.putExtra("userinfo", response)
+                            startActivity(intent)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     fun setAppFontColorChange(){
@@ -91,4 +116,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

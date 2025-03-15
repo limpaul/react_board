@@ -1,15 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/homeFragment"
-        android:title="Home"/>
-
-    <item
-        android:id="@+id/profileFragment"
-        android:title="Profile"/>
-
-    <item
-        android:id="@+id/settingsFragment"
-        android:title="Settings"/>
+    <item android:id="@+id/nav_item1" android:title="회원정보" />
+    <item android:id="@+id/nav_item2blank" android:title="" />
+    <item android:id="@+id/nav_item3" android:title="주문내역" />
+    <item android:id="@+id/nav_addRestaurantDrawerTab" android:title="식당등록" />
+    <item android:id="@+id/nav_item5" android:title="식당정보" />
+    <item android:id="@+id/nav_itemblank1" android:title="" />
+    <item android:id="@+id/nav_itemblank2" android:title="" />
+    <item android:id="@+id/nav_itemblank3" android:title="" />
+    <item android:id="@+id/nav_item8" android:title="고객센터" />
+    <item android:id="@+id/nav_item9" android:title="설정" />
+    <item android:id="@+id/nav_item10" android:title="로그아웃" />
 </menu>
