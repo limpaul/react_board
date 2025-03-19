@@ -3,6 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- mVaccine 패턴 업데이트 시 네트워크 정보 확인을 위한 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- targetSdk 28 이상에서 빌드할 경우 삭제 권한 필요 -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <!-- 악성코드 실시간 검사를 위해 사용되는 권한 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Android 11 에서 설치된 패키지 명을 얻어올 때 필요 -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <!-- android 13 이상 노티피케이션 표시를 위해 사용 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:allowBackup="true"
@@ -15,6 +25,9 @@
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".MenuCommonList"
+            android:exported="false" />
         <activity
             android:name=".RestaurantMenu"
             android:exported="false" />
@@ -36,6 +49,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- mVaccine 스캔 탐지 결과를 브로드캐스트로 수신할 때 사용 -->
+        <receiver
+            android:name="com.TouchEn.mVaccine.DEMO.CodeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.TouchEn.mVaccine.b2b2c.FIRE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- CommonUtil.checkRooting() 인터널 루팅체크 마운트 검사 옵션 사용시 등록 필요. API 메뉴얼 [부록]FAQ 참고 -->
+        <service
+            android:name="com.TouchEn.mVaccine.service.MvcIsolService"
+            android:enabled="true"
+            android:isolatedProcess="true"
+            android:process=":mvcIsolService" />
+
+        <!-- WorkManager ForegroundService 적용 -->
+        <service
+            android:name="androidx.work.impl.foreground.SystemForegroundService"
+            android:foregroundServiceType="shortService"
+            tools:node="merge" />
+
     </application>
 
 </manifest>

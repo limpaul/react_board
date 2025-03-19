@@ -10,11 +10,15 @@ import androidx.core.view.WindowInsetsCompat
 
 class RestaurantMenu : AppCompatActivity() {
 
+    private val networkSetting:NetworkSetting by lazy { NetworkSetting() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_restaurant_menu)
     }
 
+    fun getRestaurantListFromServer(){
+
+    }
 
 }

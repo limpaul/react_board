@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class RestaurantController {
 
@@ -53,6 +55,10 @@ public class RestaurantController {
     // 식당 삭제
 
     // 식당 조회
+    @GetMapping("//api/order/user/find/restaurant/list")
+    public Map<String, Object> findEnrollRestaurants(){
+       return null;
+    }
     @GetMapping("/api/order/user/find/restaurant/test")
     public String findEnrollRestaurant(){
         return restaurantRepository.findAll().toString();

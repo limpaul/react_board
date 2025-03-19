@@ -1,6 +1,8 @@
 package com.example.mywas.service.order;
 
+import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.User;
+import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,27 +20,32 @@ public class UserService implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
 
+    @Autowired private RestaurantRepository restaurantRepository;
+
     public void enrollUser(Map<String, Object> dataMap) {
         String username = (String)dataMap.get("username");
         String useremail = (String)dataMap.get("useremail");
         String userpassword = (String)dataMap.get("userpassword");
+        String restaurantName = (String)dataMap.get("restaurantName");
+        String restaurantAddress = (String)dataMap.get("restaurantAddress");
 
-        if(dataMap.get("restaurantName")!=null || dataMap.get("restaurantAddress")!=null){
-            userRepository.save(User.builder()
-                    .username(username)
-                    .email(useremail)
-                    .password(userpassword)
-                    .role("ROLE_OWNER")
-                    .build());
+        User user = User.builder()
+                .username(username)
+                .email(useremail)
+                .password(userpassword)
+                .build();
+        if(restaurantName!=null && restaurantAddress!=null){
+            user.setRole("ROLE_OWNER");
+            User result = userRepository.save(user);
+            // 식당 등록
+            restaurantRepository.save(Restaurant.builder()
+                            .user(result)
+                            .address(restaurantAddress)
+                            .build());
         }else{
-            userRepository.save(User.builder()
-                    .username(username)
-                    .email(useremail)
-                    .password(userpassword)
-                    .role("ROLE_CUSTOMER")
-                    .build());
+            user.setRole("ROLE_CUSTOMER");
+            userRepository.save(user);
         }
-
     }
 
     public Map<String, Object> loginUser(String username, String password){
