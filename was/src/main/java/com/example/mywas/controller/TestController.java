@@ -18,6 +18,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
+        System.out.println("Get() test");
         return "test";
     }
     @GetMapping("/getSession")

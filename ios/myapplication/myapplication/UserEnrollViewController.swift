@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserEnrollViewController: UIViewController, UITextFieldDelegate {
+class UserEnrollViewController: UIViewController, UITextFieldDelegate, RestaurantEnrollViewControllerDelegate {
 
     @IBOutlet weak var companyNameLabel: UILabel!
     
@@ -22,6 +22,8 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userRoleChkBox: UISwitch!
     
     @IBOutlet weak var roleRestaurantClientChkBox: UISwitch!
+    
+    var userData: [String: Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,26 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate {
         }else{
             
         }
+    }
+    
+    
+    @IBAction func userAddSendBtn(_ sender: Any) {
+        var username = usernameTextField.text
+        var useremail = useremailTextField.text
+        var userpassword = userpasswordTextFied.text
+        if usernameTextField.text?.isEmpty == true {
+            username = "test"
+        }
+        if useremailTextField.text?.isEmpty == true {
+            useremail = "test@test.com"
+        }
+        if userpasswordTextFied.text?.isEmpty == true{
+            userpassword = "1234"
+        }
+        userData["username"] = username
+        userData["useremail"] = useremail
+        userData["userpassword"] = userpassword
+        
     }
     
     
@@ -65,5 +87,23 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRestaurantErollViewController" {
+            if let destinationVC = segue.destination as? RestaurantErollViewController {
+                destinationVC.delegate = self // delegate 설정
+            }
+        }
+    }
+    // 델리게이트 메서드 구현
+    func didReturnData(_ data: [String: Any]) {
+        if let restaurantName = data["restaurantName"] as? String,
+           let restaurantAddress = data["restaurantAddress"] as? String {
+            print("Received Restaurant Name: \(restaurantName)")
+            print("Received Restaurant Address: \(restaurantAddress)")
+            userData["restaurantName"] = restaurantName
+            userData["restaurantAddress"] = restaurantAddress
+        }
     }
 }

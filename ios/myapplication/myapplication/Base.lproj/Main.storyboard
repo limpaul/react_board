@@ -54,6 +54,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="자동 로그인"/>
                                 <connections>
+                                    <action selector="autoLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5EZ-lu-fIj"/>
                                     <action selector="autoUserLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AYf-uc-PAK"/>
                                 </connections>
                             </button>
@@ -156,6 +157,9 @@
                                 <color key="tintColor" systemColor="systemGray5Color"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="회원가입"/>
+                                <connections>
+                                    <action selector="userAddSendBtn:" destination="58U-QD-D7m" eventType="touchUpInside" id="OOC-a3-Na5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="N79-cr-bT6"/>
@@ -174,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8t-ez-dCv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119.84732824427481" y="-85.211267605633807"/>
+            <point key="canvasLocation" x="91" y="-38"/>
         </scene>
         <!--Restaurant Eroll View Controller-->
         <scene sceneID="4kD-ST-faO">
@@ -246,6 +250,9 @@
                                 <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="가게 등록"/>
+                                <connections>
+                                    <action selector="enrollRestaurantBtn:" destination="kMc-jP-DwF" eventType="touchUpInside" id="DMz-5V-vXw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jok-pn-GMF"/>
@@ -256,11 +263,13 @@
                         <outlet property="agreeContractUISwitch2" destination="sf8-3h-Gc7" id="Eb3-R0-O7I"/>
                         <outlet property="agreeContractUISwitch3" destination="Hju-hW-gf1" id="vj5-LN-IB9"/>
                         <outlet property="companyNameLabel" destination="aQn-Tp-DOf" id="IZB-Mw-c7S"/>
+                        <outlet property="restaurantAddress" destination="0gE-Cz-LSC" id="SKp-2G-G48"/>
+                        <outlet property="restaurantName" destination="UCe-Ix-y3W" id="Kvj-Yh-brY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbf-0v-lY8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880.15267175572512" y="-84.507042253521135"/>
+            <point key="canvasLocation" x="851" y="-37"/>
         </scene>
     </scenes>
     <resources>
@@ -274,13 +283,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

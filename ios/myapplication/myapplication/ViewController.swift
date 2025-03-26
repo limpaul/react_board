@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import os
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let logger = Logger(subsystem: "com.raonsecure.bwlim", category: "UserLoginController")
     
     @IBOutlet weak var companyNameLabel: UILabel!
     
@@ -32,6 +34,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
+    
+    
     @IBAction func userLoginBtn(_ sender: UIButton) {
         
     }
@@ -46,6 +50,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc func labelTabbed(){ // 회원 가입 label을 클릭 할 경우
         performSegue(withIdentifier: "toUserEnrollViewController", sender: self)
     }
+    
+    
+    @IBAction func autoLoginBtn(_ sender: Any) {
+        Task {
+            let success = await NetworkManager
+                .shared
+                .requestPOST(urlPath: "/api/order/user/login",
+                             requestBody: [
+                                "username":"test",
+                                "userpassword":"1234"]){
+                                    success, result in
+                                    if(success){
+                                        if let isSuccess = result["isSuccess"] as? Int, let role = result["role"] as? String {
+                                            print("isSuccess: \(isSuccess), role: \(role)")
+                                        }
+                                    }
+                                }
+            
+            DispatchQueue.main.async {
+                print("UI working ...")
+            }
+        }
+    }
+    
     func lotatingLabel(){
         let rotation = CABasicAnimation(keyPath: "transform.rotation")
         rotation.toValue = NSNumber(value: Double.pi * 2) // 360도 회전
