@@ -54,18 +54,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func autoLoginBtn(_ sender: Any) {
         Task {
-            let success = await NetworkManager
+            await NetworkManager
                 .shared
                 .requestPOST(urlPath: "/api/order/user/login",
                              requestBody: [
                                 "username":"test",
                                 "userpassword":"1234"]){
-                                    success, result in
-                                    if(success){
-                                        if let isSuccess = result["isSuccess"] as? Int, let role = result["role"] as? String {
-                                            print("isSuccess: \(isSuccess), role: \(role)")
+                                    [weak self]success, result in
+                                    guard let self = self else {return}
+                                    DispatchQueue.main.async {
+                                        if success {
+                                            if let isSuccess = result["isSuccess"] as? Int, let role = result["role"] as? String {
+                                                print("isSuccess: \(isSuccess), role: \(role)")
+                                                self.performSegue(withIdentifier: "toLoginUserController", sender: self)
+                                            }
                                         }
                                     }
+
                                 }
             
             DispatchQueue.main.async {

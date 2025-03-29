@@ -7,7 +7,8 @@
 
 import UIKit
 
-class UserEnrollViewController: UIViewController, UITextFieldDelegate, RestaurantEnrollViewControllerDelegate {
+
+class UserEnrollViewController: UIViewController, UITextFieldDelegate, UIAdaptivePresentationControllerDelegate, RestaurantEnrollViewControllerDelegate {
 
     @IBOutlet weak var companyNameLabel: UILabel!
     
@@ -33,8 +34,11 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate, Restauran
         roleRestaurantClientChkBox.isOn = false
         
         roleRestaurantClientChkBox.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
+        
+        
     
     }
+
     
     @objc func switchValueChanged(sender: UISwitch){
         if sender.isOn{
@@ -64,6 +68,43 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate, Restauran
         
     }
     
+    @IBAction func userAddAutoEnrollBtn(_ sender: UIButton) {
+        
+        Task {
+            await NetworkManager
+                .shared
+                .requestPOST(urlPath: "/api/order/user/enroll/account",
+                        requestBody: [
+                            "username":"bwlim",
+                            "useremail":"bwlim@naver.com",
+                            "userpassword":"1234",
+                            "restaurantName":"bwlimRestaurant",
+                            "restaurantAddress":"bwlimRestaurantAddress"
+                        ]){
+                            success, result in
+                            if success == true{
+                                if let resultCode = result["resultCode"] as? Int {
+                                    if resultCode == 1 {
+                                        print("회원가입 성공")
+                                        DispatchQueue.main.async {
+                                            self.dismiss(animated: true)
+                                        }
+                                    } else if resultCode == 2 {
+                                        print("이미 존재하는 회원입니다")
+                                    }
+                                }
+                            }
+                        }
+        }
+    }
+    
+
+    
+    func sendData(_ data: String) {
+        print("받은 데이터: \(data)")
+    }
+    
+    
     
     func lotatingLabel(){
         let rotation = CABasicAnimation(keyPath: "transform.rotation")
@@ -80,10 +121,9 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate, Restauran
         return true
     }
     func textFieldInit(){
-        usernameTextField.delegate = self
-        useremailTextField.delegate = self
-        userpasswordTextFied.delegate = self
-        userpasswordVerifyTextField.delegate = self
+        for subview in view.subviews where subview is UITextField{
+            (subview as! UITextField).delegate = self
+        }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -106,4 +146,11 @@ class UserEnrollViewController: UIViewController, UITextFieldDelegate, Restauran
             userData["restaurantAddress"] = restaurantAddress
         }
     }
+    // delegate method
+    func modalDidDismiss(_ isUserEnrollBtnClicked: Bool) {
+        if isUserEnrollBtnClicked == false{
+            roleRestaurantClientChkBox.isOn = false
+        }
+    }
+    
 }

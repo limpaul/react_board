@@ -16,6 +16,8 @@
 		DA29DABB2D8FA01500BC494D /* UserEnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29DABA2D8FA01500BC494D /* UserEnrollViewController.swift */; };
 		DA29DABD2D8FAF9200BC494D /* RestaurantErollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29DABC2D8FAF9200BC494D /* RestaurantErollViewController.swift */; };
 		DA376C5B2D9049940026C127 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA376C5A2D9049940026C127 /* NetworkManager.swift */; };
+		DAE4D0992D97ABD80052EE65 /* RestaurantListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE4D0982D97ABD80052EE65 /* RestaurantListController.swift */; };
+		DAE4D09B2D97AF080052EE65 /* UserNavigatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE4D09A2D97AF080052EE65 /* UserNavigatorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		DA29DABA2D8FA01500BC494D /* UserEnrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnrollViewController.swift; sourceTree = "<group>"; };
 		DA29DABC2D8FAF9200BC494D /* RestaurantErollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantErollViewController.swift; sourceTree = "<group>"; };
 		DA376C5A2D9049940026C127 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DAE4D0982D97ABD80052EE65 /* RestaurantListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListController.swift; sourceTree = "<group>"; };
+		DAE4D09A2D97AF080052EE65 /* UserNavigatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNavigatorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				DA29DABA2D8FA01500BC494D /* UserEnrollViewController.swift */,
 				DA29DABC2D8FAF9200BC494D /* RestaurantErollViewController.swift */,
 				DA376C5A2D9049940026C127 /* NetworkManager.swift */,
+				DAE4D0982D97ABD80052EE65 /* RestaurantListController.swift */,
+				DAE4D09A2D97AF080052EE65 /* UserNavigatorController.swift */,
 			);
 			path = myapplication;
 			sourceTree = "<group>";
@@ -152,6 +158,8 @@
 				DA29DAA72D86926F00BC494D /* AppDelegate.swift in Sources */,
 				DA29DABD2D8FAF9200BC494D /* RestaurantErollViewController.swift in Sources */,
 				DA29DAA92D86926F00BC494D /* SceneDelegate.swift in Sources */,
+				DAE4D0992D97ABD80052EE65 /* RestaurantListController.swift in Sources */,
+				DAE4D09B2D97AF080052EE65 /* UserNavigatorController.swift in Sources */,
 				DA29DABB2D8FA01500BC494D /* UserEnrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

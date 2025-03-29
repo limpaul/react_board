@@ -18,28 +18,34 @@ public class UserService implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
 
-    public void enrollUser(Map<String, Object> dataMap) {
+    public int enrollUser(Map<String, Object> dataMap) {
         String username = (String)dataMap.get("username");
         String useremail = (String)dataMap.get("useremail");
         String userpassword = (String)dataMap.get("userpassword");
 
+        User result = userRepository.findByUsername(username);
+        if(result != null){// 쥰재하는 사용자 일 경우
+            return 2;
+        }
+
         if(dataMap.get("restaurantName")!=null || dataMap.get("restaurantAddress")!=null){
-            userRepository.save(User.builder()
+            result = userRepository.save(User.builder()
                     .username(username)
                     .email(useremail)
                     .password(userpassword)
                     .role("ROLE_OWNER")
                     .build());
         }else{
-            userRepository.save(User.builder()
+            result = userRepository.save(User.builder()
                     .username(username)
                     .email(useremail)
                     .password(userpassword)
                     .role("ROLE_CUSTOMER")
                     .build());
         }
-
+        return 1; // 사용자 등록성공 1 / 사용자 존재하면 2 /
     }
+
 
     public Map<String, Object> loginUser(String username, String password){
         Map<String, Object> dataMap = new HashMap<>();

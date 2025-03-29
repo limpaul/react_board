@@ -9,9 +9,10 @@ import UIKit
 
 protocol RestaurantEnrollViewControllerDelegate:AnyObject {
     func didReturnData(_ data: [String: Any])
+    func modalDidDismiss(_ isUserEnrollBtnClicked: Bool)
 }
 
-class RestaurantErollViewController: UIViewController {
+class RestaurantErollViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var companyNameLabel: UILabel!
     
@@ -29,6 +30,7 @@ class RestaurantErollViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.presentationController?.delegate = self
         lotatingLabel()
         initUISwitch()
         
@@ -49,6 +51,13 @@ class RestaurantErollViewController: UIViewController {
         rotation.fillMode = .forwards
         companyNameLabel.layer.add(rotation, forKey: "rotateAnimation")
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func enrollRestaurantBtn(_ sender: UIButton) {
         if restaurantName.text?.isEmpty == true{
@@ -62,6 +71,14 @@ class RestaurantErollViewController: UIViewController {
             "restaurantAddress":restaurantAddress.text!
         ]
         delegate?.didReturnData(returnedData)
+        delegate?.modalDidDismiss(true)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension RestaurantErollViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        delegate?.modalDidDismiss(false)
     }
 }
