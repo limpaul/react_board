@@ -28,6 +28,7 @@ class UserEnroll : AppCompatActivity() {
     private val userpasswordVerify:EditText by lazy { findViewById(R.id.userpasswordVerify) }
     private lateinit var restaurantName: String
     private lateinit var restaurantAddress: String
+    private lateinit var restaurantDescription: String
 
     private val userRoleChkBox:CheckBox by lazy { findViewById(R.id.userRoleChkBox) }
     private val roleRestaurantClientChkBox:CheckBox by lazy { findViewById(R.id.roleRestaurantClientChkBox) }
@@ -48,6 +49,7 @@ class UserEnroll : AppCompatActivity() {
 
                 restaurantName = bundle?.getString("restaurantName").toString()
                 restaurantAddress = bundle?.getString("restaurantAddress").toString()
+                restaurantDescription = bundle?.getString("restaurantDescription").toString()
                 Log.d("bwlim", "restaurantName: $restaurantName, restaurantAddress: $restaurantAddress")
             }
         }
@@ -75,6 +77,7 @@ class UserEnroll : AppCompatActivity() {
             if(roleRestaurantClientChkBox.isChecked){
                 dataMap.put("restaurantName", restaurantName)
                 dataMap.put("restaurantAddress", restaurantAddress)
+                dataMap.put("restaurantAddress", restaurantDescription)
             }
             Log.d("bwlim", dataMap.toString())
             http.commonSendPostToServer(urlPath = "/api/order/user/enroll/account",dataMap = dataMap)?.let { response ->

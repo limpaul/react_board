@@ -29,6 +29,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+        <EditText
+            android:id="@+id/restaurantDescription"
+            android:hint="식당 설명"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"

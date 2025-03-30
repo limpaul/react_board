@@ -13,7 +13,7 @@ class RestaurantEnrollment : AppCompatActivity() {
     private val enrollRestaurantBtn:Button by lazy { findViewById(R.id.enrollRestaurantBtn) }
     private val restaurantNameEditText:EditText by lazy { findViewById(R.id.restaurantName) }
     private val restaurantAddressEditText:EditText by lazy { findViewById(R.id.restaurantAddress) }
-
+    private val restaurantDescriptionEditText:EditText by lazy { findViewById(R.id.restaurantDescription) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,7 @@ class RestaurantEnrollment : AppCompatActivity() {
 
             bundle.putString("restaurantName", restaurantNameEditText.text.toString())
             bundle.putString("restaurantAddress", restaurantAddressEditText.text.toString())
+            bundle.putString("restaurantDescription", restaurantDescriptionEditText.text.toString())
             resultIntent.putExtras(bundle)
             setResult(RESULT_OK, resultIntent)
             finish()

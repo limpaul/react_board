@@ -24,7 +24,9 @@
         /> <!-- 오른쪽 위에 배치 -->
 
 
-        <include layout="@layout/activity_restaurant_menu"/>
+        <include
+            android:id="@+id/restaurantListLayout"
+            layout="@layout/activity_restaurant_menu"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

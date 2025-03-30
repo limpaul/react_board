@@ -39,6 +39,7 @@
 
             <!-- 첫 번째 TextView (20% 차지) -->
             <TextView
+                android:id="@+id/restaurantName1"
                 android:text="식당 이름"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

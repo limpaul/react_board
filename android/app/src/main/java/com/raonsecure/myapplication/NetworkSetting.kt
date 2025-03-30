@@ -16,9 +16,9 @@ class NetworkSetting {
     public val serverIp:String by lazy { "http://172.30.1.9" } // 172.30.1.9 / 10.47.17.169
     public val serverPort:Int by lazy { 8080 }
 
-    suspend fun commonSendGetToServer(url:String=serverIp, port:Int=serverPort, dataMap:Map<String, Any>): String? {
+    suspend fun commonSendGetToServer(urlPath:String=serverIp, port:Int=serverPort): String? {
             val request = Request.Builder()
-                .url(url)
+                .url(urlPath)
                 .get()
                 .build()
             val client = OkHttpClient()
