@@ -6,6 +6,7 @@ function LinkComponent(){
                 <li><Link to="/">main</Link></li>
                 <li><Link to="/test">test</Link></li>
                 <li><Link to="/tab">tab</Link></li>
+                <li><Link to="/order">order</Link></li>
             </ul>
         </>
     )

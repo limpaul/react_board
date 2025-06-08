@@ -1,0 +1,39 @@
+.loginForm input{
+    width: 90%;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+@keyframes infinite-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+.logintitle h1{
+    font-size: 50px;
+    text-align: center;
+    animation: infinite-rotate 4s linear infinite;
+}
+.loginTextDiv {
+    margin-top: 50px;
+}
+#loginBrn{
+    background: lightpink;
+    border: none;
+    width: 90%;
+    height: 50px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size:20px;
+    box-shadow: 0px 4px 5px 0px
+}
+.loginLinkDiv > p > b > a{
+    color: red;
+}
+.loginLinkDiv > p > b > a:hover {
+    cursor: pointer;
+}

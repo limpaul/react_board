@@ -18,7 +18,7 @@ public class UserService implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
 
-    public void enrollUser(Map<String, Object> dataMap) {
+    public int enrollUser(Map<String, Object> dataMap) {
         String username = (String)dataMap.get("username");
         String useremail = (String)dataMap.get("useremail");
         String userpassword = (String)dataMap.get("userpassword");
@@ -30,6 +30,7 @@ public class UserService implements CommandLineRunner {
                     .password(userpassword)
                     .role("ROLE_OWNER")
                     .build());
+            return 1; // 식당 주인일 경우 1번을 반환
         }else{
             userRepository.save(User.builder()
                     .username(username)
@@ -37,6 +38,7 @@ public class UserService implements CommandLineRunner {
                     .password(userpassword)
                     .role("ROLE_CUSTOMER")
                     .build());
+            return 2; // 일반 계정일 경우 2번으로 반환
         }
 
     }
