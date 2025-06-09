@@ -10,6 +10,16 @@ export default function RestaurantEnrollMenuListComponent(){
     const location = useLocation();
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
+    const [menuHandle, setMenuHandle] = useState(null);
+    const handleMenu = (menuData) => { // 메뉴로 부터 정보를 가져온다 
+        // 식당 정보 
+        console.log(restaurantData);
+        // 클릭한 메뉴 정보들 
+        console.log(menuData);
+
+        // 장바구니에 담는다 
+        
+    }
     useEffect(()=>{
         console.log(restaurantData); // 고객이 식당별 리스트를 누르고 들어왔을때 이전 메뉴로 부터 가져온 정보들 
         // 식당 아이디 + 19 더한 만큼의 데이터를 가져와본다 
@@ -44,7 +54,7 @@ export default function RestaurantEnrollMenuListComponent(){
 
                 <div>
                     {testMenuData && testMenuData.map((item, index) => { // 식당에서 등록한 메뉴들을 나열한다
-                        return <RestaurantEnrollMenuComponent key={index} restaurantMenu={item}/>
+                        return <RestaurantEnrollMenuComponent key={index} restaurantMenu={item} onCustomClick={handleMenu}/>
                     })}
                 </div>
             </div>
