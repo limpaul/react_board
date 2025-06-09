@@ -1,7 +1,7 @@
-import '../../../styles/order/agreemet/enrollrestaurnt.css'
-import LinkComponent from '../../LinkComponent'
-import OrderTitleComponent from '../OrderTitleComponent'
-import TabComponent from '../TabComponent'
+import '../../../../styles/order/enroll/enrollrestaurnt.css'
+import LinkComponent from '../../../LinkComponent'
+import OrderTitleComponent from '../../common/OrderTitleComponent'
+import TabComponent from '../../common/TabComponent'
 export default function EnrollRestaurantComponent(){
     return (
         <>
@@ -16,7 +16,7 @@ export default function EnrollRestaurantComponent(){
             <div className='enrollRestaurntaddFormAgree'>
                 <ul>
                     <li>
-                        <input type='checkbox' checked={true} readOnly={true}/>
+                        <input type='checkbox'/>
                         <label>느그민족 경영진에게 매달 수입료 10%납부에 대한 이의 없음에 동의</label>
                     </li>
                     <li>

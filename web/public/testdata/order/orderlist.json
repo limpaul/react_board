@@ -1,0 +1,182 @@
+[
+  {
+    "storeId": 1,
+    "image": "https://example.com/images/store1.jpg",
+    "storeName": "피자플래닛",
+    "rating": 4.6,
+    "deliveryTime": { "min": 30, "max": 40 },
+    "deliveryFee": 2000,
+    "minOrderPrice": 15000
+  },
+  {
+    "storeId": 2,
+    "image": "https://example.com/images/store2.jpg",
+    "storeName": "김밥천국 중앙점",
+    "rating": 4.3,
+    "deliveryTime": { "min": 20, "max": 30 },
+    "deliveryFee": 0,
+    "minOrderPrice": 8000
+  },
+  {
+    "storeId": 3,
+    "image": "https://example.com/images/store3.jpg",
+    "storeName": "홍콩반점0410",
+    "rating": 4.1,
+    "deliveryTime": { "min": 35, "max": 45 },
+    "deliveryFee": 1500,
+    "minOrderPrice": 12000
+  },
+  {
+    "storeId": 4,
+    "image": "https://example.com/images/store4.jpg",
+    "storeName": "버거킹 신림점",
+    "rating": 4.7,
+    "deliveryTime": { "min": 25, "max": 35 },
+    "deliveryFee": 0,
+    "minOrderPrice": 10000
+  },
+  {
+    "storeId": 5,
+    "image": "https://example.com/images/store5.jpg",
+    "storeName": "맘스터치",
+    "rating": 4.5,
+    "deliveryTime": { "min": 30, "max": 40 },
+    "deliveryFee": 3000,
+    "minOrderPrice": 9000
+  },
+  {
+    "storeId": 6,
+    "image": "https://example.com/images/store6.jpg",
+    "storeName": "노랑통닭",
+    "rating": 4.2,
+    "deliveryTime": { "min": 40, "max": 50 },
+    "deliveryFee": 2500,
+    "minOrderPrice": 11000
+  },
+  {
+    "storeId": 7,
+    "image": "https://example.com/images/store7.jpg",
+    "storeName": "한솥도시락",
+    "rating": 4.0,
+    "deliveryTime": { "min": 15, "max": 25 },
+    "deliveryFee": 0,
+    "minOrderPrice": 7000
+  },
+  {
+    "storeId": 8,
+    "image": "https://example.com/images/store8.jpg",
+    "storeName": "이삭토스트",
+    "rating": 4.4,
+    "deliveryTime": { "min": 20, "max": 30 },
+    "deliveryFee": 1800,
+    "minOrderPrice": 8000
+  },
+  {
+    "storeId": 9,
+    "image": "https://example.com/images/store9.jpg",
+    "storeName": "BBQ치킨",
+    "rating": 4.1,
+    "deliveryTime": { "min": 35, "max": 50 },
+    "deliveryFee": 2000,
+    "minOrderPrice": 16000
+  },
+  {
+    "storeId": 10,
+    "image": "https://example.com/images/store10.jpg",
+    "storeName": "죠스떡볶이",
+    "rating": 4.3,
+    "deliveryTime": { "min": 20, "max": 30 },
+    "deliveryFee": 1000,
+    "minOrderPrice": 9000
+  },
+  {
+    "storeId": 11,
+    "image": "https://example.com/images/store11.jpg",
+    "storeName": "명동칼국수",
+    "rating": 4.6,
+    "deliveryTime": { "min": 30, "max": 40 },
+    "deliveryFee": 0,
+    "minOrderPrice": 9500
+  },
+  {
+    "storeId": 12,
+    "image": "https://example.com/images/store12.jpg",
+    "storeName": "신전떡볶이",
+    "rating": 4.2,
+    "deliveryTime": { "min": 25, "max": 35 },
+    "deliveryFee": 1500,
+    "minOrderPrice": 10000
+  },
+  {
+    "storeId": 13,
+    "image": "https://example.com/images/store13.jpg",
+    "storeName": "설빙",
+    "rating": 4.5,
+    "deliveryTime": { "min": 15, "max": 25 },
+    "deliveryFee": 2000,
+    "minOrderPrice": 7000
+  },
+  {
+    "storeId": 14,
+    "image": "https://example.com/images/store14.jpg",
+    "storeName": "청년다방",
+    "rating": 4.0,
+    "deliveryTime": { "min": 30, "max": 45 },
+    "deliveryFee": 1000,
+    "minOrderPrice": 11000
+  },
+  {
+    "storeId": 15,
+    "image": "https://example.com/images/store15.jpg",
+    "storeName": "두찜",
+    "rating": 4.3,
+    "deliveryTime": { "min": 35, "max": 50 },
+    "deliveryFee": 2500,
+    "minOrderPrice": 13000
+  },
+  {
+    "storeId": 16,
+    "image": "https://example.com/images/store16.jpg",
+    "storeName": "교촌치킨",
+    "rating": 4.6,
+    "deliveryTime": { "min": 40, "max": 55 },
+    "deliveryFee": 3000,
+    "minOrderPrice": 17000
+  },
+  {
+    "storeId": 17,
+    "image": "https://example.com/images/store17.jpg",
+    "storeName": "맥도날드",
+    "rating": 4.4,
+    "deliveryTime": { "min": 20, "max": 30 },
+    "deliveryFee": 0,
+    "minOrderPrice": 8000
+  },
+  {
+    "storeId": 18,
+    "image": "https://example.com/images/store18.jpg",
+    "storeName": "본죽",
+    "rating": 4.1,
+    "deliveryTime": { "min": 25, "max": 35 },
+    "deliveryFee": 1000,
+    "minOrderPrice": 9000
+  },
+  {
+    "storeId": 19,
+    "image": "https://example.com/images/store19.jpg",
+    "storeName": "홍대돈부리",
+    "rating": 4.3,
+    "deliveryTime": { "min": 30, "max": 40 },
+    "deliveryFee": 2000,
+    "minOrderPrice": 10000
+  },
+  {
+    "storeId": 20,
+    "image": "https://example.com/images/store20.jpg",
+    "storeName": "땡초김밥",
+    "rating": 4.0,
+    "deliveryTime": { "min": 15, "max": 20 },
+    "deliveryFee": 500,
+    "minOrderPrice": 6000
+  }
+]

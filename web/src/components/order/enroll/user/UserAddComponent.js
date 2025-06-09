@@ -1,11 +1,10 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom";
-import '../../styles/order/login.css'
-import '../../styles/order/useradd.css'
-import LinkComponent from "../LinkComponent";
-import EnrollRestaurantComponent from "./agreement/EnrollRestaurantComponent";
-import OrderTitleComponent from "./OrderTitleComponent";
-import TabComponent from "./TabComponent";
+import { useNavigate } from "react-router-dom";
+import '../../../../styles/order/login.css'
+import '../../../../styles/order/useradd.css'
+import OrderTitleComponent from "../../common/OrderTitleComponent";
+import TabComponent from "../../common/TabComponent";
+import LinkComponent from "../../../LinkComponent";
 
 export default function UserAddComponent(){
     const [isVisible, setIsVisible] = useState(false);

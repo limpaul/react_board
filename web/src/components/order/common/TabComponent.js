@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import '../../styles/order/tab.css'
+import '../../../styles/order/tab.css'
 export default function TabComponent(){
     const tablist = useRef(null)
     function tabShow(){

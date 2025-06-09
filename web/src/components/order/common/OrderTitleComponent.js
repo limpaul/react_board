@@ -1,4 +1,4 @@
-import '../../styles/order/common.css'
+import '../../../styles/order/common.css'
 export default function OrderTitleComponent(){
     return (
         <div className="commonTitle">

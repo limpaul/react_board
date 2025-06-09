@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../../styles/order/login.css'
-import LinkComponent from '../LinkComponent'
-import OrderTitleComponent from './OrderTitleComponent'
-import TabComponent from './TabComponent'
+import '../../../styles/order/login.css'
+import LinkComponent from '../../LinkComponent'
+import OrderTitleComponent from '../common/OrderTitleComponent'
+
 export default function LoginComponent({isVisibleUserAddComponent}){
     
     useEffect(()=>{
@@ -11,7 +11,6 @@ export default function LoginComponent({isVisibleUserAddComponent}){
     }, [])
     return (<>
         <LinkComponent/>
-        <TabComponent/>
         <OrderTitleComponent/>
         <div className="loginForm">
             <div className='loginTextDiv'>
