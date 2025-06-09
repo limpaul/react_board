@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-export default function RestaurantEnrollMenuComponent({restaurantMenu}){
+export default function RestaurantEnrollMenuComponent({restaurantMenu, onCustomClick}){
     const onClickMenu = () => { // 메뉴를 클릭하였을때 로컬 스토리지에 저장하다 
         // 상점 아이디, 메뉴 아이디, 메뉴, 가격, 배달비
         const storageTest = {
@@ -22,11 +22,11 @@ export default function RestaurantEnrollMenuComponent({restaurantMenu}){
         };
 
         const orderStorageTest = {};
-        
+
         
     }
     useEffect(()=>{
-        console.log(restaurantMenu);
+        //console.log(restaurantMenu);
     }, [])
     return (
         <>
@@ -38,7 +38,7 @@ export default function RestaurantEnrollMenuComponent({restaurantMenu}){
                 'padding': '5px',
                 'borderRadius':'10px'
             }}
-            onClick={onClickMenu}
+            onClick={()=>{onCustomClick(restaurantMenu)}}
             >
                 <div>
                     <div>{restaurantMenu.name}</div>
