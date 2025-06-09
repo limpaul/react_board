@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import '../../../../styles/order/login.css'
 import '../../../../styles/order/useradd.css'
@@ -10,6 +10,9 @@ export default function UserAddComponent(){
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        console.log('userAaddComponent.js');
+    })
     return (
         <>
             <LinkComponent/>

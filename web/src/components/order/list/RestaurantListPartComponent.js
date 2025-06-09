@@ -11,8 +11,6 @@ export default function RestaurantListPartComponent({restaurantInfo}){
             <TabComponent/>
             <div className="menuLists" 
             onClick={()=>{
-                console.log(restaurantInfo);
-                
                 navigate(`/order/restaurant/view/${restaurantInfo.storeId}`, {
                     state: restaurantInfo
                 })

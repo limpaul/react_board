@@ -19,8 +19,6 @@ export default function RestaurantListComponent(){
                 <RestaurantListPartComponent 
                 restaurantInfo={item} 
                 key={index}
-                
-
                 />
             ))}
         </>
