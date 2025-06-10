@@ -12,27 +12,62 @@ export default function RestaurantEnrollMenuListComponent(){
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
     const [menuHandle, setMenuHandle] = useState(null);
+    
     /*
         사용자 장바구니
     */
-    const clientOrderCart = { 
+    const [clientOrderCart, setClientOrderCart] = useState({
         restaurantInfo: restaurantData,
-        menuData: []
-    };
+        menuData: [],
+        totalMount: 0,
+        orderCount:0,
+    })
+
+    
+    const [paymentOrderInfo, setPaymentOrderInfo] = useState({
+        'totalprice':0,
+        'ordercount':0
+    });
+
+useEffect(() => {
+  console.log("🛒 장바구니 상태 변경:", clientOrderCart);
+}, [clientOrderCart]);
+
+useEffect(() => {
+  console.log("💳 결제 정보 변경:", paymentOrderInfo);
+}, [paymentOrderInfo]);
+
     const handleMenu = (menuData) => { // 메뉴로 부터 정보를 가져온다 
         // 식당 정보 
-        console.log(restaurantData);
+        //console.log(restaurantData);
         // 클릭한 메뉴 정보들 
-        console.log(menuData);
+        //console.log(menuData);
 
 
         // 장바구니에 담는다 
         const clientOrderStorage = localStorage.getItem("clientOrderStorage");
         if(clientOrderStorage){ // 기존 장바구니에 담은게 있다면 
             
-        }else{ // 장바구니에 담은게 없다면 
-            clientOrderCart.menuData.push(menuData);
-            console.log(clientOrderCart);            
+        }else{ 
+            setClientOrderCart(prev => {
+            const updatedMenuData = [...prev.menuData, menuData];
+            const updatedTotal = prev.totalMount + menuData.price;
+            const updatedCount = prev.orderCount + 1;
+
+            // 동시에 결제 정보도 업데이트
+            setPaymentOrderInfo({
+                totalprice: updatedTotal,
+                ordercount: updatedCount,
+            });
+
+                return {
+                    ...prev,
+                    menuData: updatedMenuData,
+                    totalMount: updatedTotal,
+                    orderCount: updatedCount,
+                };
+            });
+            
         }
 
         // 메뉴가 담아질 경우, 메뉴 리스트 아래에 주문하기 메뉴창이 떠야한다 
@@ -69,7 +104,7 @@ export default function RestaurantEnrollMenuListComponent(){
                     </div>
                     
                 </div>
-                <PaymentBeforeComponent/>
+                {paymentOrderInfo.ordercount !=0 && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo}/>}
 
                 <div>
                     {testMenuData && testMenuData.map((item, index) => { // 식당에서 등록한 메뉴들을 나열한다

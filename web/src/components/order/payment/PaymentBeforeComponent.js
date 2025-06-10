@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import '../../../styles/order/payment/paymentbefore.css'
-export default function PaymentBeforeComponent(){
+export default function PaymentBeforeComponent({paymentOrderInfo}){
+    
     return(
         <>
             <div className='ordercard' style={{
@@ -12,7 +14,7 @@ export default function PaymentBeforeComponent(){
                     'border':'1px solid rgb(192, 192, 192)',
                     'padding':'15px',
                     'borderRadius': '20px'
-                }}>17,000원</div>
+                }}>{paymentOrderInfo.totalprice}원</div>
                 <div style={{
                     'marginRight':'20px',
                     'border':'1px solid rgb(192, 192, 192)',
@@ -20,7 +22,7 @@ export default function PaymentBeforeComponent(){
                     'borderRadius': '20px',
                     'background':'lightseagreen',
                     'color':'white',
-                }}>(2)장바구니보기</div>
+                }}>({paymentOrderInfo.ordercount})장바구니보기</div>
             </div>
         </>
     )
