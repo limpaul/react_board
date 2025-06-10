@@ -1,6 +1,10 @@
 import { useEffect } from 'react'
 import '../../../styles/order/payment/paymentbefore.css'
-export default function PaymentBeforeComponent({paymentOrderInfo}){
+
+/*
+    가격과 장바구니를 담은 UI이미지를 반환한다
+*/
+export default function PaymentBeforeComponent({paymentOrderInfo, onCustomClick}){
     
     return(
         <>
@@ -22,7 +26,9 @@ export default function PaymentBeforeComponent({paymentOrderInfo}){
                     'borderRadius': '20px',
                     'background':'lightseagreen',
                     'color':'white',
-                }}>({paymentOrderInfo.ordercount})장바구니보기</div>
+                }}
+                    onClick={onCustomClick}
+                >({paymentOrderInfo.ordercount})장바구니보기</div>
             </div>
         </>
     )

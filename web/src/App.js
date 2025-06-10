@@ -8,6 +8,7 @@ import EnrollRestaurantComponent from './components/order/enroll/restaurant/Enro
 import LoginComponent from './components/order/login/LoginComponent';
 import RestaurantListComponent from './components/order/list/RestaurantListComponent';
 import RestaurantEnrollMenuListComponent from './components/order/list/RestaurantEnrollMenuListComponent';
+import ShoppingCartComponent from './components/order/shoppingcart/ShoppingCartComponent';
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
               <Route path="/order/enroll/restaurant" element={<EnrollRestaurantComponent/>}></Route>
               <Route path="/order/restaurant/list" element={<RestaurantListComponent/>}></Route>
               <Route path="/order/restaurant/view/:id" element={<RestaurantEnrollMenuListComponent/>}></Route>
+              <Route path="/order/user/shopping/cart" element={<ShoppingCartComponent/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>

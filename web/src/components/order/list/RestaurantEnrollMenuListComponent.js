@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RestaurantEnrollMenuComponent from "./RestaurantEnrollMenuComponent";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 
@@ -8,6 +8,7 @@ import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
     식당에서 등록한 상세 이미지들을 로드한다
 */
 export default function RestaurantEnrollMenuListComponent(){
+    const navigate = useNavigate();
     const location = useLocation();
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
@@ -37,6 +38,12 @@ useEffect(() => {
   console.log("💳 결제 정보 변경:", paymentOrderInfo);
 }, [paymentOrderInfo]);
 
+
+    const handleShoppingCart = () => { // 장바구니 컴포넌트로 이동한다
+        navigate('/order/user/shopping/cart', {
+            state: {clientOrderCart, paymentOrderInfo}
+        })
+    }
     const handleMenu = (menuData) => { // 메뉴로 부터 정보를 가져온다 
         // 식당 정보 
         //console.log(restaurantData);
@@ -104,7 +111,9 @@ useEffect(() => {
                     </div>
                     
                 </div>
-                {paymentOrderInfo.ordercount !=0 && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo}/>}
+                {// 가격과 장바구니를  확인하는 UI
+                paymentOrderInfo.ordercount !=0 && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handleShoppingCart}/>
+                }
 
                 <div>
                     {testMenuData && testMenuData.map((item, index) => { // 식당에서 등록한 메뉴들을 나열한다
