@@ -17,9 +17,7 @@ export default function OrderMainComponent(){
     // }, [])
     useEffect(()=>{
         //navigate('/order/login');
-        navigate('/order/restaurant/list');
-        console.log('effect?');
-        
+        navigate('/order/restaurant/list');        
         axios.get('/testdata/order/orderlist.json')
         .then((response)=>{
             handleMenuData(response.data)

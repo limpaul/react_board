@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantEnrollMenuComponent from "./RestaurantEnrollMenuComponent";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 
 /*
     식당에서 등록한 상세 이미지들을 로드한다
@@ -11,13 +12,30 @@ export default function RestaurantEnrollMenuListComponent(){
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
     const [menuHandle, setMenuHandle] = useState(null);
+    /*
+        사용자 장바구니
+    */
+    const clientOrderCart = { 
+        restaurantInfo: restaurantData,
+        menuData: []
+    };
     const handleMenu = (menuData) => { // 메뉴로 부터 정보를 가져온다 
         // 식당 정보 
         console.log(restaurantData);
         // 클릭한 메뉴 정보들 
         console.log(menuData);
 
+
         // 장바구니에 담는다 
+        const clientOrderStorage = localStorage.getItem("clientOrderStorage");
+        if(clientOrderStorage){ // 기존 장바구니에 담은게 있다면 
+            
+        }else{ // 장바구니에 담은게 없다면 
+            clientOrderCart.menuData.push(menuData);
+            console.log(clientOrderCart);            
+        }
+
+        // 메뉴가 담아질 경우, 메뉴 리스트 아래에 주문하기 메뉴창이 떠야한다 
         
     }
     useEffect(()=>{
@@ -51,6 +69,7 @@ export default function RestaurantEnrollMenuListComponent(){
                     </div>
                     
                 </div>
+                <PaymentBeforeComponent/>
 
                 <div>
                     {testMenuData && testMenuData.map((item, index) => { // 식당에서 등록한 메뉴들을 나열한다

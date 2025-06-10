@@ -20,9 +20,6 @@ export default function RestaurantEnrollMenuComponent({restaurantMenu, onCustomC
             ],
             'totalPrice':'최종결재 금액'
         };
-
-        const orderStorageTest = {};
-
         
     }
     useEffect(()=>{
