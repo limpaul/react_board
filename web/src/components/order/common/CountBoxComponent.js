@@ -1,15 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../../../styles/order/common/countbox.css'
 export default function CountBoxComponent({menuData}){
-    const num = useRef(null)
-    const handleClick = (e) => {
-        if(e.target.id.indexOf('min')){
-            console.log(num.current);
-            debugger;
+    const  [count ,setCount] = useState(0);
+
+    const handleMinButton = () => {
+        if ( count - 1 < 0){
+            return;
         }
-        if(e.target.id.indexOf('min')){
-            
-        }
+        const temp = count - 1;
+        setCount(temp);
+    }
+    const handleAddButton = () => {
+        const temp = count + 1;
+        setCount(temp);
     }
     
     return (
@@ -17,10 +20,12 @@ export default function CountBoxComponent({menuData}){
             'display':'flex',
             'justifyContent':'right'
         }}>
-            <button>옵션변경</button>
-            <div id={menuData.id+'_minus'} onClick={handleClick} className='commonCountDiv'>-</div>
-            <div id={menuData.id+'_num'} ref={num}  className='commonCountDiv'><b>0</b></div>
-            <div id={menuData.id+'_min'} onClick={handleClick} className='commonCountDiv'>+</div>
+            <button style={{
+                'marginRight':'10px'
+            }}>옵션변경</button>
+            <div onClick={handleMinButton} className='commonCountDiv'>-</div>
+            <div className='commonCountDiv'>{count}</div>
+            <div onClick={handleAddButton} className='commonCountDiv'>+</div>
         </div>
     )
 }
