@@ -4,7 +4,7 @@ import '../../../styles/order/payment/paymentbefore.css'
 /*
     가격과 장바구니를 담은 UI이미지를 반환한다
 */
-export default function PaymentBeforeComponent({paymentOrderInfo, onCustomClick}){
+export default function PaymentBeforeComponent({paymentOrderInfo, onCustomClick, isPayment}){
     
     return(
         <>
@@ -28,7 +28,7 @@ export default function PaymentBeforeComponent({paymentOrderInfo, onCustomClick}
                     'color':'white',
                 }}
                     onClick={onCustomClick}
-                >({paymentOrderInfo.ordercount})장바구니보기</div>
+                >({paymentOrderInfo.ordercount}){isPayment?'결재하기':'장바구니담기'}</div>
             </div>
         </>
     )

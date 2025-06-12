@@ -28,9 +28,14 @@ export default function RestaurantOrderShoppingListComponent({menuData}){
                             <img src={menuData.image} width='100px' height='100px'/>
                         </div>
                     </div>
+                    {
+                        /*
+                            CounBoxComponent는 최종 결재 하기전에 메뉴의 수량을 최종 수정해주는 역활하는 컴포넌트이다 
+                        */
+                    }
                     <CountBoxComponent menuData={menuData}/>
                 </div>
-            
+                
         </>
     )
 }

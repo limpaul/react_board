@@ -112,7 +112,7 @@ useEffect(() => {
                     
                 </div>
                 {// 가격과 장바구니를  확인하는 UI
-                paymentOrderInfo.ordercount !=0 && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handleShoppingCart}/>
+                paymentOrderInfo.ordercount !=0 && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handleShoppingCart} isPayment={false}/>
                 }
 
                 <div>

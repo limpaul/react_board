@@ -16,6 +16,7 @@ export default function ShoppingCartComponent(){
             {currOrderState && currOrderState.clientOrderCart.menuData.map((item, index)=>{
                 return <RestaurantOrderShoppingListComponent key={index} menuData={item}/>
             })}
+            {/*<PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handleShoppingCart} isPayment={false}/>*/}
         </>
     )
 }
