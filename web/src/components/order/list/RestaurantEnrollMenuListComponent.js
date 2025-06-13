@@ -6,6 +6,7 @@ import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 
 /*
     식당에서 등록한 상세 이미지들을 로드한다
+    order/restaurant/view/
 */
 export default function RestaurantEnrollMenuListComponent(){
     const navigate = useNavigate();

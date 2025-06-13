@@ -2,12 +2,23 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
 import TabComponent from "../common/TabComponent";
 import RestaurantOrderShoppingListComponent from "../list/RestaurantOrderShoppingListComponent";
+import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 
+//order/user/shopping/cart
 export default function ShoppingCartComponent(){
     const location = useLocation();
     const [currOrderState, setCurrOrderState] = useState(location.state)
-    useEffect(()=>{
+    const [paymentOrderInfo, setPaymentOrderInfo] = useState(currOrderState.paymentOrderInfo);
+    /*
+        {currOrderState, paymentOrderInfo}
+    */
+   const handlePayment = () => {
+        console.log("handlePayment");
         
+   }
+    useEffect(()=>{
+         console.log(currOrderState);
+         
     })
     return (
         <>
@@ -16,7 +27,11 @@ export default function ShoppingCartComponent(){
             {currOrderState && currOrderState.clientOrderCart.menuData.map((item, index)=>{
                 return <RestaurantOrderShoppingListComponent key={index} menuData={item}/>
             })}
-            {/*<PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handleShoppingCart} isPayment={false}/>*/}
+            
+            {
+                // 결재하기 팝업
+                <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handlePayment} isPayment={true}/>    
+            }
         </>
     )
 }
