@@ -10,13 +10,24 @@ import PaymentInputComponent from "../payment/PaymentInputComponent";
 export default function ShoppingCartComponent(){
     const location = useLocation();
     const [showOrderSelectPopup, setShowOrderSelectPopup] = useState(false);
+    const [showCardDialogPopup, setShowCardDialogPopup] = useState(false);
     const [currOrderState, setCurrOrderState] = useState(location.state)
     const [paymentOrderInfo, setPaymentOrderInfo] = useState(currOrderState.paymentOrderInfo);
     /*
         {currOrderState, paymentOrderInfo}
     */
+
+   useEffect(()=>{
+        window.initmTranskey();
+   }, [])
+   window.mTranskey.prototype.closeCallBack = () => {
+        setShowCardDialogPopup(false);
+   }
+   window.mTranskey.prototype.doneCallBack = () => {
+        setShowCardDialogPopup(false);
+   }
    const handlePayment = () => {
-        console.log("handlePayment() 결재하기");
+        setShowCardDialogPopup(true)
         //setShowOrderSelectPopup(true);
    }
     useEffect(()=>{
@@ -32,7 +43,7 @@ export default function ShoppingCartComponent(){
             })}
             {
                 // 결재화면, 모바일 웹 가상키패드와 같이 활성화 
-                <PaymentInputComponent/>   
+                showCardDialogPopup && <PaymentInputComponent/>   
             }
             {
                 // 결재 수단 화면

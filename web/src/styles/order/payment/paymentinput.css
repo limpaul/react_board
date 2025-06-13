@@ -1,11 +1,14 @@
+*{
+    margin: 0;
+}
 #keypadCustomUI{
     position: fixed;
     border: 1px solid black;
     width: 200px;
     height: 150px;
-    background: red;
+    background: #ffffff;
     z-index: 99999;
-    top: 320px;
+    top: 440px;
     width: 98%;
     left: 0px;
     border: 1px solid rgb(192, 192, 192);
@@ -16,10 +19,16 @@
     justify-content: center;
     align-items: center;
 }
+#keypadCustomUI input{
+    display: none;
+}
 .dot{
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     border: 1px solid black;
     padding: 5px;
     border-radius: 50px;
+}
+.dot.fill{
+    background-color: black;
 }

@@ -1656,8 +1656,8 @@ function mTranskey(){
 							mtk.setGroup(input.getAttribute("data-tk-groupId"));
 						}
 					}
-					mtk.checkCSS();
-					mtk.checkKeyVer();
+					//mtk.checkCSS();
+					//mtk.checkKeyVer();
 					
 					//CSP 정책으로 unsafe-inline발생 시 사용 2022.02.16
 					if(useCSP){
@@ -4292,6 +4292,7 @@ mTranskey.prototype.relocate = function(e, ele){
 	this.now.allocate=false;
 	mtk.onKeyboard(mtk.now.inputObj);
 	this.now.relocate = false;
+	mtk.relocateCallback();
 }
 
 mTranskey.prototype.start = function(e, ele, index){
@@ -4302,7 +4303,7 @@ mTranskey.prototype.start = function(e, ele, index){
 		if(useTalkBack&&!clickDummy) {
 			if(mtk.now.keyboardType=="numberMobile"){
 				if(mtk.now.dki[index] == "=") {
-					mtk.startCallBack();
+					mtk.startCallBack(ele);
 					return;
 				}
 			} else {
@@ -4360,8 +4361,11 @@ mTranskey.prototype.start = function(e, ele, index){
 				}
 			}
 		}
-
-		mtk.startCallBack();
+		if(useTalkBack){
+			mtk.startCallBack(ele);
+		}else{
+			mtk.startCallBack();
+		}
 };
 
 mTranskey.prototype.del = function(e, ele){
@@ -4614,6 +4618,9 @@ mTranskey.prototype.delCallBack = function(){
 mTranskey.prototype.doneCallBack = function(){
 	
 };
+mTranskey.prototype.relocateCallback = function(){
+
+}
 
 mTranskey.prototype.clear = function(e, ele){
 	mtk.keyPress(e, ele, false);		
