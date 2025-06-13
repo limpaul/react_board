@@ -57,10 +57,24 @@ useEffect(() => {
         if(clientOrderStorage){ // 기존 장바구니에 담은게 있다면 
             
         }else{ 
-            setClientOrderCart(prev => {
-            const updatedMenuData = [...prev.menuData, menuData];
+            setClientOrderCart(prev => { // 기존 메뉴가 담겨있을 경우 0 이상을 반환하며, 새로 담긴 메뉴라면 -1을 반환한다  
+
+            const exsitingMenuIndex = prev.menuData.findIndex(item=>{
+                
+                if(item.id === menuData.id){
+                    menuData.count += 1; // 동일메뉴의 주문수량을 1로 늘린다
+                    return true;
+                }else{
+                    return false;
+                }
+            })
+
+            
+            
+            const updatedMenuData = exsitingMenuIndex!=-1?[...prev.menuData]:[...prev.menuData,menuData];
             const updatedTotal = prev.totalMount + menuData.price;
-            const updatedCount = prev.orderCount + 1;
+            var updatedCount = prev.orderCount + 1;
+            
 
             // 동시에 결제 정보도 업데이트
             setPaymentOrderInfo({
@@ -89,7 +103,14 @@ useEffect(() => {
              const start = restaurantData.storeId; // 식당 ID 1,2,3,5
              const end = start * 20
              const menuDataList = res.data.slice((start-1)*20, end); // 테스트 데이터를 임의로 20개씩 끊어 가져온다 
-             setTestMenuData(menuDataList);
+             
+             // 장바구니 동일 메뉴 선정시 count옵션 넣기
+             const menuCountDataList = menuDataList.map(menu => ({
+                ...menu,
+                count: 0 // 장바구니에 담기지 않은 수량은 0으로 표현한다
+             }))
+             
+             setTestMenuData(menuCountDataList);
         })
     }, [])
     return (

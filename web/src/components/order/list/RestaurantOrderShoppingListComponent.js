@@ -5,10 +5,11 @@ import CountBoxComponent from "../common/CountBoxComponent";
     가게에서 장바구니로 담은 UI메뉴 화면을 반환한다 
     
  */
-export default function RestaurantOrderShoppingListComponent({menuData}){
+export default function RestaurantOrderShoppingListComponent({menuData, setCurrOrderState}){
     useEffect(()=>{
         console.log(menuData);
-    })
+        
+    }, [])
     return(
         <>
             
@@ -33,7 +34,7 @@ export default function RestaurantOrderShoppingListComponent({menuData}){
                             CounBoxComponent는 최종 결재 하기전에 메뉴의 수량을 최종 수정해주는 역활하는 컴포넌트이다 
                         */
                     }
-                    <CountBoxComponent menuData={menuData}/>
+                    <CountBoxComponent menuData={menuData} setCurrOrderState={setCurrOrderState}/>
                 </div>
                 
         </>

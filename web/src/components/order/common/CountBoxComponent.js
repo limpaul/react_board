@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import '../../../styles/order/common/countbox.css'
-export default function CountBoxComponent({menuData}){
-    const  [count ,setCount] = useState(0);
+export default function CountBoxComponent({menuData, setCurrOrderState}){
+    const  [count ,setCount] = useState(menuData.count);
+
 
     const handleMinButton = () => {
+        console.log(count);
+        
         if ( count - 1 < 0){
             return;
         }
@@ -24,7 +27,7 @@ export default function CountBoxComponent({menuData}){
                 'marginRight':'10px'
             }}>옵션변경</button>
             <div onClick={handleMinButton} className='commonCountDiv'>-</div>
-            <div className='commonCountDiv'>{count}</div>
+            <div className='commonCountDiv'>{menuData.count}</div>
             <div onClick={handleAddButton} className='commonCountDiv'>+</div>
         </div>
     )

@@ -1,0 +1,25 @@
+#keypadCustomUI{
+    position: fixed;
+    border: 1px solid black;
+    width: 200px;
+    height: 150px;
+    background: red;
+    z-index: 99999;
+    top: 320px;
+    width: 98%;
+    left: 0px;
+    border: 1px solid rgb(192, 192, 192);
+    padding: 5px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px; /* 점 사이 간격 */
+    justify-content: center;
+    align-items: center;
+}
+.dot{
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 50px;
+}
