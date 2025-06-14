@@ -3,7 +3,7 @@ import CountBoxComponent from "../common/CountBoxComponent";
 
 /*
     가게에서 장바구니로 담은 UI메뉴 화면을 반환한다 
-    
+    /order/user/shopping/cart
  */
 export default function RestaurantOrderShoppingListComponent({menuData, setCurrOrderState}){
     useEffect(()=>{
