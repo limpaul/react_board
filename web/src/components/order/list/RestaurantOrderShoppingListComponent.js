@@ -15,7 +15,8 @@ export default function RestaurantOrderShoppingListComponent({menuData, setCurrO
             
                 <div style={{
                     'border':'1px solid #c0c0c0',
-                    'marginBottom':'5px'
+                    'margin':'10px',
+                    'padding':'5px'
                 }}>
                     <div style={{
                         'display':'flex',

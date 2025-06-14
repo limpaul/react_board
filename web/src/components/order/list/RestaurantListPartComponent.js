@@ -17,7 +17,8 @@ export default function RestaurantListPartComponent({restaurantInfo}){
             }}
             style={{ 
                 'border':'1px solid #c0c0c0',
-                'marginBottom':'5px'
+                'margin':'10px',
+                'padding':'5px'
             }}>
                 <div><img src={restaurantInfo.image} width="80px" height="80px"/></div>
                 <div>{restaurantInfo.storeName} 평점: <b>{restaurantInfo.rating}</b></div>
