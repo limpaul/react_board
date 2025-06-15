@@ -1,5 +1,6 @@
 package com.example.mywas.service.order;
 
+import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.UserRepository;
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import java.util.Objects;
 public class UserService implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
+
+    @Autowired private JwtConfiguration jwtConfiguration;
 
     public int enrollUser(Map<String, Object> dataMap) {
         String username = (String)dataMap.get("username");
@@ -50,6 +53,7 @@ public class UserService implements CommandLineRunner {
             dataMap.put("username", user.getUsername());
             dataMap.put("user", user.getEmail());
             dataMap.put("role", user.getRole());
+            dataMap.put("token", jwtConfiguration.createToken(user.getUsername(), user.getRole()));
             dataMap.put("isSuccess", true);
             dataMap.put("message", "로그인 성공");
         }else{
