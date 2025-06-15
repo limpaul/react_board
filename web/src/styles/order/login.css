@@ -37,3 +37,6 @@
 .loginLinkDiv > p > b > a:hover {
     cursor: pointer;
 }
+.loginLinkDiv p {
+    margin-top: 20px;
+}

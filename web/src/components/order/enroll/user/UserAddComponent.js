@@ -7,12 +7,8 @@ import TabComponent from "../../common/TabComponent";
 import LinkComponent from "../../../LinkComponent";
 
 export default function UserAddComponent(){
-    const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        console.log('userAaddComponent.js');
-    })
     return (
         <>
             <LinkComponent/>
@@ -29,7 +25,7 @@ export default function UserAddComponent(){
                 <label>일반 사용자</label>
                 <input type='checkbox' id="role_restaurant" onClick={(e)=>{
                     if(e.target.checked){
-                        navigate('/order/enroll/restaurant');
+                        navigate('/order/user/enroll/restaurant');
                     }
                 }}/>
                 <label>판매용 계정</label>

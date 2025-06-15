@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom';
 import '../../../styles/order/tab.css'
 export default function TabComponent(){
     const tablist = useRef(null)
@@ -15,11 +16,12 @@ export default function TabComponent(){
                 <div id='tablist' ref={tablist}>
                     <div id='tabclose' onClick={tabclose}>x</div>
                     <ul>
-                        <li>로그인</li>
-                        <li>회원가입</li>
-                        <li>주문하기</li>
-                        <li>주문내역</li>
-                        <li>로그아웃</li>
+                        <li><Link to="/order/user/login">로그인</Link></li>
+                        <li><Link to="/order/user/enroll">회원가입</Link></li>
+                        <li><Link to="/order/restaurant/list">주문하기</Link></li>
+                        <li><Link to="/order/user/shopping/cart">주문내역</Link></li>
+                        <li>고객센터</li>
+                        <li><Link to="">로그아웃</Link></li>
                     </ul>
                 </div>
             </div>

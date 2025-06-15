@@ -19,9 +19,9 @@ function App() {
               <Route path="/test" element={<TestComponent/>} ></Route>
               <Route path="/tab" element={<TabComponent/>} ></Route>
               <Route path="/order" element={<OrderMainComponent/>}></Route>
-              <Route path="/order/login" element={<LoginComponent/>}></Route>
-              <Route path="/order/enroll/user" element={<UserAddComponent/>}></Route>
-              <Route path="/order/enroll/restaurant" element={<EnrollRestaurantComponent/>}></Route>
+              <Route path="/order/user/login" element={<LoginComponent/>}></Route>
+              <Route path="/order/user/enroll" element={<UserAddComponent/>}></Route>
+              <Route path="/order/user/enroll/restaurant" element={<EnrollRestaurantComponent/>}></Route>
               <Route path="/order/restaurant/list" element={<RestaurantListComponent/>}></Route>
               <Route path="/order/restaurant/view/:id" element={<RestaurantEnrollMenuListComponent/>}></Route>
               <Route path="/order/user/shopping/cart" element={<ShoppingCartComponent/>}></Route>
