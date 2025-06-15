@@ -11,6 +11,7 @@ export default function LoginComponent({isVisibleUserAddComponent}){
     const [userLogin, setUserLogin] = useState(null);
     const username = useRef(null);
     const userpassword = useRef(null);
+    const [isVisibleLoginFailInfo, setIsVisibleLoginFailInfo] = useState(false);
 
     const handleLogin = async () =>{
         const result = await request(
@@ -33,9 +34,12 @@ export default function LoginComponent({isVisibleUserAddComponent}){
             }
         */
         if(result.isSuccess){
+            localStorage.setItem('token', result.token)
             navigate('/order/restaurant/list', {
                 state: result
             })
+        }else if(result.isSuccess === false){
+            setIsVisibleLoginFailInfo(true)
         }
 
     }
@@ -57,6 +61,7 @@ export default function LoginComponent({isVisibleUserAddComponent}){
             </div>
             <div className='loginLinkDiv'>
                 <button id="loginBrn" onClick={handleLogin}>로그인</button>
+                {isVisibleLoginFailInfo &&<div style={{'marginTop':'10px', 'color':'red'}}>아이디 또는 비밀번호가 일치하지 않습니다</div>}
                 <p>혹시 계정이 없으신가요? <b><Link to="/order/user/enroll">회원가입</Link></b></p>
             </div>
             

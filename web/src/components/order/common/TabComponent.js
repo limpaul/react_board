@@ -17,9 +17,9 @@ export default function TabComponent(){
                     <div id='tabclose' onClick={tabclose}>x</div>
                     <ul>
                         <li><Link to="/order/user/login">로그인</Link></li>
-                        <li><Link to="/order/user/enroll">회원가입</Link></li>
                         <li><Link to="/order/restaurant/list">주문하기</Link></li>
                         <li><Link to="/order/user/shopping/cart">주문내역</Link></li>
+                        <li>마이페이지</li>
                         <li>고객센터</li>
                         <li><Link to="">로그아웃</Link></li>
                     </ul>
