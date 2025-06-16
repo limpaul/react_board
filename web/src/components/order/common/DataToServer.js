@@ -1,5 +1,22 @@
 import axios from "axios"
 
+export const checkLogin = async () => {
+  const token = localStorage.getItem('token');
+  
+  if(token){
+    return await request({
+      'method':'GET',
+      'url':'/order/user/api/checkLogin',
+      'authentication':`Bearer ${token}`
+    })
+  }else{
+    return await request({
+      'method':'GET',
+      'url':'/order/user/api/checkLogin',
+    })
+    
+  }
+}
 export const request = async ({ method, url, contentType, body, authentication=false }) => {
     // local storage에 token이 있을 경우 서버에 요청한다
     const token = localStorage.getItem('token')

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom"
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
 import TabComponent from "../common/TabComponent";
 import RestaurantOrderShoppingListComponent from "../list/RestaurantOrderShoppingListComponent";
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 import DownToUpComponent from "../common/DownToUpComponent";
 import PaymentInputComponent from "../payment/PaymentInputComponent";
+import { checkLogin } from "../common/DataToServer";
 
 //order/user/shopping/cart
 export default function ShoppingCartComponent(){
+    const navigate = useNavigate();
     const location = useLocation();
     const [showOrderSelectPopup, setShowOrderSelectPopup] = useState(false);
     const [showCardDialogPopup, setShowCardDialogPopup] = useState(false);
@@ -18,6 +20,12 @@ export default function ShoppingCartComponent(){
     */
 
    useEffect(()=>{
+        checkLogin().then(response=>{
+            if(response.authentication !== true ){
+                navigate(response.redirectTo);
+            }
+        })
+        
         window.initmTranskey();
    }, [])
    window.mTranskey.prototype.closeCallBack = () => {

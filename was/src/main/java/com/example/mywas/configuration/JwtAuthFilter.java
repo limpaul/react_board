@@ -1,9 +1,13 @@
 package com.example.mywas.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JwtAuthFilter implements Filter {
 
@@ -28,7 +32,14 @@ public class JwtAuthFilter implements Filter {
             System.out.println("인증헤더: "+authHeader);
         }else{
             System.out.println(request.getRequestURI()+" 의 잘못된 접근");
-            response.sendRedirect("/order/user/login");
+            response.setContentType("application/json;charset=utf-8");
+            Map<String, Object> dataMap = new HashMap<>();
+            dataMap.put("authentication",false);
+            dataMap.put("redirectTo","/order/user/login");
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonStr = mapper.writeValueAsString(dataMap);
+            response.getWriter().println(jsonStr);
+            response.flushBuffer();
         }
     }
 }
