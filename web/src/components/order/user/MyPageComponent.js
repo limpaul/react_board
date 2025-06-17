@@ -1,6 +1,15 @@
+import { useEffect, useState } from 'react'
 import '../../../styles/order/user/mypage.css'
 import TabComponent from '../common/TabComponent'
 export default function MyPageComponent(){
+    const [userName, setUserName] = useState('');
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        if(token){
+            const userInfo = JSON.parse(atob(token.split('.')[1]));
+            setUserName(userInfo.sub);
+        }
+    }, [])
     return (
         <>
             <TabComponent/>
@@ -8,7 +17,7 @@ export default function MyPageComponent(){
                 <div className='userInfo'>
                     <div id='userlogo'></div>
                     <div className='userManage'>
-                        <div id='userid'>아이디 &gt;</div>
+                        <div id='userid'>{userName} &gt;</div>
                         <div className='manage'>
                             <div>리뷰관리 &gt;</div>
                             <div>주소관리 &gt;</div>
