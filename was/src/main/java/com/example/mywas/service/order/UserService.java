@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 
 @Service
-public class UserService implements CommandLineRunner {
+public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
 
@@ -49,7 +50,9 @@ public class UserService implements CommandLineRunner {
     public Map<String, Object> loginUser(String username, String password){
         Map<String, Object> dataMap = new HashMap<>();
         User user = userRepository.findByUsername(username);
-        if(user!=null && user.getPassword().equals(password)){
+        logger.debug("from client password: "+sha1(password));
+        logger.debug("from db client password: "+user.getPassword());
+        if(user!=null && user.getPassword().equals(sha1(password))){
             dataMap.put("username", user.getUsername());
             dataMap.put("user", user.getEmail());
             dataMap.put("role", user.getRole());
@@ -77,23 +80,22 @@ public class UserService implements CommandLineRunner {
         });
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        // 기본 사용자 등록 (일반 사용자, 식당 관리자)
-        User user1 = new User(1L, "test", "test@example.com", "1234", "ROLE_USER");
-        User user2 = new User(2L, "Jeus", "johndoe@example.com", "1234", "ROLE_USER");
-        User user3 = new User(3L, "JBoss", "bwlim@example.com", "1234", "ROLE_OWNER");
-        User user4 = new User(4L, "Raon", "bwlim@example.com", "1234", "ROLE_OWNER");
-        User user5 = new User(5L, "limpaul", "paul@example.com", "1234", "ROLE_OWNER");
-        User user6 = new User(6L, "Dragon", "Dragon@example.com", "1234", "ROLE_OWNER");
-        User user7 = new User(7L, "Jane Admin", "janeadmin@example.com", "adminpass", "ROLE_ADMIN");
-        enrollInitUser(user1);
-        enrollInitUser(user2);
-        enrollInitUser(user3);
-        enrollInitUser(user4);
-        enrollInitUser(user5);
-        enrollInitUser(user6);
-        enrollInitUser(user7);
-        findUserAll();
+    public static String sha1(String input) {
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] hashBytes = md.digest(input.getBytes("UTF-8"));
+
+            // 바이트 배열을 16진수 문자열로 변환
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hashBytes) {
+                hexString.append(String.format("%02x", b));  // 2자리 hex로 변환
+            }
+
+            return hexString.toString();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
+
 }

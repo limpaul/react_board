@@ -49,15 +49,9 @@ public class RestaurantUserController {
     // test 계정 사용자 등록 테스트
     @GetMapping("/api/order/user/enroll/account/test")
     public String createRandomUser(){
-        User user = new User(userRepository.getNextId()+1, "test", "test@example.com", "1234", "ROLE_USER");
+        User user = new User("test", "test@example.com", "1234", "ROLE_USER");
         userRepository.save(user);
         return "{}";
-    }
-    // 회원 조회 테스트
-    @GetMapping("/test2")
-    public List<User> test2(){
-        log.info(userRepository.getNextId().toString());
-        return userRepository.findAll();
     }
 
     // 회원 탈퇴
