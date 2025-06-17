@@ -3,7 +3,8 @@ CREATE TABLE users (
   username VARCHAR(20),
   email VARCHAR(100),
   password VARCHAR(100),
-  role VARCHAR(40)
+  role VARCHAR(40),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users (username, email, password, role) VALUES
