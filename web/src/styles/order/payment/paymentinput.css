@@ -1,9 +1,16 @@
 *{
     margin: 0;
 }
+#msg{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #keypadCustomUI{
     position: fixed;
-    border: 1px solid black;
+    border: 1px solid rgb(192, 192, 192);
     width: 200px;
     height: 150px;
     background: #ffffff;
@@ -11,13 +18,20 @@
     top: 440px;
     width: 98%;
     left: 0px;
-    border: 1px solid rgb(192, 192, 192);
-    padding: 5px;
     border-radius: 20px;
+}
+#dot {
     display: flex;
+    margin-top: 35px;
+    padding: 5px;
     gap: 20px; /* 점 사이 간격 */
     justify-content: center;
     align-items: center;
+}
+@media (min-height: 700px) {
+    #keypadCustomUI{
+        top: 440px
+    }
 }
 #keypadCustomUI input{
     display: none;

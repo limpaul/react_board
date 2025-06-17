@@ -25,10 +25,13 @@ export default function PaymentInputComponent(){
             <div>
                 {/* 키패드 화면 위에 부분 */}
                 <div id="keypadCustomUI">
-                    <div className={fillDot>0?'dot fill':'dot'}></div>
-                    <div className={fillDot>1?'dot fill':'dot'}></div>
-                    <div className={fillDot>2?'dot fill':'dot'}></div>
-                    <div className={fillDot>3?'dot fill':'dot'}></div>
+                    <div id='msg'>카드 비밀번호 입력</div>
+                    <div id='dot'>
+                        <div className={fillDot>0?'dot fill':'dot'}></div>
+                        <div className={fillDot>1?'dot fill':'dot'}></div>
+                        <div className={fillDot>2?'dot fill':'dot'}></div>
+                        <div className={fillDot>3?'dot fill':'dot'}></div>
+                    </div>
                     <input type="password" id='transkeyinput' name='transkeyinput' data-tk-kbdtype='number' data-tk-bottom='true' maxLength='4'/> 
                 </div>
                 {/* 가상키패드 영역 */}
