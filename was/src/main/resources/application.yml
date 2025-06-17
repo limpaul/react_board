@@ -18,6 +18,7 @@ spring:
       mode: always
       schema-locations:
         - classpath:sql/user.sql
+        - classpath:sql/restraurant.sql
 
 logging:
   level:
