@@ -47,7 +47,12 @@ export default function UserAddComponent(){
                     'body':newBody,
                     'authentication':false
                 }
-            )
+                ).then(res=>{
+                    if(res.resultCode >= 0){
+                        navigate('/order/user/login')
+                    }
+                    
+                })
             });
 
             
@@ -60,7 +65,12 @@ export default function UserAddComponent(){
                     'body':userInfo,
                     'authentication':false
                 }
-            )
+            ).then(res=>{
+                if(res.resultCode >= 0){
+                    navigate('/order/user/login')
+                }
+            })
+            
         }
     }
     return (
