@@ -9,6 +9,7 @@ import LoginComponent from './components/order/login/LoginComponent';
 import RestaurantListComponent from './components/order/list/RestaurantListComponent';
 import RestaurantEnrollMenuListComponent from './components/order/list/RestaurantEnrollMenuListComponent';
 import ShoppingCartComponent from './components/order/shoppingcart/ShoppingCartComponent';
+import MyPageComponent from './components/order/user/MyPageComponent';
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
               <Route path="/order/restaurant/list" element={<RestaurantListComponent/>}></Route>
               <Route path="/order/restaurant/view/:id" element={<RestaurantEnrollMenuListComponent/>}></Route>
               <Route path="/order/user/shopping/cart" element={<ShoppingCartComponent/>}></Route>
+              <Route path="/order/user/mypage" element={<MyPageComponent/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>
