@@ -1,14 +1,23 @@
-import { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import '../../../styles/order/tab.css'
 import { checkUserInfoFromLocalStorage } from './DataToServer';
 
 export default function TabComponent(){
     const tablist = useRef(null)
+    const [visibleLoginTab, setVisibleLoginTab] = useState(true);
+    const navigate = useNavigate();
+    /* Tab에서 로그아웃 기능 추가  */
+    const logout = () => {
+        if(localStorage.getItem('token')!==null){
+            localStorage.removeItem('token');
+            navigate('/order/user/login')
+        }
+    }
     useEffect(()=>{
         const userInfo = checkUserInfoFromLocalStorage();
         if(userInfo){
-            console.log('TabComponent');
+            setVisibleLoginTab(false);
         }
     }, [])
     function tabShow(){
@@ -24,12 +33,12 @@ export default function TabComponent(){
                 <div id='tablist' ref={tablist}>
                     <div id='tabclose' onClick={tabclose}>x</div>
                     <ul>
-                        <li><Link to="/order/user/login">로그인</Link></li>
+                        <li>{visibleLoginTab && <Link to="/order/user/login">로그인</Link>}</li>
                         <li><Link to="/order/restaurant/list">주문하기</Link></li>
                         <li><Link to="/order/user/shopping/cart">주문내역</Link></li>
                         <li>마이페이지</li>
                         <li>고객센터</li>
-                        <li><Link to="">로그아웃</Link></li>
+                        <li onClick={()=>{logout()}}>{!visibleLoginTab && <div>로그아웃</div>}</li>
                     </ul>
                 </div>
             </div>
