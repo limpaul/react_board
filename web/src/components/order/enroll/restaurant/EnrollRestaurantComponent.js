@@ -1,17 +1,15 @@
+import { useRef } from 'react';
 import '../../../../styles/order/enroll/enrollrestaurnt.css'
-import LinkComponent from '../../../LinkComponent'
-import OrderTitleComponent from '../../common/OrderTitleComponent'
-import TabComponent from '../../common/TabComponent'
-export default function EnrollRestaurantComponent(){
+export default function EnrollRestaurantComponent({setVisibleRestaurantAddComponent, setBody}){
+    const restaurantname = useRef();
+    const restaurantaddress = useRef();
+    const restaurantexplain = useRef();
     return (
         <>
-            <LinkComponent/>
-            <TabComponent/>
-            <OrderTitleComponent/>
             <div className="enrollRestaurntaddForm">
-                <input type="text" id="restaurantname" placeholder="식당 이름"/>
-                <input type="text" id="restaurantaddress" placeholder="식당 주소"/>
-                <input type="password" id="restaurantexplain" placeholder="식당 설명"/>
+                <input type="text" id="restaurantname" ref={restaurantname} placeholder="식당 이름"/>
+                <input type="text" id="restaurantaddress" ref={restaurantaddress} placeholder="식당 주소"/>
+                <input type="password" id="restaurantexplain" ref={restaurantexplain} placeholder="식당 설명"/>
             </div>
             <div className='enrollRestaurntaddFormAgree'>
                 <ul>
@@ -30,7 +28,14 @@ export default function EnrollRestaurantComponent(){
                 </ul>
                 
                 <div style={{'marginTop':'20px'}}>
-                    <button id="enrollRestaurantAddBtn">가게등록</button>
+                    <button id="enrollRestaurantAddBtn" onClick={()=>{
+                        setBody({
+                            restaurantName : restaurantname.current.value,
+                            restaurantAddress: restaurantaddress.current.value,
+                            restaurantExplain: restaurantexplain.current.value
+                        })
+                        setVisibleRestaurantAddComponent(false);
+                    }}>가게등록</button>
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ package com.example.mywas.service.order;
 import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.UserRepository;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,19 @@ public class UserService {
     @Autowired private JwtConfiguration jwtConfiguration;
 
     public int enrollUser(Map<String, Object> dataMap) {
-        String username = (String)dataMap.get("username");
-        String useremail = (String)dataMap.get("useremail");
-        String userpassword = (String)dataMap.get("userpassword");
+        String username = (String)dataMap.get("username"); // 사용자 아이디
+        String useremail = (String)dataMap.get("useremail"); // 사용자 이메일
+        String userpassword = (String)dataMap.get("userpassword"); // 사용자 계정 비번
+        String restaurantname = (String)dataMap.get("restaurantName"); // 식당 이름
+        String restaurantaddress = (String)dataMap.get("restaurantAddress");// 식당 주소
+        String restaurantexplain = (String)dataMap.get("restaurantExplain"); // 식당 설명
+        Boolean isChecked  = (Boolean) dataMap.get("isChecked"); // 판매용 계정 유무
 
-        if(dataMap.get("restaurantName")!=null || dataMap.get("restaurantAddress")!=null){
+        if(isChecked && restaurantname!=null && restaurantaddress!=null){
             userRepository.save(User.builder()
                     .username(username)
                     .email(useremail)
-                    .password(userpassword)
+                    .password(sha1(userpassword))
                     .role("ROLE_OWNER")
                     .build());
             return 1; // 식당 주인일 경우 1번을 반환
@@ -39,7 +44,7 @@ public class UserService {
             userRepository.save(User.builder()
                     .username(username)
                     .email(useremail)
-                    .password(userpassword)
+                    .password(sha1(userpassword))
                     .role("ROLE_CUSTOMER")
                     .build());
             return 2; // 일반 계정일 경우 2번으로 반환
