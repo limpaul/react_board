@@ -3,6 +3,7 @@ import RestaurantEnrollMenuComponent from "./RestaurantEnrollMenuComponent";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
+import TabComponent from "../common/TabComponent";
 
 /*
     식당에서 등록한 상세 이미지들을 로드한다
@@ -115,6 +116,7 @@ useEffect(() => {
     }, [])
     return (
         <>
+            <TabComponent/>
              <div>
                 <div>
                     <div><img src={restaurantData.image} width="100%" height="100px"/></div>

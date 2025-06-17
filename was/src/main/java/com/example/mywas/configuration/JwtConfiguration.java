@@ -1,5 +1,6 @@
 package com.example.mywas.configuration;
 
+import com.example.mywas.domain.order.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -16,10 +17,11 @@ public class JwtConfiguration {
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 유효시간 1시간
 
     // 토큰 생성
-    public String createToken(String username, String role) {
+    public String createToken(User user) {
         return Jwts.builder()
-                .setSubject(username)
-                .claim("role", role)
+                .setSubject(user.getUsername())
+                .claim("id", user.getId())
+                .claim("role", user.getRole())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(key)

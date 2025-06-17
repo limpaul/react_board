@@ -3,17 +3,14 @@ package com.example.mywas.service.order;
 import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.UserRepository;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 
 @Service
@@ -61,7 +58,7 @@ public class UserService {
             dataMap.put("username", user.getUsername());
             dataMap.put("user", user.getEmail());
             dataMap.put("role", user.getRole());
-            dataMap.put("token", jwtConfiguration.createToken(user.getUsername(), user.getRole()));
+            dataMap.put("token", jwtConfiguration.createToken(user));
             dataMap.put("isSuccess", true);
             dataMap.put("message", "로그인 성공");
         }else{

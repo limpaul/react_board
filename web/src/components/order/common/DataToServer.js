@@ -1,5 +1,14 @@
 import axios from "axios"
 
+export const checkUserInfoFromLocalStorage = () => {
+  const token = localStorage.getItem('token');
+  if(token){
+    return JSON.parse(atob(token.split('.')[1]));
+  }else{
+    return false;
+  }
+}
+
 export const checkLogin = async () => {
   const token = localStorage.getItem('token');
   

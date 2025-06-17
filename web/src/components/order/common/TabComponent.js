@@ -1,8 +1,16 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import '../../../styles/order/tab.css'
+import { checkUserInfoFromLocalStorage } from './DataToServer';
+
 export default function TabComponent(){
     const tablist = useRef(null)
+    useEffect(()=>{
+        const userInfo = checkUserInfoFromLocalStorage();
+        if(userInfo){
+            console.log('TabComponent');
+        }
+    }, [])
     function tabShow(){
         tablist.current.classList.add("show");
     }

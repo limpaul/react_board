@@ -8,7 +8,7 @@ export default function RestaurantListPartComponent({restaurantInfo}){
     const navigate = useNavigate();
     return (
         <>
-            <TabComponent/>
+            
             <div className="menuLists" 
             onClick={()=>{
                 navigate(`/order/restaurant/view/${restaurantInfo.storeId}`, {
