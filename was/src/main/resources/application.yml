@@ -39,8 +39,10 @@ sql:
     findUserByUserName: 'select * from users where username = ?'
     findUserByUserNameAndRole: 'select * from users where username = ? and role = ?'
 
+# sql.restaurant.save 사용자 식당 등록
   restaurant:
-    save: 'INSERT INTO restaurant (user_id, name, address, explain) VALUES (?, ?, ?, ?)'
-
+    save: 'INSERT INTO restaurant (user_id, name, address, description) VALUES (?, ?, ?, ?)'
+    findAll: 'select * from restaurant'
+    findRestaurantByUserId: 'SELECT * FROM restaurant where user_id = ?'
 
 

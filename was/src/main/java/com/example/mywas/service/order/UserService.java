@@ -51,7 +51,7 @@ public class UserService {
                     .user(user)
                     .name(restaurantname)
                     .address(restaurantaddress)
-                    .explain(restaurantexplain)
+                    .description(restaurantexplain)
                     .build();
 
             restaurantRepository.save(restaurant);
