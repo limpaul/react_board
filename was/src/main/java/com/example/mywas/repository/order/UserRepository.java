@@ -10,10 +10,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -31,18 +36,16 @@ public class UserRepository{
     @Value("${sql.user.findUserByUserName}") // 'select * from users where username = ?'
     private String findUserByUserName;
 
-    @Value("${sql.user.findUserByUserNameAndRole}") // 'select * from users where username = ? and role = ?'
-    private String findUserByUserNameAndRole;
-
     Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    public User save(User user){
-        jdbcTemplate.update(userAddSql,
-                user.getUsername(),
-                user.getEmail(),
-                user.getPassword(),
-                user.getRole());
-        return user;
+    public int save(User user) {
+        return jdbcTemplate.update(
+            userAddSql,
+            user.getUsername(),
+            user.getEmail(),
+            user.getPassword(),
+            user.getRole());
+
     }
     public List<User> findAll(){
         return jdbcTemplate.query(userFindAll, new BeanPropertyRowMapper<>(User.class));
@@ -62,13 +65,12 @@ public class UserRepository{
         }
     }
 
-    public User findUserByUsernameAndRole(String username, String role){
+    public User findUserByUsername(String username){
         // 단일행 조회
         return jdbcTemplate.queryForObject(
-                findUserByUserNameAndRole,
+                findUserByUserName,
                 new BeanPropertyRowMapper<>(User.class),
-                username,
-                role
+                username
         );
     }
 

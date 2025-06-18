@@ -19,6 +19,9 @@ public class UserRestaurantService implements CommandLineRunner {
 
 
     public void enrollRestaurant(Restaurant restaurant) {
+        if(restaurant.getUser() == null){
+            logger.debug("UserRestaurantService enrollRestaurant() user is null");
+        }
         logger.info("식당 등록: "+restaurant.toString());
         restaurantRepository.save(restaurant);
     }

@@ -39,6 +39,8 @@ sql:
     findUserByUserName: 'select * from users where username = ?'
     findUserByUserNameAndRole: 'select * from users where username = ? and role = ?'
 
+  restaurant:
+    save: 'INSERT INTO restaurant (user_id, name, address, explain) VALUES (?, ?, ?, ?)'
 
 
 

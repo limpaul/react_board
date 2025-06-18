@@ -1,7 +1,9 @@
 package com.example.mywas.service.order;
 
 import com.example.mywas.configuration.JwtConfiguration;
+import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.User;
+import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,8 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired private UserRepository userRepository;
 
+    @Autowired private RestaurantRepository restaurantRepository;
+
     @Autowired private JwtConfiguration jwtConfiguration;
 
     public int enrollUser(Map<String, Object> dataMap) {
@@ -30,12 +34,28 @@ public class UserService {
         Boolean isChecked  = (Boolean) dataMap.get("isChecked"); // 판매용 계정 유무
 
         if(isChecked && restaurantname!=null && restaurantaddress!=null){
-            userRepository.save(User.builder()
+            // 식당 계정들 등록시킨다
+            User user = User.builder()
                     .username(username)
                     .email(useremail)
                     .password(sha1(userpassword))
                     .role("ROLE_OWNER")
-                    .build());
+                    .build();
+
+            userRepository.save(user);
+
+            user = userRepository.findUserByUsername(user.getUsername());
+
+            // 식당 계정으로 부터 반환된 사용자 아이디 값으로 식당도 등록 시킨다
+            Restaurant restaurant = Restaurant.builder()
+                    .user(user)
+                    .name(restaurantname)
+                    .address(restaurantaddress)
+                    .explain(restaurantexplain)
+                    .build();
+
+            restaurantRepository.save(restaurant);
+
             return 1; // 식당 주인일 경우 1번을 반환
         }else{
             userRepository.save(User.builder()

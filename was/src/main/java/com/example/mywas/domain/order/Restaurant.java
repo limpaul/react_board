@@ -13,5 +13,6 @@ public class Restaurant {
     private Long id;
     private String name;
     private String address;
+    private String explain;
     private User user; // 어느 식당 사장의 계정
 }
