@@ -6,6 +6,7 @@ import { checkUserInfoFromLocalStorage } from './DataToServer';
 export default function TabComponent(){
     const tablist = useRef(null)
     const [visibleLoginTab, setVisibleLoginTab] = useState(true);
+    const [visibleManagerTab, setVisibleManagerTab] = useState(false);
     const navigate = useNavigate();
     /* Tab에서 로그아웃 기능 추가  */
     const logout = () => {
@@ -16,6 +17,9 @@ export default function TabComponent(){
     }
     useEffect(()=>{
         const userInfo = checkUserInfoFromLocalStorage();
+        if(userInfo.role === 'ROLE_OWNER'){
+            setVisibleManagerTab(true);
+        }
         if(userInfo){
             setVisibleLoginTab(false);
         }
@@ -36,7 +40,7 @@ export default function TabComponent(){
                         <li>{visibleLoginTab && <Link to="/order/user/login">로그인</Link>}</li>
                         <li><Link to="/order/restaurant/list">주문하기</Link></li>
                         <li><Link to="/order/user/shopping/cart">주문내역</Link></li>
-                        <li><Link to="/order/user/mananger/restaurant">가게관리</Link></li>
+                        <li>{visibleManagerTab && <Link to="/order/user/mananger/restaurant">가게관리</Link>}</li>
                         <li><Link to="/order/user/mypage">마이페이지</Link></li>
                         <li>고객센터</li>
                         <li onClick={()=>{logout()}}>{!visibleLoginTab && <div>로그아웃</div>}</li>

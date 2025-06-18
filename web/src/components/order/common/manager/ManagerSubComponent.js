@@ -23,7 +23,7 @@ export default function(){
                     }else{
                         setClickManagerBtn(true)
                     }
-                }}>{clickManagerBtn?'-':'+'}</div>
+                }}>{clickManagerBtn?'x':'+'}</div>
             </div>
         </>
     )
