@@ -1,0 +1,40 @@
+
+#controlBtn{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c7f6ab;
+    font-size: 40px;
+    margin: 20px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 5px 0px;
+}
+#controlPannel{
+    font-weight: bold;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px 20px 100px 20px;
+}
+#restaurantmanagerlist{
+    background-color: lightblue;
+    border-radius: 20px;
+    height: 200px;
+    width: 150px;
+}
+#restaurantmanagerlist ul {
+    padding: 0;
+}
+#restaurantmanagerlist ul li{
+    margin: 10px;
+    border: 2px solid #dee2dc;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 20px;
+}

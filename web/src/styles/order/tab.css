@@ -9,6 +9,7 @@
     background-color: #f6abab;
     font-size: 40px;
     box-shadow: 0px 5px 5px 0px;
+    align-items: center;
 }
 #tablist{
     position: fixed;
