@@ -45,6 +45,7 @@ export default function LoginComponent({isVisibleUserAddComponent}){
     }
     useEffect(()=>{
         // useNavigate 
+        window.mVaccine_onload();
     }, [])
     return (<>
         <LinkComponent/>
