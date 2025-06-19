@@ -3,6 +3,7 @@ package com.example.mywas.service.order;
 import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.RestaurantRepository;
+import com.example.mywas.repository.order.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class UserRestaurantService implements CommandLineRunner {
     Logger logger = LoggerFactory.getLogger(UserRestaurantService.class);
     @Autowired
     private RestaurantRepository restaurantRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     public void enrollRestaurant(Restaurant restaurant) {
@@ -29,6 +32,23 @@ public class UserRestaurantService implements CommandLineRunner {
         restaurantRepository.findAll().forEach(restaurant -> {
             logger.info(restaurant.toString());
         });
+    }
+    public List<Restaurant> findRestaurantByUserId(Long userId){
+        if(userId != null){ // 사용자 아이디가 null일 경우
+            return null;
+        }
+        // 사용자 아이디 조회
+        User user = userRepository.findUserByUserId(userId);
+        if(user != null){
+            // 가게 검색
+            List<Restaurant> restaurants = restaurantRepository.findRestaurantByUserId(user.getId());
+            if(restaurants != null){ // 식당주인이 등록한 가게가 있다면
+                return restaurants;
+            }else{
+                return null;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -72,6 +73,13 @@ public class UserService {
     public Map<String, Object> loginUser(String username, String password){
         Map<String, Object> dataMap = new HashMap<>();
         User user = userRepository.findByUsername(username);
+        if(user == null){
+            dataMap.put("success", false);
+            dataMap.put("code", -10001);
+            dataMap.put("message", "존재하지 않은 아이디 입니다");
+            dataMap.put("data", "{}");
+            return dataMap;
+        }
         logger.debug("from client password: "+sha1(password));
         logger.debug("from db client password: "+user.getPassword());
         if(user!=null && user.getPassword().equals(sha1(password))){
@@ -96,10 +104,8 @@ public class UserService {
     // 사용자 탈퇴
 
     // 사용자 조회
-    public void findUserAll(){
-        userRepository.findAll().forEach(user -> {
-            logger.info(user.toString());
-        });
+    public List<User> findUserAll(){
+        return userRepository.findAll();
     }
 
     public static String sha1(String input) {

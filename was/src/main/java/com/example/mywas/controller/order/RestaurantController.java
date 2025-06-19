@@ -8,11 +8,9 @@ import com.example.mywas.repository.order.UserRepository;
 import com.example.mywas.service.order.UserMenuService;
 import com.example.mywas.service.order.UserRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,6 +20,7 @@ public class RestaurantController {
     private UserRepository userRepository;
     @Autowired
     private UserRestaurantService userRestaurantService;
+
 
     @Autowired
     private RestaurantRepository restaurantRepository;
@@ -55,7 +54,13 @@ public class RestaurantController {
     // 식당 삭제
 
     // 식당 조회
-    @GetMapping("//api/order/user/find/restaurant/list")
+    @PostMapping("/api/order/user/manager/restaurant/list")
+    public List<Restaurant> findRestaurantByUserId(@RequestBody Map<String, Object> dataMap, @RequestHeader Map<String, Object> dataHeader){
+        dataHeader.get("Auth");
+        return userRestaurantService.findRestaurantByUserId((Long) dataMap.get("userId"));
+    }
+
+    @GetMapping("/api/order/user/find/restaurant/list")
     public Map<String, Object> findEnrollRestaurants(){
        return null;
     }

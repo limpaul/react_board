@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -58,10 +59,12 @@ public class RestaurantRepository {
     }
 
     public List<Restaurant> findRestaurantByUserId(Long userId){
-        // 해당 사용자 아이디로 조회시 권한이 식당 소유주로 되어있는가?
-        
         // 등록된 식당을 로드한다
-        return null;
+        try{
+            return jdbcTemplate.query(findRestaurantByUserId, new BeanPropertyRowMapper<>(Restaurant.class), userId);
+        }catch (EmptyResultDataAccessException e){
+            return  null;
+        }
     }
 
     public Restaurant findRestaurantByName(String restaurantName) {

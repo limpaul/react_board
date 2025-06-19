@@ -33,6 +33,9 @@ public class UserRepository{
     @Value("${sql.user.findAll") // 'select * from users'
     private String userFindAll;
 
+    @Value("${sql.user.findUserByUserId")
+    private String findUserByUserId;
+
     @Value("${sql.user.findUserByUserName}") // 'select * from users where username = ?'
     private String findUserByUserName;
 
@@ -74,4 +77,12 @@ public class UserRepository{
         );
     }
 
+    public User findUserByUserId(Long userId){
+        // 단일행 조회
+        return jdbcTemplate.queryForObject(
+                findUserByUserId,
+                new BeanPropertyRowMapper<>(User.class),
+                userId
+        );
+    }
 }
