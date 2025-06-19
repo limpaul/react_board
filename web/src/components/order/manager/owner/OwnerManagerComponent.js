@@ -5,12 +5,25 @@ import { useEffect, useState } from "react"
 import ManagerSubComponent from "../../common/manager/ManagerSubComponent";
 import { request, checkLogin } from "../../common/DataToServer";
 import { useNavigate } from "react-router-dom";
+import SelectBoxComponent from "../../common/check/SelectBoxComponent";
 
 // 가게 관리 - /order/user/mananger/restaurant
 export default function OwnerManagerComponent(){
     const [restauantData, setRestauantData] = useState(null);
     const naviator = useNavigate();
     const [showCheckBox, setShowCheckBox] = useState(false);
+    const [checkBoxClick, setCheckBoxClick] = useState(false);
+    const [deleteList, setDeleteList] = useState([]); // 삭제할 식당 리스트 ( 체크 박스 클릭 때마다 값들이 담기게 설정)
+
+    const handleSelectBoxClick = (e) => {
+        if(e.target.id === 'yes'){
+            // 등록한 가게 삭제한다 
+
+        }
+        if(e.target.id === 'no'){
+            setCheckBoxClick(false);
+        }
+    }
     useEffect(()=>{
         checkLogin()
         .then(response => {
@@ -30,6 +43,10 @@ export default function OwnerManagerComponent(){
         })
     }, [])
 
+    useEffect(()=>{
+        console.log(deleteList);
+    }, [deleteList])
+
     return (
         <>
             <TabComponent/>
@@ -40,8 +57,11 @@ export default function OwnerManagerComponent(){
                 restaurantInfo={item} 
                 key={index}
                 showCheckBox={showCheckBox}
+                setCheckBoxClick = {setCheckBoxClick}
+                setDeleteList = {setDeleteList}
                 />
             ))}
+            {checkBoxClick && <SelectBoxComponent text={{'yes':'삭제','no':'취소'}} handleSelectBoxClick={handleSelectBoxClick} />}
         </>
     )
 }

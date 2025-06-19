@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 /*
     메뉴 리스트들 화면에 뿌려줄때 하나의 컴포넌트
 */
-export default function RestaurantListPartComponent({restaurantInfo, showCheckBox}){
+export default function RestaurantListPartComponent({restaurantInfo, showCheckBox, setCheckBoxClick, setDeleteList}){
     const navigate = useNavigate();
     return (
         <>
@@ -32,7 +32,23 @@ export default function RestaurantListPartComponent({restaurantInfo, showCheckBo
                    {showCheckBox && <div><input type="checkbox" style={{
                         width:'50px',
                         height:'50px'
-                    }} onClick={(e)=>{e.stopPropagation();e.isPropagationStopped();}}></input></div>}
+                    }} onClick={(e)=>{
+                        e.stopPropagation();
+                        e.isPropagationStopped();
+                        setCheckBoxClick(true);
+
+                        if(e.target.checked){
+                            setDeleteList(prev => {
+                                if(prev.find(item => item.id === restaurantInfo.id)) return prev;
+                                return [...prev, restaurantInfo];
+                            })
+                        }else{
+                            setDeleteList(prev => {
+                                return prev.filter(item => item.id !== restaurantInfo.id);
+                            })
+                        }
+                        
+                    }}></input></div>}
                 </div>
             </div>
         </>

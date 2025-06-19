@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../../../../styles/order/common/manager/managersubcomponent.css'
-export default function({setShowCheckBox}){
+export default function ManagerSubComponent({setShowCheckBox}){
     const [clickManagerBtn, setClickManagerBtn] = useState(false);
 
     return (
