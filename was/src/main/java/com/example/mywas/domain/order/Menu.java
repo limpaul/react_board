@@ -15,7 +15,7 @@ public class Menu {
     private int price;
     private String description;
     private String image;
-    private String score;
+    private Float score;
     private LocalDateTime createdAt;
     private Long restaurantId;
     Restaurant restaurant; // 어느 식당 소속

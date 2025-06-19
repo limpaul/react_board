@@ -22,7 +22,7 @@ CREATE TABLE menu (
   price INT,                                      -- 가격
   description TEXT,                               -- 메뉴 설명 (긴 텍스트 가능)
   image VARCHAR(500),                                 -- 이미지 URL
-  score INT,                                      -- 평점 또는 점수
+  score FLOAT,                                      -- 평점 또는 점수
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)  -- 외래 키 연결
 );
