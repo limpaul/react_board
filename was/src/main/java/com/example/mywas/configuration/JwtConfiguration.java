@@ -6,10 +6,14 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 public class JwtConfiguration {
@@ -42,6 +46,22 @@ public class JwtConfiguration {
         Claims claims = Jwts.parserBuilder().setSigningKey(key).build()
                 .parseClaimsJws(token).getBody();
         return claims.getSubject();
+    }
+
+    // 토큰에서 정보 추출
+    public Map<String, Object> getTokenInfo(String token){
+        if(!validateToken(token)){ // 토큰이 유효한지 확인
+            return null;
+        }else{
+            Map<String, Object> dataMap = new HashMap<>();
+            Claims claims = Jwts.parserBuilder().setSigningKey(key).build()
+                    .parseClaimsJws(token).getBody();
+
+            dataMap.put("username",claims.getSubject());
+            dataMap.put("userid", claims.get("id"));
+            dataMap.put("role", claims.get("role"));
+            return dataMap;
+        }
     }
 
 }

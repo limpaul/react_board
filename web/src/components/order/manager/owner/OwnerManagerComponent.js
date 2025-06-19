@@ -3,15 +3,32 @@ import RestaurantListPartComponent from "../../list/RestaurantListPartComponent"
 import TabComponent from "../../common/TabComponent"
 import { useEffect, useState } from "react"
 import ManagerSubComponent from "../../common/manager/ManagerSubComponent";
+import { request, checkLogin } from "../../common/DataToServer";
+import { useNavigate } from "react-router-dom";
 
+// 가게 관리 - /order/user/mananger/restaurant
 export default function OwnerManagerComponent(){
     const [restauantData, setRestauantData] = useState(null);
+    const naviator = useNavigate();
     useEffect(()=>{
+        checkLogin()
+        .then(response => {
+            naviator(response.redirectTo);
+        })
+        
+        request({
+            url:'/api/order/user/manager/restaurant/list',
+            method:'GET',
+            authentication:'true'
+        }).then((response)=>{
+            setRestauantData(response)
+        })
+        /*
         axios.get('/testdata/order/orderlist.json')
         .then((response)=>{
             setRestauantData(response.data)
         }, [])
-        
+        */
     }, [])
 
     return (

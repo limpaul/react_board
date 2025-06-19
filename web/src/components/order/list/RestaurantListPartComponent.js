@@ -1,4 +1,4 @@
-import TabComponent from "../common/TabComponent";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 /*
@@ -11,7 +11,7 @@ export default function RestaurantListPartComponent({restaurantInfo}){
             
             <div className="menuLists" 
             onClick={()=>{
-                navigate(`/order/restaurant/view/${restaurantInfo.storeId}`, {
+                navigate(`/order/restaurant/view/${restaurantInfo.id}`, {
                     state: restaurantInfo
                 })
             }}
@@ -21,8 +21,8 @@ export default function RestaurantListPartComponent({restaurantInfo}){
                 'padding':'5px'
             }}>
                 <div><img src={restaurantInfo.image} width="80px" height="80px"/></div>
-                <div>{restaurantInfo.storeName} 평점: <b>{restaurantInfo.rating}</b></div>
-                <div>{restaurantInfo.deliveryTime.min}~{restaurantInfo.deliveryTime.max}분 / {restaurantInfo.deliveryFee=='0'?'무료배달':restaurantInfo.deliveryFee} / 최소주문 {restaurantInfo.minOrderPrice}</div>
+                <div>{restaurantInfo.name} 평점: <b>{restaurantInfo.rating}</b></div>
+                <div>{restaurantInfo.deliveryTimeMin}~{restaurantInfo.deliveryTimeMax}분 / {restaurantInfo.deliveryFee=='0'?'무료배달':restaurantInfo.deliveryFee} / 최소주문 {restaurantInfo.minOrderPrice}</div>
             </div>
         </>
         

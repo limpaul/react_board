@@ -54,10 +54,14 @@ public class RestaurantController {
     // 식당 삭제
 
     // 식당 조회
-    @PostMapping("/api/order/user/manager/restaurant/list")
-    public List<Restaurant> findRestaurantByUserId(@RequestBody Map<String, Object> dataMap, @RequestHeader Map<String, Object> dataHeader){
-        dataHeader.get("Auth");
-        return userRestaurantService.findRestaurantByUserId((Long) dataMap.get("userId"));
+    @GetMapping("/api/order/user/manager/restaurant/list")
+    public List<Restaurant> findRestaurantByUserId (@RequestHeader Map<String, Object> dataHeader){
+        String authorizationToken = (String)dataHeader.get("authorization");
+        if(authorizationToken != null){
+            String token = authorizationToken.substring(7);
+            return restaurantRepository.findRestaurantByUserToken(token);
+        }
+        return null;
     }
 
     @GetMapping("/api/order/user/find/restaurant/list")

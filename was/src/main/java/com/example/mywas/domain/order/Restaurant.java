@@ -15,7 +15,7 @@ public class Restaurant {
     private String name;
     private String address;
     private String description;
-    private Long rating;
+    private Float rating;
     private int minOrderPrice;
     private int deliveryTimeMin;
     private int deliveryTimeMax;

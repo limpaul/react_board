@@ -1,5 +1,6 @@
 package com.example.mywas.repository.order;
 
+import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.Restaurant;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -23,6 +25,9 @@ import java.util.List;
 public class RestaurantRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private JwtConfiguration jwtConfiguration;
 
     @Value("${sql.restaurant.save}")
     private String restaurantSave;
@@ -58,6 +63,18 @@ public class RestaurantRepository {
         );
     }
 
+    // 사용자가 토큰으로 조회시
+    public List<Restaurant> findRestaurantByUserToken(String token){
+        // 토근 확인
+        Map<String, Object> resultMap = jwtConfiguration.getTokenInfo(token);
+        Float userId = Float.valueOf(resultMap.get("userid").toString());
+        // 등록된 식당을 로드한다
+        try{
+            return jdbcTemplate.query(findRestaurantByUserId, new BeanPropertyRowMapper<>(Restaurant.class), userId);
+        }catch (EmptyResultDataAccessException e){
+            return  null;
+        }
+    }
     public List<Restaurant> findRestaurantByUserId(Long userId){
         // 등록된 식당을 로드한다
         try{
