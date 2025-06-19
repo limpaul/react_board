@@ -5,9 +5,13 @@ import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.repository.order.MenuRepository;
 import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
+import com.example.mywas.service.order.UserMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class RestaurantMenuController {
@@ -15,9 +19,16 @@ public class RestaurantMenuController {
     @Autowired private UserRepository userRepository;
     @Autowired private RestaurantRepository restaurantRepository;
     @Autowired private MenuRepository menuRepository;
+    @Autowired private UserMenuService menuService;
+
     @GetMapping("/api/order/user/enroll/menu")
     public String MenuEnrollController(){
         return "{}";
+    }
+
+    @GetMapping("/api/order/menu/list/{restaurantId}")
+    public List<Menu> findMenuByRestaurantId(@PathVariable Long restaurantId){
+        return menuService.findMenuByRestaurantId(restaurantId);
     }
     @GetMapping("/api/order/user/enroll/menu/test")
     public String MenuEnrollControllerTest(){ //메뉴 등록

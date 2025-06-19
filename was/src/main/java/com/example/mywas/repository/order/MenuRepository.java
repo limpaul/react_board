@@ -8,6 +8,9 @@ import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +24,9 @@ public class MenuRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Value("${sql.menu.findMenuByRestaurantId}")
+    private String findMenuByRestaurantId;
+
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
@@ -31,6 +37,17 @@ public class MenuRepository {
         menus.add(menu);
         logger.info("menu 등록 {}: ",menu.toString());
         return menu;
+    }
+
+    public List<Menu> findMenuByRestaurantId(Long restaurantId){
+        try{
+            return jdbcTemplate.query(findMenuByRestaurantId,
+                    new BeanPropertyRowMapper<>(Menu.class),
+                    restaurantId
+            );
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
     public List<Menu> findAll(){
         return menus;

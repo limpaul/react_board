@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserMenuService implements CommandLineRunner {
     private static Logger logger = LoggerFactory.getLogger(UserMenuService.class);
@@ -21,6 +23,9 @@ public class UserMenuService implements CommandLineRunner {
         menuRepository.findAll().forEach(menu ->{
             logger.info(menu.toString());
         });
+    }
+    public List<Menu> findMenuByRestaurantId(Long findMenuByRestaurantId){
+        return menuRepository.findMenuByRestaurantId(findMenuByRestaurantId);
     }
 
     @Override

@@ -7,12 +7,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @ToString
 public class Menu {
     private Long id;
     private String name;
     private int price;
+    private int category;
     private String description;
     private String image;
     private Float score;

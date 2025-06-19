@@ -13,7 +13,8 @@ INSERT INTO users (username, email, password, role) VALUES
 ('Raon', 'bwlim@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_OWNER'),
 ('limpaul', 'paul@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_OWNER'),
 ('Dragon', 'Dragon@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_OWNER'),
-('Jane Admin', 'janeadmin@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_ADMIN');
+('paul', 'paul@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_OWNER'),
+('admin', 'admin@example.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'ROLE_ADMIN');
 
 
 

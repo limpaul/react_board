@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 import TabComponent from "../common/TabComponent";
+import { request } from "../common/DataToServer";
 
 /*
     식당에서 등록한 상세 이미지들을 로드한다
@@ -99,21 +100,22 @@ useEffect(() => {
     useEffect(()=>{
         console.log(restaurantData); // 고객이 식당별 리스트를 누르고 들어왔을때 이전 메뉴로 부터 가져온 정보들 
         // 식당 아이디 + 19 더한 만큼의 데이터를 가져와본다 
-        debugger;
-        axios.get('/testdata/order/menu/menu.json')
-        .then((res)=>{
-             const start = restaurantData.storeId; // 식당 ID 1,2,3,5
-             const end = start * 20
-             const menuDataList = res.data.slice((start-1)*20, end); // 테스트 데이터를 임의로 20개씩 끊어 가져온다 
-             
-             // 장바구니 동일 메뉴 선정시 count옵션 넣기
-             const menuCountDataList = menuDataList.map(menu => ({
-                ...menu,
-                count: 0 // 장바구니에 담기지 않은 수량은 0으로 표현한다
-             }))
-             
-             setTestMenuData(menuCountDataList);
-        })
+        request({
+            method:'GET',
+            url:`/api/order/menu/list/${restaurantData.id}`,
+            authentication:false
+        }).then((res)=>{
+            const start = restaurantData.storeId; // 식당 ID 1,2,3,5
+            const menuDataList = res; // 테스트 데이터를 임의로 20개씩 끊어 가져온다 
+            
+            // 장바구니 동일 메뉴 선정시 count옵션 넣기
+            const menuCountDataList = menuDataList.map(menu => ({
+               ...menu,
+               count: 0 // 장바구니에 담기지 않은 수량은 0으로 표현한다
+            }))
+            
+            setTestMenuData(menuCountDataList);
+       })
     }, [])
     return (
         <>
