@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function OwnerManagerComponent(){
     const [restauantData, setRestauantData] = useState(null);
     const naviator = useNavigate();
+    const [showCheckBox, setShowCheckBox] = useState(false);
     useEffect(()=>{
         checkLogin()
         .then(response => {
@@ -23,23 +24,18 @@ export default function OwnerManagerComponent(){
         }).then((response)=>{
             setRestauantData(response)
         })
-        /*
-        axios.get('/testdata/order/orderlist.json')
-        .then((response)=>{
-            setRestauantData(response.data)
-        }, [])
-        */
     }, [])
 
     return (
         <>
             <TabComponent/>
-            <ManagerSubComponent/>
+            <ManagerSubComponent setShowCheckBox={setShowCheckBox}/>
             <h2>사용자 가게 관리</h2>
             {restauantData && restauantData.map((item, index)=>(
                 <RestaurantListPartComponent 
                 restaurantInfo={item} 
                 key={index}
+                showCheckBox={showCheckBox}
                 />
             ))}
         </>

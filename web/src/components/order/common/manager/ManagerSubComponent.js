@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../../../../styles/order/common/manager/managersubcomponent.css'
-export default function(){
+export default function({setShowCheckBox}){
     const [clickManagerBtn, setClickManagerBtn] = useState(false);
 
     return (
@@ -12,7 +12,9 @@ export default function(){
                     <div id='restaurantmanagerlist'>
                         <ul>
                             <li>가게 등록</li>
-                            <li>가게 삭제</li>
+                            <li onClick={()=>{
+                                setShowCheckBox(true)
+                            }}>가게 삭제</li>
                         </ul>       
                     </div> 
                     </div>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 /*
     메뉴 리스트들 화면에 뿌려줄때 하나의 컴포넌트
 */
-export default function RestaurantListPartComponent({restaurantInfo}){
+export default function RestaurantListPartComponent({restaurantInfo, showCheckBox}){
     const navigate = useNavigate();
     return (
         <>
@@ -21,8 +21,19 @@ export default function RestaurantListPartComponent({restaurantInfo}){
                 'padding':'5px'
             }}>
                 <div><img src={restaurantInfo.image} width="80px" height="80px"/></div>
-                <div>{restaurantInfo.name} 평점: <b>{restaurantInfo.rating}</b></div>
-                <div>{restaurantInfo.deliveryTimeMin}~{restaurantInfo.deliveryTimeMax}분 / {restaurantInfo.deliveryFee=='0'?'무료배달':restaurantInfo.deliveryFee} / 최소주문 {restaurantInfo.minOrderPrice}</div>
+                <div style={{
+                    display:'flex',
+                    justifyContent: 'space-between'
+                }}>
+                    <div>
+                        <div>{restaurantInfo.name} 평점: <b>{restaurantInfo.rating}</b></div>
+                        <div>{restaurantInfo.deliveryTimeMin}~{restaurantInfo.deliveryTimeMax}분 / {restaurantInfo.deliveryFee=='0'?'무료배달':restaurantInfo.deliveryFee} / 최소주문 {restaurantInfo.minOrderPrice}</div>
+                    </div>
+                   {showCheckBox && <div><input type="checkbox" style={{
+                        width:'50px',
+                        height:'50px'
+                    }} onClick={(e)=>{e.stopPropagation();e.isPropagationStopped();}}></input></div>}
+                </div>
             </div>
         </>
         
