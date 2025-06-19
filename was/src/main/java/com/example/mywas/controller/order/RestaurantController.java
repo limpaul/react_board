@@ -64,9 +64,9 @@ public class RestaurantController {
         return null;
     }
 
-    @GetMapping("/api/order/user/find/restaurant/list")
-    public Map<String, Object> findEnrollRestaurants(){
-       return null;
+    @GetMapping("/api/order/user/restaurant/list")
+    public List<Restaurant> findEnrollRestaurants(){
+        return userRestaurantService.findAll();
     }
     @GetMapping("/api/order/user/find/restaurant/test")
     public String findEnrollRestaurant(){

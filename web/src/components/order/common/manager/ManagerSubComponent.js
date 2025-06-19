@@ -26,6 +26,8 @@ export default function({setShowCheckBox}){
                         setClickManagerBtn(true)
                     }
                 }}>{clickManagerBtn?'x':'+'}</div>
+
+                <div></div>
             </div>
         </>
     )

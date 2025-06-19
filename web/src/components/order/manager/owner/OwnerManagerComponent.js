@@ -22,6 +22,10 @@ export default function OwnerManagerComponent(){
             method:'GET',
             authentication:'true'
         }).then((response)=>{
+            if(response === ''){
+                localStorage.removeItem('token');
+                naviator('/order/user/login');
+            }
             setRestauantData(response)
         })
     }, [])

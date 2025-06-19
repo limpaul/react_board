@@ -99,6 +99,7 @@ useEffect(() => {
     useEffect(()=>{
         console.log(restaurantData); // 고객이 식당별 리스트를 누르고 들어왔을때 이전 메뉴로 부터 가져온 정보들 
         // 식당 아이디 + 19 더한 만큼의 데이터를 가져와본다 
+        debugger;
         axios.get('/testdata/order/menu/menu.json')
         .then((res)=>{
              const start = restaurantData.storeId; // 식당 ID 1,2,3,5
@@ -130,7 +131,7 @@ useEffect(() => {
                         
                         <div>평점: {restaurantData.rating}</div>
                         <div>최소주문 {restaurantData.minOrderPrice} </div>
-                        <div>가게배달: {restaurantData.deliveryTime.min}~{restaurantData.deliveryTime.max}분</div>
+                        <div>가게배달: {restaurantData.deliveryTimeMin}~{restaurantData.deliveryTimeMax}분</div>
                         <div>배달비: {restaurantData.deliveryFee=='0'?'무료배달':restaurantData.deliveryFee}</div>
                     </div>
                     

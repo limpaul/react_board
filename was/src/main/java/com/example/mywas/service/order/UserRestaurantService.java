@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserRestaurantService implements CommandLineRunner {
+public class UserRestaurantService  {
     Logger logger = LoggerFactory.getLogger(UserRestaurantService.class);
     @Autowired
     private RestaurantRepository restaurantRepository;
@@ -28,10 +28,8 @@ public class UserRestaurantService implements CommandLineRunner {
         logger.info("식당 등록: "+restaurant.toString());
         restaurantRepository.save(restaurant);
     }
-    public void findAll(){
-        restaurantRepository.findAll().forEach(restaurant -> {
-            logger.info(restaurant.toString());
-        });
+    public List<Restaurant> findAll(){
+        return restaurantRepository.findAll();
     }
     public List<Restaurant> findRestaurantByUserId(Long userId){
         if(userId != null){ // 사용자 아이디가 null일 경우
@@ -51,9 +49,4 @@ public class UserRestaurantService implements CommandLineRunner {
         return null;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
-        findAll();
-    }
 }
