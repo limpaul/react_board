@@ -5,7 +5,7 @@ import RestaurantOrderShoppingListComponent from "../list/RestaurantOrderShoppin
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 import DownToUpComponent from "../common/DownToUpComponent";
 import PaymentInputComponent from "../payment/PaymentInputComponent";
-import { checkLogin } from "../common/DataToServer";
+import { checkLogin, request } from "../common/DataToServer";
 
 //order/user/shopping/cart
 export default function ShoppingCartComponent(){
@@ -30,13 +30,28 @@ export default function ShoppingCartComponent(){
    }, [])
    window.mTranskey.prototype.closeCallBack = () => {
         setShowCardDialogPopup(false);
+        const transkeyInput = document.getElementById('transkeyinput');
+        if(transkeyInput.value.length === 4){
+            // 서버로 결재를 진행한다 
+            // 사용자 정보, 헤더에 있는 정보를 서버에 넣으면 된다  
+
+            // 가게 정보를 서버에 보낸다 
+            request({
+                method:'POST',
+                url:'/api/order/user/order',
+                contentType:'application/json',
+                body:JSON.stringify(currOrderState.clientOrderCart),
+                authentication:true
+            }).then(res =>{
+                console.log(res);
+            })
+        }
    }
    window.mTranskey.prototype.doneCallBack = () => {
         setShowCardDialogPopup(false);
    }
-   const handlePayment = () => {
+   const handlePayment = (e) => { // 결재 버튼 누르면 
         setShowCardDialogPopup(true)
-        //setShowOrderSelectPopup(true);
    }
     useEffect(()=>{
          console.log(currOrderState);

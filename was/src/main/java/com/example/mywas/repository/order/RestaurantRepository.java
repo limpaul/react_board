@@ -68,9 +68,9 @@ public class RestaurantRepository {
     }
 
     // 사용자가 토큰으로 조회시
-    public List<Restaurant> findRestaurantByUserToken(String token){
+    public List<Restaurant> findRestaurantByUserToken(Map<String, Object> dataHeader){
         // 토근 확인
-        Map<String, Object> resultMap = jwtConfiguration.getTokenInfo(token);
+        Map<String, Object> resultMap = jwtConfiguration.getTokenInfo(dataHeader);
         if(resultMap == null){ // 토큰이만료 되었거나 유효하지 않을 경우
             // code, data, success, message
             return null;

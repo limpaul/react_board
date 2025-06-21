@@ -63,12 +63,7 @@ public class RestaurantController {
     // 식당 조회
     @GetMapping("/api/order/user/manager/restaurant/list")
     public List<Restaurant> findRestaurantByUserId (@RequestHeader Map<String, Object> dataHeader){
-        String authorizationToken = (String)dataHeader.get("authorization");
-        if(authorizationToken != null){
-            String token = authorizationToken.substring(7);
-            return restaurantRepository.findRestaurantByUserToken(token);
-        }
-        return null;
+        return restaurantRepository.findRestaurantByUserToken(dataHeader);
     }
 
     @GetMapping("/api/order/user/restaurant/list")

@@ -27,7 +27,7 @@ export default function PaymentBeforeComponent({paymentOrderInfo, onCustomClick,
                     'background':'lightseagreen',
                     'color':'white',
                 }}
-                    onClick={onCustomClick}
+                    onClick={(e)=>{onCustomClick(e)}}
                 >({paymentOrderInfo.ordercount}){isPayment?'결재하기':'장바구니담기'}</div>
             </div>
         </>

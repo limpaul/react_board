@@ -79,85 +79,85 @@ VALUES (3, 3, '땡초김밥', '서울특별시 성동구 가상로 14', '혼밥�
 
 -- menu
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 5, 2, 1, '트러플 머쉬룸 피자', 5770, 'https://source.unsplash.com/featured/300x200?food,7577', '2025-01-20 05:07:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 5, 1, 1, '트러플 머쉬룸 피자', 5770, 'https://source.unsplash.com/featured/300x200?food,7577', '2025-01-20 05:07:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 1, 2, 1, '불고기 피자', 10752, 'https://source.unsplash.com/featured/300x200?food,6132', '2025-02-17 19:31:00');
+VALUES ('가성비 최고의 인기 상품', 1, 1, 1, '불고기 피자', 10752, 'https://source.unsplash.com/featured/300x200?food,6132', '2025-02-17 19:31:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 5, 2, 1, '쉬림프 피자', 17808, 'https://source.unsplash.com/featured/300x200?food,8188', '2025-03-01 05:42:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 5, 1, 1, '쉬림프 피자', 17808, 'https://source.unsplash.com/featured/300x200?food,8188', '2025-03-01 05:42:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 3, 2, 1, '치즈 크러스트 피자', 17997, 'https://source.unsplash.com/featured/300x200?food,7739', '2025-02-27 07:57:00');
+VALUES ('가성비 최고의 인기 상품', 3, 1, 1, '치즈 크러스트 피자', 17997, 'https://source.unsplash.com/featured/300x200?food,7739', '2025-02-27 07:57:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 4, 2, 1, '베이컨 체더 피자', 5629, 'https://source.unsplash.com/featured/300x200?food,5372', '2025-02-12 01:53:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 4, 1, 1, '베이컨 체더 피자', 5629, 'https://source.unsplash.com/featured/300x200?food,5372', '2025-02-12 01:53:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 2, 2, 1, '페퍼로니 피자', 13171, 'https://source.unsplash.com/featured/300x200?food,4957', '2025-01-20 11:17:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 2, 1, 1, '페퍼로니 피자', 13171, 'https://source.unsplash.com/featured/300x200?food,4957', '2025-01-20 11:17:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 2, 1, '페퍼로니 피자', 19581, 'https://source.unsplash.com/featured/300x200?food,7802', '2025-03-06 19:18:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 1, 1, '페퍼로니 피자', 19581, 'https://source.unsplash.com/featured/300x200?food,7802', '2025-03-06 19:18:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 2, 1, '고르곤졸라 피자', 11510, 'https://source.unsplash.com/featured/300x200?food,1970', '2025-03-07 19:54:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 1, 1, '고르곤졸라 피자', 11510, 'https://source.unsplash.com/featured/300x200?food,1970', '2025-03-07 19:54:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 2, 1, '쉬림프 피자', 16095, 'https://source.unsplash.com/featured/300x200?food,1358', '2025-01-24 03:38:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 1, 1, '쉬림프 피자', 16095, 'https://source.unsplash.com/featured/300x200?food,1358', '2025-01-24 03:38:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 4, 2, 1, '치즈 크러스트 피자', 11501, 'https://source.unsplash.com/featured/300x200?food,4153', '2025-03-10 08:05:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 4, 1, 1, '치즈 크러스트 피자', 11501, 'https://source.unsplash.com/featured/300x200?food,4153', '2025-03-10 08:05:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 3, 2, 1, '트러플 머쉬룸 피자 11', 12200, 'https://source.unsplash.com/featured/300x200?food,4395', '2025-03-12 04:38:00');
+VALUES ('가성비 최고의 인기 상품', 3, 1, 1, '트러플 머쉬룸 피자 11', 12200, 'https://source.unsplash.com/featured/300x200?food,4395', '2025-03-12 04:38:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 3, 2, 1, '치즈 크러스트 피자 12', 18255, 'https://source.unsplash.com/featured/300x200?food,3548', '2025-03-28 13:08:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 3, 1, 1, '치즈 크러스트 피자 12', 18255, 'https://source.unsplash.com/featured/300x200?food,3548', '2025-03-28 13:08:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 3, 2, 1, '치즈 크러스트 피자 13', 18263, 'https://source.unsplash.com/featured/300x200?food,6015', '2025-01-27 12:56:00');
+VALUES ('가성비 최고의 인기 상품', 3, 1, 1, '치즈 크러스트 피자 13', 18263, 'https://source.unsplash.com/featured/300x200?food,6015', '2025-01-27 12:56:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 4, 2, 1, '콤비네이션 피자 14', 10988, 'https://source.unsplash.com/featured/300x200?food,5879', '2025-01-05 05:02:00');
+VALUES ('가성비 최고의 인기 상품', 4, 1, 1, '콤비네이션 피자 14', 10988, 'https://source.unsplash.com/featured/300x200?food,5879', '2025-01-05 05:02:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 1, 2, 1, '페퍼로니 피자 15', 13203, 'https://source.unsplash.com/featured/300x200?food,9929', '2025-02-16 19:02:00');
+VALUES ('가성비 최고의 인기 상품', 1, 1, 1, '페퍼로니 피자 15', 13203, 'https://source.unsplash.com/featured/300x200?food,9929', '2025-02-16 19:02:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 3, 2, 1, '하와이안 피자 16', 3569, 'https://source.unsplash.com/featured/300x200?food,1960', '2025-02-07 19:04:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 3, 1, 1, '하와이안 피자 16', 3569, 'https://source.unsplash.com/featured/300x200?food,1960', '2025-02-07 19:04:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 5, 2, 1, '치즈 크러스트 피자 17', 7243, 'https://source.unsplash.com/featured/300x200?food,3643', '2025-04-01 09:31:00');
+VALUES ('가성비 최고의 인기 상품', 5, 1, 1, '치즈 크러스트 피자 17', 7243, 'https://source.unsplash.com/featured/300x200?food,3643', '2025-04-01 09:31:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 3, 2, 1, '콤비네이션 피자 18', 4998, 'https://source.unsplash.com/featured/300x200?food,274', '2025-02-03 22:28:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 3, 1, 1, '콤비네이션 피자 18', 4998, 'https://source.unsplash.com/featured/300x200?food,274', '2025-02-03 22:28:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 5, 2, 1, '하와이안 피자 19', 4988, 'https://source.unsplash.com/featured/300x200?food,8333', '2025-02-19 05:25:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 5, 1, 1, '하와이안 피자 19', 4988, 'https://source.unsplash.com/featured/300x200?food,8333', '2025-02-19 05:25:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 5, 2, 1, '베이컨 체더 피자 20', 9993, 'https://source.unsplash.com/featured/300x200?food,5655', '2025-02-04 22:22:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 5, 1, 1, '베이컨 체더 피자 20', 9993, 'https://source.unsplash.com/featured/300x200?food,5655', '2025-02-04 22:22:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 5, 3, 2, '치즈 김밥', 7028, 'https://source.unsplash.com/featured/300x200?food,1002', '2025-01-06 22:00:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 5, 2, 2, '치즈 김밥', 7028, 'https://source.unsplash.com/featured/300x200?food,1002', '2025-01-06 22:00:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 5, 3, 2, '계란 김밥', 14153, 'https://source.unsplash.com/featured/300x200?food,7678', '2025-02-08 04:48:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 5, 2, 2, '계란 김밥', 14153, 'https://source.unsplash.com/featured/300x200?food,7678', '2025-02-08 04:48:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 3, 2, '참치 김밥', 6434, 'https://source.unsplash.com/featured/300x200?food,6819', '2025-01-06 10:10:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 5, 2, 2, '참치 김밥', 6434, 'https://source.unsplash.com/featured/300x200?food,6819', '2025-01-06 10:10:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 4, 3, 2, '김치 김밥', 12324, 'https://source.unsplash.com/featured/300x200?food,1761', '2025-01-18 14:02:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 4, 2, 2, '김치 김밥', 12324, 'https://source.unsplash.com/featured/300x200?food,1761', '2025-01-18 14:02:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 4, 3, 2, '매운 참치 김밥', 15621, 'https://source.unsplash.com/featured/300x200?food,1154', '2025-03-31 14:54:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 4, 2, 2, '매운 참치 김밥', 15621, 'https://source.unsplash.com/featured/300x200?food,1154', '2025-03-31 14:54:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 4, 3, 2, '계란 김밥', 10973, 'https://source.unsplash.com/featured/300x200?food,6500', '2025-02-02 07:43:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 4, 2, 2, '계란 김밥', 10973, 'https://source.unsplash.com/featured/300x200?food,6500', '2025-02-02 07:43:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 1, 3, 2, '소고기 김밥', 19092, 'https://source.unsplash.com/featured/300x200?food,7509', '2025-03-13 22:36:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 1, 2, 2, '소고기 김밥', 19092, 'https://source.unsplash.com/featured/300x200?food,7509', '2025-03-13 22:36:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 3, 3, 2, '계란 김밥', 7467, 'https://source.unsplash.com/featured/300x200?food,7502', '2025-02-14 08:00:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 3, 2, 2, '계란 김밥', 7467, 'https://source.unsplash.com/featured/300x200?food,7502', '2025-02-14 08:00:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 4, 3, 2, '김치 김밥', 6073, 'https://source.unsplash.com/featured/300x200?food,2301', '2025-02-09 05:14:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 4, 2, 2, '김치 김밥', 6073, 'https://source.unsplash.com/featured/300x200?food,2301', '2025-02-09 05:14:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 4, 3, 2, '참치 김밥', 18829, 'https://source.unsplash.com/featured/300x200?food,5722', '2025-01-16 07:42:00');
+VALUES ('가성비 최고의 인기 상품', 4, 2, 2, '참치 김밥', 18829, 'https://source.unsplash.com/featured/300x200?food,5722', '2025-01-16 07:42:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 1, 3, 2, '계란 김밥 11', 19178, 'https://source.unsplash.com/featured/300x200?food,9304', '2025-02-04 05:10:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 1, 2, 2, '계란 김밥 11', 19178, 'https://source.unsplash.com/featured/300x200?food,9304', '2025-02-04 05:10:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 1, 3, 2, '계란 김밥 12', 16489, 'https://source.unsplash.com/featured/300x200?food,3955', '2025-03-24 05:27:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 1, 2, 2, '계란 김밥 12', 16489, 'https://source.unsplash.com/featured/300x200?food,3955', '2025-03-24 05:27:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 2, 3, 2, '소고기 김밥 13', 6236, 'https://source.unsplash.com/featured/300x200?food,9789', '2025-01-20 07:02:00');
+VALUES ('가성비 최고의 인기 상품', 2, 2, 2, '소고기 김밥 13', 6236, 'https://source.unsplash.com/featured/300x200?food,9789', '2025-01-20 07:02:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 1, 3, 2, '멸치 김밥 14', 11099, 'https://source.unsplash.com/featured/300x200?food,6424', '2025-01-28 13:30:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 1, 2, 2, '멸치 김밥 14', 11099, 'https://source.unsplash.com/featured/300x200?food,6424', '2025-01-28 13:30:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('셰프가 자신 있게 추천하는 메뉴', 3, 3, 2, '참치 김밥 15', 5463, 'https://source.unsplash.com/featured/300x200?food,9980', '2025-02-03 10:12:00');
+VALUES ('셰프가 자신 있게 추천하는 메뉴', 3, 2, 2, '참치 김밥 15', 5463, 'https://source.unsplash.com/featured/300x200?food,9980', '2025-02-03 10:12:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('가성비 최고의 인기 상품', 4, 3, 2, '유부 김밥 16', 4413, 'https://source.unsplash.com/featured/300x200?food,5281', '2025-03-18 00:08:00');
+VALUES ('가성비 최고의 인기 상품', 4, 2, 2, '유부 김밥 16', 4413, 'https://source.unsplash.com/featured/300x200?food,5281', '2025-03-18 00:08:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('특제 소스로 깊은 맛을 낸 요리', 1, 3, 2, '멸치 김밥 17', 4370, 'https://source.unsplash.com/featured/300x200?food,5399', '2025-03-11 15:31:00');
+VALUES ('특제 소스로 깊은 맛을 낸 요리', 1, 2, 2, '멸치 김밥 17', 4370, 'https://source.unsplash.com/featured/300x200?food,5399', '2025-03-11 15:31:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('고객 만족도가 높은 추천 메뉴', 3, 3, 2, '치즈 김밥 18', 11087, 'https://source.unsplash.com/featured/300x200?food,4313', '2025-03-02 22:05:00');
+VALUES ('고객 만족도가 높은 추천 메뉴', 3, 2, 2, '치즈 김밥 18', 11087, 'https://source.unsplash.com/featured/300x200?food,4313', '2025-03-02 22:05:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 3, 3, 2, '소고기 김밥 19', 14465, 'https://source.unsplash.com/featured/300x200?food,1186', '2025-02-27 07:59:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 3, 2, 2, '소고기 김밥 19', 14465, 'https://source.unsplash.com/featured/300x200?food,1186', '2025-02-27 07:59:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
-VALUES ('신선한 재료로 만든 인기 메뉴', 3, 3, 2, '돈까스 김밥 20', 16986, 'https://source.unsplash.com/featured/300x200?food,2572', '2025-02-02 20:53:00');
+VALUES ('신선한 재료로 만든 인기 메뉴', 3, 2, 2, '돈까스 김밥 20', 16986, 'https://source.unsplash.com/featured/300x200?food,2572', '2025-02-02 20:53:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)
 VALUES ('특제 소스로 깊은 맛을 낸 요리', 4, 3, 2, '에그타르트', 18844, 'https://source.unsplash.com/featured/300x200?food,5124', '2025-01-14 05:38:00');
 INSERT INTO menu (description, score, restaurant_id, category, name, price, image, created_at)

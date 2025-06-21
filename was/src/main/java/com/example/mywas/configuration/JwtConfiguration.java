@@ -49,7 +49,12 @@ public class JwtConfiguration {
     }
 
     // 토큰에서 정보 추출
-    public Map<String, Object> getTokenInfo(String token){
+    public Map<String, Object> getTokenInfo(Map<String, Object> dataHeader){
+        String authorizationToken = (String)dataHeader.get("authorization");
+        if(authorizationToken == null){ //헤더에 토큰이 없을 경우
+            return null;
+        }
+        String token = authorizationToken.substring(7);
         if(!validateToken(token)){ // 토큰이 유효한지 확인
             return null;
         }else{
