@@ -5,11 +5,11 @@ CREATE TABLE restaurant (
   name VARCHAR(255),
   address VARCHAR(255),
   description VARCHAR(1000),
-  rating FLOAT,
-  min_order_price INT,
-  delivery_time_min INT,
-  delivery_time_max INT,
-  delivery_fee INT,
+  rating FLOAT, -- 가게 평점
+  min_order_price INT, -- 가게 최소 주문
+  delivery_time_min INT,  -- 가게 배달 최소 시간
+  delivery_time_max INT, -- 가게 배달 최대 시간
+  delivery_fee INT, -- 배달 수수료
   image VARCHAR(500),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
