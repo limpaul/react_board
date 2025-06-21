@@ -18,6 +18,26 @@ export default function OwnerManagerComponent(){
     const handleSelectBoxClick = (e) => {
         if(e.target.id === 'yes'){
             // 등록한 가게 삭제한다 
+            request({
+                method:'POST',
+                url:'/api/order/user/manager/restaurant/delete',
+                contentType:'application/json',
+                body:{
+                    deleteList
+                },
+                authentication:true
+            }).then(res=>{
+                if(res.status){ // 삭제가 완료 되면, 가게 리스트를 갱신한다 
+                    setRestauantData(prev => {
+                        return prev.filter(item => !deleteList.some(del => del.id === item.id))
+                    })
+                    setShowCheckBox(false);
+                    setCheckBoxClick(false);
+                    setDeleteList([]);
+                }else{ // 그렇지 않을 경우, 리턴 받은 가게에 대해서만 삭제를 진행하지 않는다 
+                    console.error('가게를 삭제할 수 없습니다')
+                }
+            })
 
         }
         if(e.target.id === 'no'){
@@ -42,10 +62,13 @@ export default function OwnerManagerComponent(){
             setRestauantData(response)
         })
     }, [])
-
     useEffect(()=>{
         console.log(deleteList);
     }, [deleteList])
+
+    useEffect(()=>{
+        console.log(restauantData);
+    })
 
     return (
         <>

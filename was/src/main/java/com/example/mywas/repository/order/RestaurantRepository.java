@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -37,6 +38,9 @@ public class RestaurantRepository {
 
     @Value("${sql.restaurant.findRestaurantByUserId}")
     private String findRestaurantByUserId;
+
+    @Value("${sql.restaurant.deleteRestaurantByUserId}")
+    private String deleteRestaurantByUserId;
 
     private Logger logger = LoggerFactory.getLogger(RestaurantRepository.class);
     private final List<Restaurant> restaurants = new ArrayList<>();
@@ -96,5 +100,20 @@ public class RestaurantRepository {
                       logger.info("menu {} not exist", restaurantName);
                       return null;
                 });
+    }
+
+    public List<Restaurant> removeRestaurant(List<Restaurant> restaurants) {
+        List<Restaurant> errorList = new ArrayList<>();
+        try{
+            restaurants.forEach(restaurant -> {
+                int result = jdbcTemplate.update(deleteRestaurantByUserId, restaurant.getUserId(), restaurant.getId());
+                if(result == 0){
+                    errorList.add(restaurant);
+                }
+            });
+            return errorList;
+        }catch (DataAccessException e){
+            return null;
+        }
     }
 }

@@ -13,6 +13,7 @@ CREATE TABLE restaurant (
   image VARCHAR(500),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE menu (
@@ -25,7 +26,8 @@ CREATE TABLE menu (
   image VARCHAR(500),                                 -- 이미지 URL
   score FLOAT,                                      -- 평점 또는 점수
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)  -- 외래 키 연결
+  FOREIGN KEY (restaurant_id) REFERENCES restaurant(id)
+  ON DELETE CASCADE-- 외래 키 연결
 );
 
 -- restaurant

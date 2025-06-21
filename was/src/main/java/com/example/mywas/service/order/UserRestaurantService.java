@@ -4,13 +4,19 @@ import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserRestaurantService  {
@@ -20,6 +26,8 @@ public class UserRestaurantService  {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
 
     public void enrollRestaurant(Restaurant restaurant) {
         if(restaurant.getUser() == null){
@@ -49,4 +57,23 @@ public class UserRestaurantService  {
         return null;
     }
 
+    public Map<String, Object> removeRestaurant(Map<String, Object> dataHeader, Map<String, Object> dataMap) {
+
+        List<Restaurant> restaurants  = new ArrayList<>();
+
+        List<Map<String, Object>> deleteList = (List<Map<String, Object>>)dataMap.get("deleteList");
+        deleteList.forEach(restaurantStr->{
+            Restaurant restaurant = objectMapper.convertValue(restaurantStr, Restaurant.class);
+            restaurants.add(restaurant);
+        });
+        List<Restaurant> errorList = restaurantRepository.removeRestaurant(restaurants);
+        Map<String, Object> resultMap = new HashMap<>();
+        if(!errorList.isEmpty()){
+            resultMap.put("message", errorList);
+            resultMap.put("status", false);
+        }else{
+            resultMap.put("status", true);
+        }
+        return resultMap;
+    }
 }

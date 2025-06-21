@@ -52,6 +52,13 @@ public class RestaurantController {
     }
 
     // 식당 삭제
+    @PostMapping("/api/order/user/manager/restaurant/delete")
+    public Map<String, Object> deleteRestaurantByUserId(
+            @RequestHeader Map<String, Object> dataHeader,
+            @RequestBody Map<String, Object> dataMap){
+
+        return userRestaurantService.removeRestaurant(dataHeader, dataMap);
+    }
 
     // 식당 조회
     @GetMapping("/api/order/user/manager/restaurant/list")
