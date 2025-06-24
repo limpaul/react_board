@@ -1,0 +1,35 @@
+#mainNotfyPopup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+
+        /* 중앙 정렬 핵심 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    border-radius: 20px;
+}
+#mainNotify{
+    background-color: #f9f9f9;
+    width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+}
+#selectNotify{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* 버튼 사이 간격 */
+    margin-top: 20px;
+}
+
+#selectNotify > div {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid rgb(192,192,192);
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}

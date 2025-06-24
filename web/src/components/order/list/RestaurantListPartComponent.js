@@ -1,16 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 /*
     메뉴 리스트들 화면에 뿌려줄때 하나의 컴포넌트
 */
-export default function RestaurantListPartComponent({restaurantInfo, showCheckBox, setCheckBoxClick, setDeleteList}){
+export default function RestaurantListPartComponent({restaurantInfo, showCheckBox, setCheckBoxClick, setDeleteList, yesOrNoPopupVerify}){
     const navigate = useNavigate();
     return (
         <>
-            
             <div className="menuLists" 
             onClick={()=>{
+                if(typeof yesOrNoPopupVerify != undefined){
+                    let saveMenuCartStorage = sessionStorage.getItem('saveMenuCartStorage');
+                    if(saveMenuCartStorage != null){
+                        saveMenuCartStorage = JSON.parse(saveMenuCartStorage);
+                        if(saveMenuCartStorage.restaurantInfo.id != restaurantInfo.id){
+                            yesOrNoPopupVerify(true);
+                            return;
+                        }
+                    }
+                }
                 navigate(`/order/restaurant/view/${restaurantInfo.id}`, {
                     state: restaurantInfo
                 })
