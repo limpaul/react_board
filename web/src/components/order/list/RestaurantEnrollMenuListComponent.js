@@ -15,7 +15,6 @@ export default function RestaurantEnrollMenuListComponent(){
     const location = useLocation();
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
-    const [menuHandle, setMenuHandle] = useState(null);
     
     /*
         사용자 장바구니
@@ -43,6 +42,8 @@ useEffect(() => {
 
 
     const handleShoppingCart = () => { // 장바구니 컴포넌트로 이동한다
+        // 브라우저 세션 스토리지에 정보를 저장한다 
+        sessionStorage.setItem('saveMenuCartStorage', JSON.stringify(clientOrderCart))
         navigate('/order/user/shopping/cart', {
             state: {clientOrderCart, paymentOrderInfo}
         })
