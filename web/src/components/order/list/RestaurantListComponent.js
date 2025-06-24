@@ -4,16 +4,19 @@ import RestaurantListPartComponent from "./RestaurantListPartComponent";
 import TabComponent from "../common/TabComponent";
 import { request } from "../common/DataToServer";
 import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import YesOrNoDivPopupComponent from "../common/check/YesOrNoDivPopupComponent";
+import TopInfoComponent from "../common/show/TopInfoComponent";
 
 // /order/restaurant/list
 export default function RestaurantListComponent(){
+    const location = useLocation();
     const navigate = useNavigate();
+    const [userInfo ,setUserInfo] = useState(location.state);
+    sessionStorage.setItem('userinfo', JSON.stringify(userInfo));
     const [restauantData, setRestauantData] = useState(null);
     const [paymentOrderInfo, setPaymentOrderInfo] = useState(null);
     const [yesOrNoPopupVerify, setYesOrNoPopupVerify] = useState(false);
-    
     const handleShoppingCart = () => { // 장바구니 컴포넌트로 이동한다
         // 브라우저 세션 스토리지에 정보를 저장한다 
         
@@ -52,6 +55,7 @@ export default function RestaurantListComponent(){
     return (
         <>
             <TabComponent/>
+            {userInfo && <TopInfoComponent text={userInfo.address}/>}
             {yesOrNoPopupVerify && <YesOrNoDivPopupComponent
                 notifyContent={" 장바구니에는 같은 가게의 메뉴만 담을 수 있습니다"}
                 yesText={"확인"}
