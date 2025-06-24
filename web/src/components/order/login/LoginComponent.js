@@ -45,7 +45,9 @@ export default function LoginComponent({isVisibleUserAddComponent}){
     }
     useEffect(()=>{
         // useNavigate 
-        window.mVaccine_onload();
+        if(navigator.userAgent.indexOf('android') > 0){
+            window.mVaccine_onload();
+        }
     }, [])
     return (<>
         <LinkComponent/>

@@ -29,6 +29,7 @@ public class UserService {
         String username = (String)dataMap.get("username"); // 사용자 아이디
         String useremail = (String)dataMap.get("useremail"); // 사용자 이메일
         String userpassword = (String)dataMap.get("userpassword"); // 사용자 계정 비번
+        String useraddress = (String)dataMap.get("useraddress"); // 사용자 계정 주소
         String restaurantname = (String)dataMap.get("restaurantName"); // 식당 이름
         String restaurantaddress = (String)dataMap.get("restaurantAddress");// 식당 주소
         String restaurantexplain = (String)dataMap.get("restaurantExplain"); // 식당 설명
@@ -40,6 +41,7 @@ public class UserService {
                     .username(username)
                     .email(useremail)
                     .password(sha1(userpassword))
+                    .address(useraddress)
                     .role("ROLE_OWNER")
                     .build();
 
@@ -63,6 +65,7 @@ public class UserService {
                     .username(username)
                     .email(useremail)
                     .password(sha1(userpassword))
+                    .address(useraddress)
                     .role("ROLE_CUSTOMER")
                     .build());
             return 2; // 일반 계정일 경우 2번으로 반환
@@ -85,6 +88,7 @@ public class UserService {
         if(user!=null && user.getPassword().equals(sha1(password))){
             dataMap.put("username", user.getUsername());
             dataMap.put("user", user.getEmail());
+            dataMap.put("address", user.getAddress());
             dataMap.put("role", user.getRole());
             dataMap.put("token", jwtConfiguration.createToken(user));
             dataMap.put("isSuccess", true);

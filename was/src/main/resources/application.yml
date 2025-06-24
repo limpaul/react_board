@@ -35,7 +35,7 @@ logging:
 # sql.user.save 회원가입
 sql:
   user:
-    save: 'INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)'
+    save: 'INSERT INTO users (username, email, password, role, address) VALUES (?, ?, ?, ?, ?)'
     findAll: 'select * from users'
     findUserByUserName: 'select * from users where username = ?'
     findUserByUserId: 'SELECT * FROM users where id = ?'

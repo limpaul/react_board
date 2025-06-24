@@ -18,6 +18,7 @@ export default function UserAddComponent(){
     const username = useRef(); // 사용자 아이디 
     const useremail = useRef(); // 사용자 이메일 
     const userpassword = useRef(); // 사용자 비밀번호 
+    const useraddress = useRef();
 
     const [visibleRestaurantAddComponent, setVisibleRestaurantAddComponent] = useState(false);
     const [body, setBody] = useState({});
@@ -29,6 +30,7 @@ export default function UserAddComponent(){
              username: username.current.value,
             useremail: useremail.current.value,
             userpassword: userpassword.current.value,
+            useraddress: useraddress.current.value,
             isChecked: false,
         }
         if(checked){
@@ -82,6 +84,7 @@ export default function UserAddComponent(){
                 <div className="useraddForm">
                     <input type="text" id="username" ref={username} placeholder="이름(별명)" />
                     <input type="text" id="useremail" ref={useremail} placeholder="이메일" />
+                    <input type="text" id="useraddress" ref={useraddress} placeholder="주소" />
                     <input type="password" id="userpassword" ref={userpassword} placeholder="비밀번호" />
                     <input type="password" id="repassword" placeholder="비밀번호 확인" />
                 </div>

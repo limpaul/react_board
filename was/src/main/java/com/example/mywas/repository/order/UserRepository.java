@@ -47,7 +47,9 @@ public class UserRepository{
             user.getUsername(),
             user.getEmail(),
             user.getPassword(),
-            user.getRole());
+            user.getRole(),
+            user.getAddress()
+        );
 
     }
     public List<User> findAll(){
