@@ -49,7 +49,7 @@ sql:
     deleteRestaurantByUserId: 'delete restaurant where user_id= ? and id = ?'
 
     order:
-      order: 'insert into orders (user_id, restaurant_id, total_price, unique_str) values (?, ?, ?, ?)'
+      order: 'insert into orders (user_id, restaurant_id, total_price, address, unique_str) values (?, ?, ?, ?, ?)'
       findOrderIdByUniqueStr: 'select id, ordered_at from orders where unique_str = ?'
   menu:
     findMenuByRestaurantId: 'SELECT * FROM menu WHERE restaurant_id = ?'

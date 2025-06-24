@@ -25,6 +25,7 @@ public class OrderRepository {
                 order.getUserId(),
                 order.getRestaurant().getId(),
                 order.getTotalMount(),
+                order.getUser().getAddress(),
                 order.getUniqueStr()
         );
 

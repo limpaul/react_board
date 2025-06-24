@@ -15,7 +15,6 @@ export default function RestaurantEnrollMenuListComponent(){
     const location = useLocation();
     const restaurantData = location.state;
     const [testMenuData, setTestMenuData] = useState(null);
-    
     /*
         사용자 장바구니
     */
@@ -31,7 +30,16 @@ export default function RestaurantEnrollMenuListComponent(){
         'totalprice':0,
         'ordercount':0
     });
-
+useEffect(()=>{
+    let userInfo = sessionStorage.getItem('userinfo');
+    if(userInfo != null){
+        userInfo = JSON.parse(userInfo);
+        setClientOrderCart(prev => ({
+            ...prev,
+            'address':userInfo.address // 사용자 주소 추가
+        }))
+    }
+}, [])
 useEffect(() => {
   console.log("🛒 장바구니 상태 변경:", clientOrderCart);
 }, [clientOrderCart]);

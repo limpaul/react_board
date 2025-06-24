@@ -38,34 +38,45 @@ public class UserOrderService {
 
         Order order = new Order(); // 주문목록 정보 클래스
         order.setUserId(userId); // 사용자 정보 입력
-        List<Menu> menus;
-
-        dataBody.forEach((key, value)->{
-            // 가게 정보 추출
-            if(key.equals("restaurantInfo")){
-                Restaurant restaurant = objectMapper.convertValue(value, Restaurant.class);
-                order.setRestaurant(restaurant);
-            }
-            // 메뉴 정보 추출
-            if(key.equals("menuData")){
-                order.setMenus(objectMapper.convertValue(value, new TypeReference<List<Menu>>() {}));
-            }
-            // 총 금액이 얼마인지
-            if(key.equals("totalMount")){
-                order.setTotalMount((Integer)dataBody.get("totalMount"));
-            }
-            if(key.equals("orderCount")){
-                order.setOrderCount((Integer)dataBody.get("orderCount"));
-            }
-
-        });
-
         User user = userRepository.findUserByUserId(order.getUserId());
         if(user != null){
             order.setUser(user);
         }else{
             logger.debug("user is null");
         }
+        List<Menu> menus;
+
+        dataBody.forEach((key, value) -> {
+            switch (key) {
+                case "restaurantInfo":
+                    Restaurant restaurant = objectMapper.convertValue(value, Restaurant.class);
+                    order.setRestaurant(restaurant);
+                    break;
+
+                case "menuData":
+                    List<Menu> getMenus = objectMapper.convertValue(value, new TypeReference<List<Menu>>() {});
+                    order.setMenus(getMenus);
+                    break;
+
+                case "totalMount":
+                    order.setTotalMount((Integer) value);
+                    break;
+
+                case "orderCount":
+                    order.setOrderCount((Integer) value);
+                    break;
+
+                case "address":
+                    if (order.getUser() != null) {
+                        order.getUser().setAddress((String) value);
+                    }
+                    break;
+
+                default:
+                    // 필요시 로그 출력 or 무시
+                    break;
+            }
+        });
 
         order.setUniqueStr(UUID.randomUUID().toString()); // 주문 코유 코드를 부여한다
         // 해당 데이터를 주문 테이블에 저장한다
