@@ -38,7 +38,7 @@ sql:
     save: 'INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)'
     findAll: 'select * from users'
     findUserByUserName: 'select * from users where username = ?'
-    findUserByUserId: 'SELECT * FROM users where userid = ?'
+    findUserByUserId: 'SELECT * FROM users where id = ?'
     findUserByUserNameAndRole: 'select * from users where username = ? and role = ?'
 
 # sql.restaurant.save 사용자 식당 등록

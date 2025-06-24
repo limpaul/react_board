@@ -30,10 +30,10 @@ public class UserRepository{
     @Value("${sql.user.save}") // INSERT INTO users...
     private String userAddSql;
 
-    @Value("${sql.user.findAll") // 'select * from users'
+    @Value("${sql.user.findAll}") // 'select * from users'
     private String userFindAll;
 
-    @Value("${sql.user.findUserByUserId")
+    @Value("${sql.user.findUserByUserId}")
     private String findUserByUserId;
 
     @Value("${sql.user.findUserByUserName}") // 'select * from users where username = ?'

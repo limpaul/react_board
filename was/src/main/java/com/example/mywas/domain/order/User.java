@@ -17,13 +17,6 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String address;
     private String role; // customer, owner, admin
-
-    public User(String username, String email, String passowerd, String role){
-        this.username = username;
-        this.email = email;
-        this.password = passowerd;
-        this.role = role;
-    }
-
 }
