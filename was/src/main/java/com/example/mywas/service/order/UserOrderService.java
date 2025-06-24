@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserOrderService {
@@ -59,12 +56,16 @@ public class UserOrderService {
 
         });
 
+        order.setUniqueStr(UUID.randomUUID().toString()); // 주문 코유 코드를 부여한다
         // 해당 데이터를 주문 테이블에 저장한다
         System.out.println(order.toString());
         // orders 테이블에 필요 값들을 저장하고 id값 정보를 리턴한다
-        //Order resultOrderInfo = orderRepository.createOrderInfo(order);
+        Order resultOrderInfo = orderRepository.createOrderInfo(order);
         // order 정보로 order_items 테이블 정보를 갱신하다
         //resultOrderInfo.getMenus().
+        order.getMenus().forEach(menu ->{
+            System.out.println(menu.toString());
+        });
 
         return resultMap;
     }

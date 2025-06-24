@@ -20,5 +20,6 @@ public class Order {
     private List<Menu> menus;
     private int totalMount;
     private int orderCount;
+    private String uniqueStr;
     private LocalDateTime localDateTime;
 }

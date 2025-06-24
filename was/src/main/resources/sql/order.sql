@@ -14,16 +14,16 @@ CREATE TABLE orders (
   restaurant_id BIGINT NOT NULL,     -- 주문한 식당
   delivery_person_id BIGINT,-- 배달 담당자 (nullable)
   delivery_fee INT,                  -- 배달 수수료
-  total_price INT NOT NULL,          -- 총 주문 금액
+  total_price INT,          -- 총 주문 금액
   status VARCHAR(20) DEFAULT 'PENDING', -- 주문 상태
-  address VARCHAR(255) NOT NULL,     -- 배송지
+  address VARCHAR(255),     -- 배송지
   ordered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  unique_str varchar(50) UNIQUE,
 
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (restaurant_id) REFERENCES restaurant(id) ON DELETE CASCADE,
   FOREIGN KEY (delivery_person_id) REFERENCES delivery_person(id) ON DELETE SET NULL
 );
-
 
 CREATE TABLE order_items (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,

@@ -48,7 +48,9 @@ sql:
     findRestaurantByUserId: 'SELECT * FROM restaurant where user_id = ?' # 사용자가 등록한 식당들 리스트 목록
     deleteRestaurantByUserId: 'delete restaurant where user_id= ? and id = ?'
 
-
+    order:
+      order: 'insert into orders (user_id, restaurant_id, total_price, unique_str) values (?, ?, ?, ?)'
+      findOrderIdByUniqueStr: 'select id, ordered_at from orders where unique_str = ?'
   menu:
     findMenuByRestaurantId: 'SELECT * FROM menu WHERE restaurant_id = ?'
 
