@@ -50,7 +50,10 @@ sql:
 
     order:
       order: 'insert into orders (user_id, restaurant_id, total_price, address, unique_str) values (?, ?, ?, ?, ?)'
+      item: 'insert into order_items (order_id, menu_id, quantity, price) values (?, ?, ?, ?) '
       findOrderIdByUniqueStr: 'select id, ordered_at from orders where unique_str = ?'
+      findOrdersByUserId: 'select * from orders where user_id = ?'
+      findOrderByUniqueStr: 'select * from orders where unique_str = ?'
   menu:
     findMenuByRestaurantId: 'SELECT * FROM menu WHERE restaurant_id = ?'
 

@@ -2,6 +2,7 @@ package com.example.mywas.service.order;
 
 import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.*;
+import com.example.mywas.domain.order.dto.OrderMenu;
 import com.example.mywas.repository.order.OrderRepository;
 import com.example.mywas.repository.order.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -24,6 +25,33 @@ public class UserOrderService {
     @Autowired private JwtConfiguration jwtConfiguration;
 
     @Autowired private ObjectMapper objectMapper;
+
+    private Map<String, Object> commonHeaderCheck(Map<String, Object> dataHeader, String message){
+        Map<String, Object> tokenInfo = jwtConfiguration.getTokenInfo(dataHeader);
+        Map<String, Object> resultMap = new HashMap<>();
+        if(tokenInfo == null){ // token 정보가 없다면
+            resultMap.put("status", false);
+            resultMap.put("message", message);
+            return resultMap;
+        }
+        return tokenInfo;
+    }
+
+    public Map<String, Object> userOrderList(Map<String, Object> dataHeader, Map<String, Object> dataBody){
+        Map<String, Object> headerCheckResult = commonHeaderCheck(dataHeader, "주문한 이력이 없어요");
+        if((Boolean)headerCheckResult.get("status")){
+
+        }
+        return headerCheckResult;
+    }
+    public Map<String, Object> findUserOrder(Map<String, Object> dataHeader, Map<String, Object> dataBody){
+        Map<String, Object> headerCheckResult = commonHeaderCheck(dataHeader, "주문한 이력이 없어요");
+        if((Boolean)headerCheckResult.get("status")){
+            Long userId = Long.valueOf((Integer)headerCheckResult.get("userid"));
+            // 가게명, 가게주소, 주문메뉴, 주문시간, 배달현황
+        }
+        return headerCheckResult;
+    }
 
     public Map<String, Object> userOrderToRestaurant(Map<String, Object> dataHeader, Map<String, Object> dataBody) {
         Map<String, Object> tokenInfo = jwtConfiguration.getTokenInfo(dataHeader);
@@ -54,7 +82,7 @@ public class UserOrderService {
                     break;
 
                 case "menuData":
-                    List<Menu> getMenus = objectMapper.convertValue(value, new TypeReference<List<Menu>>() {});
+                    List<OrderMenu> getMenus = objectMapper.convertValue(value, new TypeReference<List<OrderMenu>>() {});
                     order.setMenus(getMenus);
                     break;
 
@@ -80,12 +108,12 @@ public class UserOrderService {
 
         order.setUniqueStr(UUID.randomUUID().toString()); // 주문 코유 코드를 부여한다
         // 해당 데이터를 주문 테이블에 저장한다
-        System.out.println(order.toString());
         // orders 테이블에 필요 값들을 저장하고 id값 정보를 리턴한다
         Order resultOrderInfo = orderRepository.createOrderInfo(order);
         // order 정보로 order_items 테이블 정보를 갱신하다
         //resultOrderInfo.getMenus().
-        order.getMenus().forEach(menu ->{
+
+        resultOrderInfo.getMenus().forEach(menu ->{
             System.out.println(menu.toString());
         });
 

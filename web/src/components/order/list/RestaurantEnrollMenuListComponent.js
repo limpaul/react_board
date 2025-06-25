@@ -73,6 +73,7 @@ useEffect(() => {
             const exsitingMenuIndex = prev.menuData.findIndex(item=>{
                 
                 if(item.id === menuData.id){
+                    if(menuData.count == 0){menuData.count = 1}
                     menuData.count += 1; // 동일메뉴의 주문수량을 1로 늘린다
                     return true;
                 }else{

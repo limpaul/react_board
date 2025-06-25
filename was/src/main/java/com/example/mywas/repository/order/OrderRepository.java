@@ -1,6 +1,7 @@
 package com.example.mywas.repository.order;
 
 import com.example.mywas.domain.order.Order;
+import com.example.mywas.domain.order.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,8 +18,13 @@ public class OrderRepository {
     @Value("${sql.restaurant.order.order}")
     private String createOrder;
 
+    @Value("${sql.restaurant.order.item}")
+    private String createItem;
+
     @Value("${sql.restaurant.order.findOrderIdByUniqueStr}")
     private String findOrderIdByUniqueStr;
+
+
 
     public Order createOrderInfo(Order order) {
         jdbcTemplate.update(createOrder,
@@ -46,6 +52,26 @@ public class OrderRepository {
             order.setLocalDateTime(((java.sql.Timestamp) timeObj).toLocalDateTime());
         }
 
+
+        // 주문한 음식들을 db에 저장한다
+        order.getMenus().forEach(orderMenu -> {
+            createItem(OrderItem.builder()
+                    .order(order)
+                    .menu(orderMenu)
+                    .quantity(orderMenu.getCount())
+                    .priceAtOrder(orderMenu.getPrice())
+                    .build());
+        });
+
         return order;
+    }
+
+    public int createItem(OrderItem orderItem){
+        return jdbcTemplate.update(createItem,
+                orderItem.getOrder().getId(),
+                orderItem.getMenu().getId(),
+                orderItem.getQuantity(),
+                orderItem.getPriceAtOrder()
+                );
     }
 }
