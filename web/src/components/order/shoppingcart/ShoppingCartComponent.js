@@ -13,8 +13,11 @@ export default function ShoppingCartComponent(){
     const location = useLocation();
     const [showOrderSelectPopup, setShowOrderSelectPopup] = useState(false);
     const [showCardDialogPopup, setShowCardDialogPopup] = useState(false);
-    const [currOrderState, setCurrOrderState] = useState(location.state)
-    const [paymentOrderInfo, setPaymentOrderInfo] = useState(currOrderState.paymentOrderInfo);
+    const [currOrderState, setCurrOrderState] = useState(JSON.parse(sessionStorage.getItem('saveMenuCartStorage')));
+    const [paymentOrderInfo, setPaymentOrderInfo] = useState({
+        'totalprice': currOrderState.totalMount,
+        'ordercount': currOrderState.orderCount
+    });
     /*
         {currOrderState, paymentOrderInfo}
     */
@@ -40,7 +43,7 @@ export default function ShoppingCartComponent(){
                 method:'POST',
                 url:'/api/order/user/order',
                 contentType:'application/json',
-                body:JSON.stringify(currOrderState.clientOrderCart),
+                body:JSON.stringify(currOrderState),
                 authentication:true
             }).then(res =>{
                 console.log(res);
@@ -56,12 +59,12 @@ export default function ShoppingCartComponent(){
     useEffect(()=>{
          console.log(currOrderState);
          
-    })
+    }, [])
     return (
         <>
             <TabComponent/>
-            <h2>{currOrderState.clientOrderCart.restaurantInfo.storeName}</h2>
-            {currOrderState && currOrderState.clientOrderCart.menuData.map((item, index)=>{
+            <h2>{currOrderState.restaurantInfo.name}</h2>
+            {currOrderState && currOrderState.menuData.map((item, index)=>{
                 return <RestaurantOrderShoppingListComponent key={index} menuData={item} setCurrOrderState={setCurrOrderState}/>
             })}
             {
