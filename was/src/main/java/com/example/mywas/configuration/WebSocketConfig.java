@@ -1,2 +1,4 @@
-package com.example.mywas.configuration;public class WebSocketConfig {
+package com.example.mywas.configuration;
+
+public class WebSocketConfig {
 }

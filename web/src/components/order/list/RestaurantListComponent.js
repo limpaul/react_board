@@ -13,7 +13,7 @@ export default function RestaurantListComponent(){
     const location = useLocation();
     const navigate = useNavigate();
     const [userInfo ,setUserInfo] = useState(location.state);
-    sessionStorage.setItem('userinfo', JSON.stringify(userInfo));
+    sessionStorage.getItem('userinfo') == null && sessionStorage.setItem('userinfo', JSON.stringify(userInfo));
     const [restauantData, setRestauantData] = useState(null);
     const [paymentOrderInfo, setPaymentOrderInfo] = useState(null);
     const [yesOrNoPopupVerify, setYesOrNoPopupVerify] = useState(false);

@@ -1,5 +1,5 @@
 import '../../../../styles/order/common/check/yesorno.css'
-export default function YesOrNoDivPopupComponent({notifyContent, yesText, noText, yesEvent, noEvent}){
+export default function YesOrNoDivPopupComponent({notifyContent, yesText, noText, yesEvent, noEvent, onlyOne}){
     return(
         <>
             <div id='mainNotfyPopup'>
@@ -7,7 +7,9 @@ export default function YesOrNoDivPopupComponent({notifyContent, yesText, noText
                     <div>{notifyContent}</div>
                     <div id='selectNotify'>
                         <div id='yes' onClick={()=>{yesEvent()}}>{yesText}</div>
-                        <div id='no' onClick={()=>{noEvent()}}>{noText}</div>
+                        {
+                        onlyOne == false && <div id='no' onClick={()=>{noEvent()}}>{noText}</div>
+                        }
                     </div>
                 </div>
             </div>

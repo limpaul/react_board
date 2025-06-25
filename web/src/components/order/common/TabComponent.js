@@ -12,6 +12,8 @@ export default function TabComponent(){
     const logout = () => {
         if(localStorage.getItem('token')!==null){
             localStorage.removeItem('token');
+            sessionStorage.removeItem('userinfo');
+
             navigate('/order/user/login')
         }
     }

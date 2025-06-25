@@ -6,6 +6,7 @@ import PaymentBeforeComponent from "../payment/PaymentBeforeComponent";
 import DownToUpComponent from "../common/DownToUpComponent";
 import PaymentInputComponent from "../payment/PaymentInputComponent";
 import { checkLogin, request } from "../common/DataToServer";
+import YesOrNoDivPopupComponent from "../common/check/YesOrNoDivPopupComponent";
 
 //order/user/shopping/cart
 export default function ShoppingCartComponent(){
@@ -14,6 +15,8 @@ export default function ShoppingCartComponent(){
     const [showOrderSelectPopup, setShowOrderSelectPopup] = useState(false);
     const [showCardDialogPopup, setShowCardDialogPopup] = useState(false);
     const [currOrderState, setCurrOrderState] = useState(JSON.parse(sessionStorage.getItem('saveMenuCartStorage')));
+    const [visiblePaymentRelative, setVisiblePaymentRelative] = useState(true);
+    const [visibleYesOrNo, setVisibleYesOrNo] = useState(false);
     const [paymentOrderInfo, setPaymentOrderInfo] = useState({
         'totalprice': currOrderState.totalMount,
         'ordercount': currOrderState.orderCount
@@ -47,19 +50,19 @@ export default function ShoppingCartComponent(){
                 authentication:true
             }).then(res =>{
                 console.log(res);
+                setShowCardDialogPopup(false);
+                setVisiblePaymentRelative(false);
+                setVisibleYesOrNo(true);
             })
         }
    }
    window.mTranskey.prototype.doneCallBack = () => {
         setShowCardDialogPopup(false);
+        setVisiblePaymentRelative(false);
    }
    const handlePayment = (e) => { // 결재 버튼 누르면 
         setShowCardDialogPopup(true)
    }
-    useEffect(()=>{
-         console.log(currOrderState);
-         
-    }, [])
     return (
         <>
             <TabComponent/>
@@ -73,11 +76,17 @@ export default function ShoppingCartComponent(){
             }
             {
                 // 결재 수단 화면
-                 <DownToUpComponent/>
+                 visiblePaymentRelative && <DownToUpComponent/>
             }
             {
                 // 결재하기 팝업
-                <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handlePayment} isPayment={true}/>    
+                visiblePaymentRelative && <PaymentBeforeComponent paymentOrderInfo={paymentOrderInfo} onCustomClick={handlePayment} isPayment={true}/>    
+            }
+            {
+                visibleYesOrNo && <YesOrNoDivPopupComponent notifyContent={"주문을 완료하였습니다"} yesText={"예"} yesEvent={()=>{
+                    sessionStorage.removeItem('saveMenuCartStorage');
+                    navigate('/order/restaurant/list');
+                }}  onlyOne={true}/>
             }
         </>
     )
