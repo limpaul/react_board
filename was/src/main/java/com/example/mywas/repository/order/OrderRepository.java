@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -24,6 +25,15 @@ public class OrderRepository {
     @Value("${sql.restaurant.order.findOrderIdByUniqueStr}")
     private String findOrderIdByUniqueStr;
 
+    @Value("${sql.restaurant.item.findItemsByOrderId}")
+    private String findItemsByOrderId;
+
+    @Value("${sql.restaurant.order.findOrdersByUserId}")
+    private String findOrdersByUserId;
+
+    public List<Order> findOrdersByUserId(Long userId){
+        return jdbcTemplate.query(findOrdersByUserId, new BeanPropertyRowMapper<>(Order.class), userId);
+    }
 
 
     public Order createOrderInfo(Order order) {
@@ -66,6 +76,12 @@ public class OrderRepository {
         return order;
     }
 
+    public List<OrderItem> findItemsByOrderId(){
+
+        return null;
+    }
+
+    // 주문한 내역을 저장한다
     public int createItem(OrderItem orderItem){
         return jdbcTemplate.update(createItem,
                 orderItem.getOrder().getId(),

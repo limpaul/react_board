@@ -119,4 +119,15 @@ public class UserOrderService {
 
         return resultMap;
     }
+
+    public Map<String, Object> findOrderByUserId(Map<String, Object> dataHeader, Map<String, Object> dataBody){
+        Map<String, Object> tokenInfo = commonHeaderCheck(dataHeader, "조회된 주문목록이 없습니다");
+        if((Boolean)tokenInfo.get("status")){
+            // token 으로 검증 받은 사용자 정보
+            Long userId = Long.valueOf((Integer)tokenInfo.get("userid"));
+            List<Order> resultMap = orderRepository.findOrdersByUserId(userId);
+            tokenInfo.put("data", resultMap);
+        }
+        return tokenInfo;
+    }
 }
