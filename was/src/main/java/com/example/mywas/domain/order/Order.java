@@ -21,6 +21,10 @@ public class Order { // 주문 테이블
     private List<OrderMenu> menus; // 메뉴 수량을 표현하기 위함
     private int totalMount;
     private int orderCount;
+    private String deliveryPersonId;
+    private int totalPrice;
+    private String status;
+    private String address;
+    private LocalDateTime orderedAt;
     private String uniqueStr;
-    private LocalDateTime localDateTime;
 }

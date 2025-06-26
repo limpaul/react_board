@@ -11,6 +11,7 @@ import RestaurantEnrollMenuListComponent from './components/order/list/Restauran
 import ShoppingCartComponent from './components/order/shoppingcart/ShoppingCartComponent';
 import MyPageComponent from './components/order/user/MyPageComponent';
 import OwnerManagerComponent from './components/order/manager/owner/OwnerManagerComponent';
+import OrderCompleteList from './components/order/list/order/OrderCompleteList';
 function App() {
   return (
     <div className="App">
@@ -28,7 +29,7 @@ function App() {
               <Route path="/order/restaurant/view/:id" element={<RestaurantEnrollMenuListComponent/>}></Route>
               <Route path="/order/user/shopping/cart" element={<ShoppingCartComponent/>}></Route>
               <Route path="/order/user/mypage" element={<MyPageComponent/>}></Route>
-
+              <Route path="/order/user/order/compelete/list" element={<OrderCompleteList/>}></Route>
               <Route path="/order/user/mananger/restaurant" element={<OwnerManagerComponent/>}></Route>
               
           </Routes>

@@ -2,10 +2,7 @@ package com.example.mywas.controller.order;
 
 import com.example.mywas.service.order.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -23,5 +20,11 @@ public class RestaurantUserOrderController {
         userOrderService.userOrderToRestaurant(dataHeader, dataBody);
 
         return "{}";
+    }
+    @GetMapping("/api/order/user/order/complete/list")
+    public Map<String, Object> userOrderCompleteList(
+            @RequestHeader Map<String, Object> dataHeader){
+
+        return userOrderService.findOrderByUserId(dataHeader, null);
     }
 }

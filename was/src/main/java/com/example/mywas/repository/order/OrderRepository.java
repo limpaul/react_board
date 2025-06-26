@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +58,7 @@ public class OrderRepository {
         // ordered_at 처리
         Object timeObj = resultMap.get("ordered_at");
         if (timeObj instanceof java.sql.Timestamp) {
-            order.setLocalDateTime(((java.sql.Timestamp) timeObj).toLocalDateTime());
+            order.setOrderedAt(((java.sql.Timestamp) timeObj).toLocalDateTime());
         }
 
 

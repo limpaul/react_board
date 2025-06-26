@@ -34,6 +34,7 @@ public class UserOrderService {
             resultMap.put("message", message);
             return resultMap;
         }
+        tokenInfo.put("status", true);
         return tokenInfo;
     }
 
