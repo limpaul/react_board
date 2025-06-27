@@ -156,7 +156,6 @@ public class UserOrderService {
                 conVertOrder.setUser(user);
                 // 주문한 식당 정보를 갱신시켜준다
                 conVertOrder.setRestaurant(restaurant);
-                // 메뉴 정보 갱신
 
 
                 orders.add(conVertOrder);
