@@ -69,11 +69,12 @@ useEffect(() => {
             
         }else{ 
             setClientOrderCart(prev => { // 기존 메뉴가 담겨있을 경우 0 이상을 반환하며, 새로 담긴 메뉴라면 -1을 반환한다  
-
+            if(prev.menuData.length == 0 && menuData.count == 0){
+                menuData.count = 1;
+            }
             const exsitingMenuIndex = prev.menuData.findIndex(item=>{
-                
+                if(menuData.count == 0){menuData.count += 1}
                 if(item.id === menuData.id){
-                    if(menuData.count == 0){menuData.count = 1}
                     menuData.count += 1; // 동일메뉴의 주문수량을 1로 늘린다
                     return true;
                 }else{

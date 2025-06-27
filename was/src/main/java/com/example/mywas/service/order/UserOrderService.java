@@ -147,6 +147,7 @@ public class UserOrderService {
                 List<OrderMenu> menuList = new ArrayList<>();
                 orderItems.forEach(item->{
                     OrderMenu findMenuInfo = menuRepository.findMenuById((Long)item.get("MENU_ID"));
+                    findMenuInfo.setCount((Integer)item.get("QUANTITY"));
                     menuList.add(findMenuInfo);
                 });
                 Order conVertOrder = objectMapper.convertValue(order, Order.class);
