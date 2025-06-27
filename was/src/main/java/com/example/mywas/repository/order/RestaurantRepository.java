@@ -39,8 +39,12 @@ public class RestaurantRepository {
     @Value("${sql.restaurant.findRestaurantByUserId}")
     private String findRestaurantByUserId;
 
+    @Value("${sql.restaurant.findRestaurantById}")
+    private String findRestaurantById;
+
     @Value("${sql.restaurant.deleteRestaurantByUserId}")
     private String deleteRestaurantByUserId;
+
 
     private Logger logger = LoggerFactory.getLogger(RestaurantRepository.class);
     private final List<Restaurant> restaurants = new ArrayList<>();
@@ -87,6 +91,15 @@ public class RestaurantRepository {
         // 등록된 식당을 로드한다
         try{
             return jdbcTemplate.query(findRestaurantByUserId, new BeanPropertyRowMapper<>(Restaurant.class), userId);
+        }catch (EmptyResultDataAccessException e){
+            return  null;
+        }
+    }
+
+    public Restaurant findRestaurantById(Long restaurantId){
+        // 등록된 식당을 로드한다
+        try{
+            return jdbcTemplate.queryForObject(findRestaurantById, new BeanPropertyRowMapper<>(Restaurant.class), restaurantId);
         }catch (EmptyResultDataAccessException e){
             return  null;
         }

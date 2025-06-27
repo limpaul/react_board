@@ -46,6 +46,7 @@ sql:
     save: 'INSERT INTO restaurant (user_id, name, address, description) VALUES (?, ?, ?, ?)' # 식당 등록
     findAll: 'select * from restaurant' # 현재 서버에 등록된 전체 식당
     findRestaurantByUserId: 'SELECT * FROM restaurant where user_id = ?' # 사용자가 등록한 식당들 리스트 목록
+    findRestaurantById: 'SELECT category, name, address, description, rating, delivery_time_min, delivery_time_max, delivery_fee, image, created_at FROM restaurant where id = ?'
     deleteRestaurantByUserId: 'delete restaurant where user_id= ? and id = ?'
 
     order:

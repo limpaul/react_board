@@ -4,9 +4,12 @@ import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.*;
 import com.example.mywas.domain.order.dto.OrderMenu;
 import com.example.mywas.repository.order.OrderRepository;
+import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ public class UserOrderService {
     @Autowired private OrderRepository orderRepository;
 
     @Autowired private UserRepository userRepository;
+    @Autowired private RestaurantRepository restaurantRepository;
     @Autowired private JwtConfiguration jwtConfiguration;
 
     @Autowired private ObjectMapper objectMapper;
@@ -123,11 +127,28 @@ public class UserOrderService {
 
     public Map<String, Object> findOrderByUserId(Map<String, Object> dataHeader, Map<String, Object> dataBody){
         Map<String, Object> tokenInfo = commonHeaderCheck(dataHeader, "조회된 주문목록이 없습니다");
+        List<Order> orders = new ArrayList<>();
+        objectMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         if((Boolean)tokenInfo.get("status")){
             // token 으로 검증 받은 사용자 정보
             Long userId = Long.valueOf((Integer)tokenInfo.get("userid"));
-            List<Order> resultMap = orderRepository.findOrdersByUserId(userId);
-            tokenInfo.put("data", resultMap);
+            List<Map<String, Object>> resultMap = orderRepository.findOrdersByUserId(userId);
+            resultMap.forEach(order -> {
+                Long userid = (Long)order.get("USER_ID");
+                Long restaurantId = (Long)order.get("RESTAURANT_ID");
+
+                User user = userRepository.findUserByUserId(userid);
+                Restaurant restaurant = restaurantRepository.findRestaurantById(restaurantId);
+
+
+                Order conVertOrder = objectMapper.convertValue(order, Order.class);
+                conVertOrder.setUser(user);
+                conVertOrder.setRestaurant(restaurant);
+
+                orders.add(conVertOrder);
+            });
+            tokenInfo.put("data", orders);
         }
         return tokenInfo;
     }

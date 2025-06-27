@@ -1,11 +1,14 @@
 package com.example.mywas.domain.order;
 
 import com.example.mywas.domain.order.dto.OrderMenu;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +28,6 @@ public class Order { // 주문 테이블
     private int totalPrice;
     private String status;
     private String address;
-    private LocalDateTime orderedAt;
+    private OffsetDateTime orderedAt;
     private String uniqueStr;
 }

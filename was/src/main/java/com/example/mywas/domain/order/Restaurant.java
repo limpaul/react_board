@@ -15,6 +15,7 @@ public class Restaurant {
     private String name;
     private String address;
     private String description;
+    private String category;
     private Float rating;
     private int minOrderPrice;
     private int deliveryTimeMin;

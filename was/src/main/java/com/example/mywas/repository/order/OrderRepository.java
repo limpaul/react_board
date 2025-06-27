@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +32,9 @@ public class OrderRepository {
     @Value("${sql.restaurant.order.findOrdersByUserId}")
     private String findOrdersByUserId;
 
-    public List<Order> findOrdersByUserId(Long userId){
-        return jdbcTemplate.query(findOrdersByUserId, new BeanPropertyRowMapper<>(Order.class), userId);
+    public List<Map<String, Object>> findOrdersByUserId(Long userId){
+        //return jdbcTemplate.query(findOrdersByUserId, new BeanPropertyRowMapper<>(Order.class), userId);
+        return  jdbcTemplate.queryForList(findOrdersByUserId, userId);
     }
 
 
@@ -58,7 +61,9 @@ public class OrderRepository {
         // ordered_at 처리
         Object timeObj = resultMap.get("ordered_at");
         if (timeObj instanceof java.sql.Timestamp) {
-            order.setOrderedAt(((java.sql.Timestamp) timeObj).toLocalDateTime());
+            LocalDateTime ldt = ((java.sql.Timestamp) timeObj).toLocalDateTime();
+            // 시스템 기본 존을 기준으로 OffsetDateTime 생성 (원하는 존으로 변경 가능)
+            order.setOrderedAt(ldt.atOffset(ZoneOffset.systemDefault().getRules().getOffset(ldt)));
         }
 
 
