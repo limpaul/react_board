@@ -2,6 +2,7 @@ package com.example.mywas.repository.order;
 
 import com.example.mywas.domain.order.Menu;
 import com.example.mywas.domain.order.User;
+import com.example.mywas.domain.order.dto.OrderMenu;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,6 +27,8 @@ public class MenuRepository {
 
     @Value("${sql.menu.findMenuByRestaurantId}")
     private String findMenuByRestaurantId;
+    @Value("${sql.menu.findMenuById}")
+    private String findMenuById;
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -60,5 +63,17 @@ public class MenuRepository {
                     logger.info("can`t not find restaurant {}", name);
                    return null;
                 });
+    }
+
+    public OrderMenu findMenuById(Long menuId) {
+        try{
+            return jdbcTemplate.queryForObject(
+                    findMenuById,
+                    new BeanPropertyRowMapper<>(OrderMenu.class),
+                    menuId
+            );
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }

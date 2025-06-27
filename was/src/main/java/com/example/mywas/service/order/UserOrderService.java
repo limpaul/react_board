@@ -3,9 +3,7 @@ package com.example.mywas.service.order;
 import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.*;
 import com.example.mywas.domain.order.dto.OrderMenu;
-import com.example.mywas.repository.order.OrderRepository;
-import com.example.mywas.repository.order.RestaurantRepository;
-import com.example.mywas.repository.order.UserRepository;
+import com.example.mywas.repository.order.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,9 +21,10 @@ public class UserOrderService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserOrderService.class);
     @Autowired private OrderRepository orderRepository;
-
     @Autowired private UserRepository userRepository;
     @Autowired private RestaurantRepository restaurantRepository;
+    @Autowired private MenuRepository menuRepository;
+    @Autowired private ItemRepository itemRepository;
     @Autowired private JwtConfiguration jwtConfiguration;
 
     @Autowired private ObjectMapper objectMapper;
@@ -137,14 +136,28 @@ public class UserOrderService {
             resultMap.forEach(order -> {
                 Long userid = (Long)order.get("USER_ID");
                 Long restaurantId = (Long)order.get("RESTAURANT_ID");
-
+                Long orderId = (Long)order.get("id");
+                // 사용자 조회
                 User user = userRepository.findUserByUserId(userid);
+                // 식당 조회
                 Restaurant restaurant = restaurantRepository.findRestaurantById(restaurantId);
-
-
+                // 주문 정보 조회
+                List<Map<String, Object>> orderItems = itemRepository.findItemsByOrderId(orderId);
+                // 메뉴 정보 조회
+                List<OrderMenu> menuList = new ArrayList<>();
+                orderItems.forEach(item->{
+                    OrderMenu findMenuInfo = menuRepository.findMenuById((Long)item.get("MENU_ID"));
+                    menuList.add(findMenuInfo);
+                });
                 Order conVertOrder = objectMapper.convertValue(order, Order.class);
+                // 가게에 주문한 메뉴 정보를 갱신시켜준다
+                conVertOrder.setMenus(menuList);
+                // 주문한 사용자 정보를 갱신시켜준다
                 conVertOrder.setUser(user);
+                // 주문한 식당 정보를 갱신시켜준다
                 conVertOrder.setRestaurant(restaurant);
+                // 메뉴 정보 갱신
+
 
                 orders.add(conVertOrder);
             });

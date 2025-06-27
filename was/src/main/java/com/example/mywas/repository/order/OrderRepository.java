@@ -25,10 +25,6 @@ public class OrderRepository {
 
     @Value("${sql.restaurant.order.findOrderIdByUniqueStr}")
     private String findOrderIdByUniqueStr;
-
-    @Value("${sql.restaurant.item.findItemsByOrderId}")
-    private String findItemsByOrderId;
-
     @Value("${sql.restaurant.order.findOrdersByUserId}")
     private String findOrdersByUserId;
 
@@ -78,11 +74,6 @@ public class OrderRepository {
         });
 
         return order;
-    }
-
-    public List<OrderItem> findItemsByOrderId(){
-
-        return null;
     }
 
     // 주문한 내역을 저장한다
