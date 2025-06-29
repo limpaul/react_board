@@ -1,10 +1,12 @@
 package com.example.mywas.controller.order;
 
 import com.example.mywas.domain.order.Menu;
+import com.example.mywas.domain.order.Order;
 import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.User;
 import com.example.mywas.repository.order.RestaurantRepository;
 import com.example.mywas.repository.order.UserRepository;
+import com.example.mywas.service.order.UserManagerService;
 import com.example.mywas.service.order.UserMenuService;
 import com.example.mywas.service.order.UserRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,10 @@ public class RestaurantController {
     private UserRepository userRepository;
     @Autowired
     private UserRestaurantService userRestaurantService;
-
-
     @Autowired
     private RestaurantRepository restaurantRepository;
-
-
+    @Autowired
+    private UserManagerService userManagerService;
 
 
     // 식당 등록
@@ -59,6 +59,13 @@ public class RestaurantController {
 
         return userRestaurantService.removeRestaurant(dataHeader, dataMap);
     }
+
+    // 주문 조회
+    @GetMapping("/api/order/user/manager/order/list/{restaurantId}")
+    public List<Order> findRestaurantOrderById (@RequestHeader Map<String, Object> dataHeader, @PathVariable Long restaurantId){
+        return userManagerService.findOrdersById(dataHeader, restaurantId);
+    }
+
 
     // 식당 조회
     @GetMapping("/api/order/user/manager/restaurant/list")

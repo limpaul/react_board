@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 /*
     메뉴 리스트들 화면에 뿌려줄때 하나의 컴포넌트
 */
-export default function RestaurantListPartComponent({restaurantInfo, showCheckBox, setCheckBoxClick, setDeleteList, yesOrNoPopupVerify}){
+export default function RestaurantListPartComponent({restaurantInfo, showCheckBox, setCheckBoxClick, setDeleteList, yesOrNoPopupVerify, isManager}){
     const navigate = useNavigate();
     return (
         <>
@@ -20,9 +20,18 @@ export default function RestaurantListPartComponent({restaurantInfo, showCheckBo
                         }
                     }
                 }
-                navigate(`/order/restaurant/view/${restaurantInfo.id}`, {
-                    state: restaurantInfo
-                })
+                if(typeof isManager != 'undefined' && isManager){ 
+                    // 식당 주인이 주문 확인 하러 갈때
+                    navigate(`/order/user/mananger/order/${restaurantInfo.id}`, {
+                        state: restaurantInfo
+                    })
+                }else{
+                    //해당 식당으로 이동시켜준다
+                    navigate(`/order/restaurant/view/${restaurantInfo.id}`, {
+                        state: restaurantInfo
+                    })
+                }
+                
             }}
             style={{ 
                 'border':'1px solid #c0c0c0',

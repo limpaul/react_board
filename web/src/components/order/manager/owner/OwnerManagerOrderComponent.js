@@ -5,9 +5,10 @@ import ManagerSubComponent from "../../common/manager/ManagerSubComponent";
 import { request, checkLogin } from "../../common/DataToServer";
 import { useNavigate } from "react-router-dom";
 import SelectBoxComponent from "../../common/check/SelectBoxComponent";
+// /order/user/mananger/order 식당 주인이 주문을 받고 나서 화면에서 확인 
 
-// 가게 관리 - /order/user/mananger/restaurant
-export default function OwnerManagerComponent(){
+export default function OwnerManagerOrderComponent(){
+
     const [restauantData, setRestauantData] = useState(null);
     const naviator = useNavigate();
     const [showCheckBox, setShowCheckBox] = useState(false);
@@ -69,11 +70,11 @@ export default function OwnerManagerComponent(){
         console.log(restauantData);
     })
 
-    return (
-        <>
+
+    return (<>
             <TabComponent/>
             <ManagerSubComponent setShowCheckBox={setShowCheckBox}/>
-            <h2>사용자 가게 관리</h2>
+            <h2>사용자 주문 관리</h2>
             {restauantData && restauantData.map((item, index)=>(
                 <RestaurantListPartComponent 
                 restaurantInfo={item} 
@@ -81,9 +82,9 @@ export default function OwnerManagerComponent(){
                 showCheckBox={showCheckBox}
                 setCheckBoxClick = {setCheckBoxClick}
                 setDeleteList = {setDeleteList}
+                isManager={true}
                 />
             ))}
             {checkBoxClick && <SelectBoxComponent text={{'yes':'삭제','no':'취소'}} handleSelectBoxClick={handleSelectBoxClick} />}
-        </>
-    )
+    </>)
 }

@@ -12,6 +12,8 @@ import ShoppingCartComponent from './components/order/shoppingcart/ShoppingCartC
 import MyPageComponent from './components/order/user/MyPageComponent';
 import OwnerManagerComponent from './components/order/manager/owner/OwnerManagerComponent';
 import OrderCompleteList from './components/order/list/order/OrderCompleteList';
+import OwnerManagerOrderComponent from './components/order/manager/owner/OwnerManagerOrderComponent';
+import OwnerManagerOrderWaitComponent from './components/order/manager/owner/OwnerManagerOrderWaitComponent';
 function App() {
   return (
     <div className="App">
@@ -29,9 +31,14 @@ function App() {
               <Route path="/order/restaurant/view/:id" element={<RestaurantEnrollMenuListComponent/>}></Route>
               <Route path="/order/user/shopping/cart" element={<ShoppingCartComponent/>}></Route>
               <Route path="/order/user/mypage" element={<MyPageComponent/>}></Route>
+              {/* 주문 완료 */}
               <Route path="/order/user/order/compelete/list" element={<OrderCompleteList/>}></Route>
+              {/* 가게 관리 */}
               <Route path="/order/user/mananger/restaurant" element={<OwnerManagerComponent/>}></Route>
-              
+              {/* 주문 관리 */}
+              <Route path="/order/user/mananger/order" element={<OwnerManagerOrderComponent/>}></Route>
+              {/* 주문 확인 */}
+              <Route path="/order/user/mananger/order/:id" element={<OwnerManagerOrderWaitComponent/>}></Route>
           </Routes>
       </BrowserRouter>
     </div>

@@ -42,6 +42,7 @@ export default function TabComponent(){
                         <li>{visibleLoginTab && <Link to="/order/user/login">로그인</Link>}</li>
                         <li><Link to="/order/restaurant/list">주문하기</Link></li>
                         <li><Link to="/order/user/order/compelete/list">주문내역</Link></li>
+                        <li>{visibleManagerTab && <Link to="/order/user/mananger/order">주문관리</Link>}</li>
                         <li>{visibleManagerTab && <Link to="/order/user/mananger/restaurant">가게관리</Link>}</li>
                         <li><Link to="/order/user/mypage">마이페이지</Link></li>
                         <li>고객센터</li>

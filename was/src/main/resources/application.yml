@@ -55,6 +55,7 @@ sql:
       findOrderIdByUniqueStr: 'select id, ordered_at from orders where unique_str = ?'
       findOrdersByUserId: 'select * from orders where user_id = ?'
       findOrderByUniqueStr: 'select * from orders where unique_str = ?'
+      findOrderByRestaurantId: 'select * from orders where restaurant_id = ?'
 
     item:
       findItemsByOrderId: 'select * from order_items where order_id = ?'

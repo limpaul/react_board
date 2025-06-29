@@ -4,6 +4,7 @@ import com.example.mywas.domain.order.Order;
 import com.example.mywas.domain.order.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,8 @@ public class OrderRepository {
     private String findOrderIdByUniqueStr;
     @Value("${sql.restaurant.order.findOrdersByUserId}")
     private String findOrdersByUserId;
+    @Value("${sql.restaurant.order.findOrderByRestaurantId}")
+    private String findOrderByRestaurantId;
 
     public List<Map<String, Object>> findOrdersByUserId(Long userId){
         //return jdbcTemplate.query(findOrdersByUserId, new BeanPropertyRowMapper<>(Order.class), userId);
@@ -84,5 +87,13 @@ public class OrderRepository {
                 orderItem.getQuantity(),
                 orderItem.getPriceAtOrder()
                 );
+    }
+
+    public List<Order> findOrdersByRestaurantId(Long restaurantId) {
+        try{
+            return jdbcTemplate.query(findOrderByRestaurantId, new BeanPropertyRowMapper<>(Order.class),restaurantId);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }
