@@ -22,7 +22,7 @@
 }
 .orderStatusList > ul{
     display: flex;
-    gap: 10px;
+    gap: 2px;
 }
 .orderStatusList > ul > li{
     display: flex;
@@ -39,4 +39,39 @@
     border: 1px solid rgb(192,192,192);
     padding: 40px;
     width: 30%;
+}
+.orderWaitColum:hover{
+    background: lightcyan;
+}
+.subOrderInfoList > li {
+    display: flex;
+}
+.subOrderInfoList > li > div:nth-child(1){
+    width: 100px;
+}
+.orderAccept{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin: 20px;
+    gap: 40px;
+}
+.orderAccept > div{
+    border: 1px solid rgb(192,192,192);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+}
+.orderAccept > div:nth-child(1){
+    color: white;
+    background: blue;
+    font-weight: bold;
+}
+.orderAccept > div:nth-child(2){
+    color: white;
+    background: red;
+    font-weight: bold;
 }
