@@ -1,6 +1,8 @@
 server:
   port: 9090
 spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -58,10 +60,13 @@ sql:
       findOrdersByUserId: 'select * from orders where user_id = ?'
       findOrderByUniqueStr: 'select * from orders where unique_str = ?'
       findOrderByRestaurantId: 'select * from orders where restaurant_id = ?'
+      updateStatusByUniqueStr: 'update orders set status=? where UNIQUE_STR=?'
 
     item:
       findItemsByOrderId: 'select * from order_items where order_id = ?'
   menu:
     findMenuByRestaurantId: 'SELECT * FROM menu WHERE restaurant_id = ?'
     findMenuById: 'SELECT * FROM menu WHERE id = ?'
+
+
 

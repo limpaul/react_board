@@ -22,6 +22,7 @@ public class RestaurantController {
     private UserRepository userRepository;
     @Autowired
     private UserRestaurantService userRestaurantService;
+
     @Autowired
     private RestaurantRepository restaurantRepository;
     @Autowired
@@ -60,12 +61,27 @@ public class RestaurantController {
         return userRestaurantService.removeRestaurant(dataHeader, dataMap);
     }
 
-    // 주문 조회
+    //식당 관리자 주문 조회
     @GetMapping("/api/order/user/manager/order/list/{restaurantId}")
     public List<Order> findRestaurantOrderById (@RequestHeader Map<String, Object> dataHeader, @PathVariable Long restaurantId){
         return userManagerService.findOrdersById(dataHeader, restaurantId);
     }
 
+    // 식당 관리자 받은 주문 수락
+    @PostMapping("/api/order/user/manager/order/accept")
+    public Map<String, Object> orderAccept(@RequestHeader Map<String, Object> dataHeader,
+                                           @RequestBody Map<String, Object> dataBody){
+
+        return userManagerService.acceptOrder(dataHeader, dataBody);
+    }
+
+    // 식당 관리자 받은 주문 취소
+    @PostMapping("/api/order/user/manager/order/cancel")
+    public Map<String, Object> orderCancel(@RequestHeader Map<String, Object> dataHeader,
+                                           @RequestBody Map<String, Object> dataBody){
+
+        return userManagerService.cancelOrder(dataHeader, dataBody);
+    }
 
     // 식당 조회
     @GetMapping("/api/order/user/manager/restaurant/list")

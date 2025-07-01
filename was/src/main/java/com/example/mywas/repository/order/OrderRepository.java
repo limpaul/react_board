@@ -31,6 +31,9 @@ public class OrderRepository {
     @Value("${sql.restaurant.order.findOrderByRestaurantId}")
     private String findOrderByRestaurantId;
 
+    @Value("${sql.restaurant.order.updateStatusByUniqueStr}")
+    private String updateStatusByUniqueStr;
+
     public List<Map<String, Object>> findOrdersByUserId(Long userId){
         //return jdbcTemplate.query(findOrdersByUserId, new BeanPropertyRowMapper<>(Order.class), userId);
         return  jdbcTemplate.queryForList(findOrdersByUserId, userId);
@@ -94,6 +97,22 @@ public class OrderRepository {
             return jdbcTemplate.query(findOrderByRestaurantId, new BeanPropertyRowMapper<>(Order.class),restaurantId);
         }catch (EmptyResultDataAccessException e){
             return null;
+        }
+    }
+    public Boolean acceptOrder(Map<String, Object> dataBody) {
+        int result = jdbcTemplate.update(updateStatusByUniqueStr, "accept", (String)dataBody.get("uniqueStr"));
+        if(result > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public Boolean cancelOrder(Map<String, Object> dataBody) {
+        int result = jdbcTemplate.update(updateStatusByUniqueStr, "cancel", (String)dataBody.get("uniqueStr"));
+        if(result > 0) {
+            return true;
+        }else{
+            return false;
         }
     }
 }

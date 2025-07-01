@@ -59,6 +59,8 @@ public class UserManagerService {
 
                     // Order -> List<OrderItem>, List<OrderMenu>
                     OrderMenu orderMenu = menuRepository.findMenuById((Long)item.get("MENU_ID"));
+                    orderMenu.setCount((Integer)item.get("QUANTITY"));
+
                     orderItems.add(OrderItem.builder()
                             .id((Long)item.get("id"))
                             .priceAtOrder((Integer)item.get("price"))
@@ -74,5 +76,29 @@ public class UserManagerService {
         }
 
         return null;
+    }
+
+    public Map<String, Object> acceptOrder(Map<String, Object> dataHeader, Map<String, Object> dataBody) {
+        Map<String, Object> tokenInfo = commonHeaderCheck(dataHeader, "주문 승인 할 수 있는 권한이 없습니다");
+        if((Boolean)tokenInfo.get("status")){
+            Boolean orderCancelResult = orderRepository.acceptOrder(dataBody);
+            if(!orderCancelResult){
+                tokenInfo.put("status", false);
+                tokenInfo.put("message", "DB에 해당 주문 내역이 존재하지 않습니다");
+            }
+        }
+        return tokenInfo;
+    }
+
+    public Map<String, Object> cancelOrder(Map<String, Object> dataHeader, Map<String, Object> dataBody) {
+        Map<String, Object> tokenInfo = commonHeaderCheck(dataHeader, "주문 취소 할 수 있는 권한이 없습니다");
+        if((Boolean)tokenInfo.get("status")){
+            Boolean orderCancelResult = orderRepository.cancelOrder(dataBody);
+            if(!orderCancelResult){
+                tokenInfo.put("status", false);
+                tokenInfo.put("message", "DB에 해당 주문 내역이 존재하지 않습니다");
+            }
+        }
+        return tokenInfo;
     }
 }
