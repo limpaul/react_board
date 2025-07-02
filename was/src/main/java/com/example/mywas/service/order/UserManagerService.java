@@ -3,15 +3,11 @@ package com.example.mywas.service.order;
 import com.example.mywas.configuration.JwtConfiguration;
 import com.example.mywas.domain.order.Order;
 import com.example.mywas.domain.order.OrderItem;
-import com.example.mywas.domain.order.Restaurant;
 import com.example.mywas.domain.order.dto.OrderMenu;
 import com.example.mywas.repository.order.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
