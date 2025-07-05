@@ -33,6 +33,18 @@ export default function RestaurantListComponent(){
     }
 
     useEffect(()=>{
+            const token = localStorage.getItem('token');
+            if(token){
+                request({
+                    url:'/order/user/api/checkLogin',
+                    method:'GET',
+                    authentication:'true'
+                }).then(response =>{
+                    if(response.authentication != true){
+                        localStorage.removeItem('token');
+                    }
+                })
+            }
             request({
                 url:'/api/order/user/restaurant/list',
                 method:'GET',

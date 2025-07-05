@@ -28,12 +28,27 @@ public class JwtAuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String authHeader = request.getHeader("Authorization");
+        Map<String, Object> dataMap = new HashMap<>();
         if(authHeader!=null){
             System.out.println("인증헤더: "+authHeader);
+            Boolean tokenVerifyResult = jwtConfiguration.validateToken(authHeader.split(" ")[1]);
+            if(tokenVerifyResult == true){
+                dataMap.put("authentication",true);
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonStr = mapper.writeValueAsString(dataMap);
+                response.getWriter().println(jsonStr);
+                response.flushBuffer();
+            }else{
+                dataMap.put("authentication",false);
+                dataMap.put("redirectTo","/order/user/login");
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonStr = mapper.writeValueAsString(dataMap);
+                response.getWriter().println(jsonStr);
+                response.flushBuffer();
+            }
         }else{
             System.out.println(request.getRequestURI()+" 의 잘못된 접근");
             response.setContentType("application/json;charset=utf-8");
-            Map<String, Object> dataMap = new HashMap<>();
             dataMap.put("authentication",false);
             dataMap.put("redirectTo","/order/user/login");
             ObjectMapper mapper = new ObjectMapper();
