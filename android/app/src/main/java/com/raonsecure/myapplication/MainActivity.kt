@@ -76,64 +76,8 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         setAppFontColorChange();
 
-        // vaccine
-        /*------------------------ mVaccine 사이트ID, 라이선스key 설정 ------------------------------
-사이트 인증을 위해 지급받은 사이트 ID, KEY 값을 정확하게 입력해야 합니다.(라온시큐어 담당SE제공)
-ID, KEY 값이 맞지 않을 경우 mVaccine 구동이 정상적으로 되지 않습니다.
--------------------------------------------------------------------------------------*/
-        //TODO 사이트아이디,라이센스키 설정
-        Constants.site_id = ""
-        Constants.license_key = ""
 
-        /*----------------- 디버깅 모드 설정 -------------------*/
-        Constants.debug = true // 디버깅 필요 시 true 설정
-        Global.debug = true // 디버깅 필요 시 true 설정
-
-        /*----------------- 실시간검사 동적 등록 방법 -------------------*/
-        val intentFilter = IntentFilter()
-        intentFilter.addAction("android.intent.action.PACKAGE_ADDED")
-        intentFilter.addAction("android.intent.action.PACKAGE_INSTALL")
-        intentFilter.addAction("android.intent.action.PACKAGE_CHANGED")
-        intentFilter.addAction("android.intent.action.PACKAGE_REPLACED")
-        intentFilter.addDataScheme("package")
-        scanReceiver = ScanReceiver()
-        scanReceiver?.setScanOption(
-            ScanOption.Builder()
-                .setScanPhishing(true)
-                .setShowBadge(false)
-                .setNotifyClearable(true)
-                .setUseDualEngine(true)
-                .build()
-        )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(scanReceiver, intentFilter, RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(scanReceiver, intentFilter)
-        }
-
-        /*----------------- CodeReceiver 동적 등록 방법 -------------------*/
-        val intentFilter2 = IntentFilter()
-        intentFilter2.addAction("$packageName.mVaccine.FIRE")
-        codeReceiver = CodeReceiver()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(codeReceiver, intentFilter2, RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(codeReceiver, intentFilter2)
-        }
-
-        /*----------------- 악성코드, 보이스 피싱 분류 API 등록 -------------------*/
-        // mini 모드 전용
-        BackgroundScanActivity.SetScanListener { arrayList ->
-            toastResult(arrayList)
-        }
-        // full모드 전용
-        ScanActivity.SetScanListener { arrayList ->
-            toastResult(arrayList)
-        }
-        // UIFull모드 전용
-        UiScanActivity.SetScanListener { arrayList ->
-            toastResult(arrayList)
-        }
+        vaccineConfig();
 
         userAddBtn.setOnClickListener { // 회원 가입 layout 이동
             val intent:Intent = Intent(this, UserEnroll::class.java);
@@ -232,6 +176,66 @@ ID, KEY 값이 맞지 않을 경우 mVaccine 구동이 정상적으로 되지 �
                     }
                 }
             }
+        }
+    }
+    fun vaccineConfig(){
+        // vaccine
+        /*------------------------ mVaccine 사이트ID, 라이선스key 설정 ------------------------------
+사이트 인증을 위해 지급받은 사이트 ID, KEY 값을 정확하게 입력해야 합니다.(라온시큐어 담당SE제공)
+ID, KEY 값이 맞지 않을 경우 mVaccine 구동이 정상적으로 되지 않습니다.
+-------------------------------------------------------------------------------------*/
+        //TODO 사이트아이디,라이센스키 설정
+        Constants.site_id = ""
+        Constants.license_key = ""
+
+        /*----------------- 디버깅 모드 설정 -------------------*/
+        Constants.debug = true // 디버깅 필요 시 true 설정
+        Global.debug = true // 디버깅 필요 시 true 설정
+
+        /*----------------- 실시간검사 동적 등록 방법 -------------------*/
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("android.intent.action.PACKAGE_ADDED")
+        intentFilter.addAction("android.intent.action.PACKAGE_INSTALL")
+        intentFilter.addAction("android.intent.action.PACKAGE_CHANGED")
+        intentFilter.addAction("android.intent.action.PACKAGE_REPLACED")
+        intentFilter.addDataScheme("package")
+        scanReceiver = ScanReceiver()
+        scanReceiver?.setScanOption(
+            ScanOption.Builder()
+                .setScanPhishing(true)
+                .setShowBadge(false)
+                .setNotifyClearable(true)
+                .setUseDualEngine(true)
+                .build()
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(scanReceiver, intentFilter, RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(scanReceiver, intentFilter)
+        }
+
+        /*----------------- CodeReceiver 동적 등록 방법 -------------------*/
+        val intentFilter2 = IntentFilter()
+        intentFilter2.addAction("$packageName.mVaccine.FIRE")
+        codeReceiver = CodeReceiver()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(codeReceiver, intentFilter2, RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(codeReceiver, intentFilter2)
+        }
+
+        /*----------------- 악성코드, 보이스 피싱 분류 API 등록 -------------------*/
+        // mini 모드 전용
+        BackgroundScanActivity.SetScanListener { arrayList ->
+            toastResult(arrayList)
+        }
+        // full모드 전용
+        ScanActivity.SetScanListener { arrayList ->
+            toastResult(arrayList)
+        }
+        // UIFull모드 전용
+        UiScanActivity.SetScanListener { arrayList ->
+            toastResult(arrayList)
         }
     }
 
