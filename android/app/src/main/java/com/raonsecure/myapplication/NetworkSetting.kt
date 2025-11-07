@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 
 class NetworkSetting {
-    public val serverIp:String by lazy { "http://172.30.1.36" } // 172.30.1.9 / 10.47.17.169
+    public val serverIp:String by lazy { "http://172.30.1.8" } // 172.30.1.9 / 10.47.17.169
     public val serverPort:Int by lazy { 9090 }
 
     suspend fun commonSendGetToServer(urlPath:String=serverIp, port:Int=serverPort): String? {
